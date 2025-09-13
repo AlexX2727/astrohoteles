@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hoteles Premium</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: 'Arial', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 2rem;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #0EA5E9;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #0EA5E9;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+                        url('https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+        }
+
+        .hero-content .subtitle {
+            font-size: 1.5rem;
+            color: #0EA5E9;
+            margin-bottom: 2rem;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #0EA5E9;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
+        }
+
+        /* Hotels Grid */
+        .hotels-section {
+            padding: 4rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 3rem;
+            color: #0EA5E9;
+        }
+
+        .hotels-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 3rem;
+            padding: 2rem 0;
+        }
+
+        .hotel-card {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            height: 500px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .hotel-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(14, 165, 233, 0.3);
+        }
+
+        .hotel-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .hotel-card:hover .hotel-image {
+            transform: scale(1.1);
+        }
+
+        .hotel-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.9));
+            padding: 3rem 2rem 2rem;
+            color: #fff;
+        }
+
+        .hotel-name {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            color: #fff;
+        }
+
+        .hotel-location {
+            font-size: 1rem;
+            color: #0EA5E9;
+            margin-bottom: 1rem;
+        }
+
+        .hotel-description {
+            font-size: 0.9rem;
+            line-height: 1.4;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+
+        .reserve-btn {
+            background: linear-gradient(45deg, #FF6B35, #FF8E53);
+            color: #fff;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .reserve-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(255, 107, 53, 0.4);
+            background: linear-gradient(45deg, #FF8E53, #FF6B35);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-content .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .hotels-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .hotel-card {
+                height: 400px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        /* Loading Animation */
+        .hotel-card {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .hotel-card:nth-child(1) { animation-delay: 0.1s; }
+        .hotel-card:nth-child(2) { animation-delay: 0.2s; }
+        .hotel-card:nth-child(3) { animation-delay: 0.3s; }
+        .hotel-card:nth-child(4) { animation-delay: 0.4s; }
+        .hotel-card:nth-child(5) { animation-delay: 0.5s; }
+        .hotel-card:nth-child(6) { animation-delay: 0.6s; }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">HotelLux</div>
+            <ul class="nav-links">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#hoteles">Hoteles</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <div class="hero-content">
+            <h1>Experiencias Inolvidables</h1>
+            <p class="subtitle">Descubre los hoteles más exclusivos del mundo</p>
+        </div>
+        <div class="scroll-indicator">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7 10L12 15L17 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Hotels Section -->
+    <section class="hotels-section" id="hoteles">
+        <h2 class="section-title">Nuestros Hoteles</h2>
+        
+        <div class="hotels-grid">
+            <!-- Hotel 1 -->
+            <div class="hotel-card">
+                <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Hotel Paradise Resort" class="hotel-image">
+                <div class="hotel-overlay">
+                    <h3 class="hotel-name">Paradise Resort</h3>
+                    <p class="hotel-location">Maldivas</p>
+                    <p class="hotel-description">Villas sobre el agua con vistas espectaculares al océano índico.</p>
+                    <a href="/hotel-details.html?id=paradise-resort" class="reserve-btn">Reservar Ahora</a>
+                </div>
+            </div>
+
+            <!-- Hotel 2 -->
+            <div class="hotel-card">
+                <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Mountain Lodge" class="hotel-image">
+                <div class="hotel-overlay">
+                    <h3 class="hotel-name">Mountain Lodge</h3>
+                    <p class="hotel-location">Suiza</p>
+                    <p class="hotel-description">Refugio alpino de lujo con vistas panorámicas a los Alpes.</p>
+                    <a href="/hotel-details.html?id=mountain-lodge" class="reserve-btn">Reservar Ahora</a>
+                </div>
+            </div>
+
+            <!-- Hotel 3 -->
+            <div class="hotel-card">
+                <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Urban Luxury" class="hotel-image">
+                <div class="hotel-overlay">
+                    <h3 class="hotel-name">Urban Luxury</h3>
+                    <p class="hotel-location">Nueva York</p>
+                    <p class="hotel-description">Elegancia metropolitana en el corazón de Manhattan.</p>
+                    <a href="/hotel-details.html?id=urban-luxury" class="reserve-btn">Reservar Ahora</a>
+                </div>
+            </div>
+
+            <!-- Hotel 4 -->
+            <div class="hotel-card">
+                <img src="https://images.unsplash.com/photo-1540541338287-41700207dee6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Beach Paradise" class="hotel-image">
+                <div class="hotel-overlay">
+                    <h3 class="hotel-name">Beach Paradise</h3>
+                    <p class="hotel-location">Bora Bora</p>
+                    <p class="hotel-description">Resort exclusivo frente a playas de arena blanca y aguas cristalinas.</p>
+                    <a href="/hotel-details.html?id=beach-paradise" class="reserve-btn">Reservar Ahora</a>
+                </div>
+            </div>
+
+            <!-- Hotel 5 -->
+            <div class="hotel-card">
+                <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Desert Oasis" class="hotel-image">
+                <div class="hotel-overlay">
+                    <h3 class="hotel-name">Desert Oasis</h3>
+                    <p class="hotel-location">Dubai</p>
+                    <p class="hotel-description">Lujo árabe tradicional con comodidades ultramodernas.</p>
+                    <a href="/hotel-details.html?id=desert-oasis" class="reserve-btn">Reservar Ahora</a>
+                </div>
+            </div>
+
+            <!-- Hotel 6 -->
+            <div class="hotel-card">
+                <img src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Historic Palace" class="hotel-image">
+                <div class="hotel-overlay">
+                    <h3 class="hotel-name">Historic Palace</h3>
+                    <p class="hotel-location">Toscana, Italia</p>
+                    <p class="hotel-description">Palacio renacentista convertido en hotel boutique de lujo.</p>
+                    <a href="/hotel-details.html?id=historic-palace" class="reserve-btn">Reservar Ahora</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Header background on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(0, 0, 0, 0.95)';
+            } else {
+                header.style.background = 'rgba(0, 0, 0, 0.9)';
+            }
+        });
+
+        // Add click animation to reserve buttons
+        document.querySelectorAll('.reserve-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                // Create ripple effect
+                const ripple = document.createElement('span');
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+                
+                ripple.style.width = ripple.style.height = size + 'px';
+                ripple.style.left = x + 'px';
+                ripple.style.top = y + 'px';
+                ripple.classList.add('ripple');
+                
+                this.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
+        });
+    </script>
+
+    <style>
+        /* Ripple effect */
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(0);
+            animation: ripple 0.6s linear;
+            pointer-events: none;
+        }
+
+        @keyframes ripple {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+    </style>
+</body>
+</html>
