@@ -9,15 +9,35 @@
         <!-- Filter Tabs -->
         <div class="filter-tabs">
           <button class="filter-tab active" data-category="hoteles">
-            <span class="filter-tab-icon">🏨</span>
+            <svg class="filter-tab-icon" viewBox="0 0 24 24" fill="none">
+              <path d="M3 9h18v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9z" fill="currentColor"/>
+              <path d="M12 3L3 9h18l-9-6z" fill="currentColor" opacity="0.7"/>
+              <circle cx="8" cy="14" r="1" fill="#000"/>
+              <circle cx="16" cy="14" r="1" fill="#000"/>
+            </svg>
             Hoteles
           </button>
           <button class="filter-tab" data-category="departamentos">
-            <span class="filter-tab-icon">🏠</span>
-            Departamentos
+            <svg class="filter-tab-icon" viewBox="0 0 24 24" fill="none">
+              <rect x="3" y="4" width="18" height="16" rx="2" fill="currentColor"/>
+              <rect x="6" y="8" width="3" height="4" fill="#000"/>
+              <rect x="11" y="8" width="3" height="4" fill="#000"/>
+              <rect x="15" y="8" width="3" height="4" fill="#000"/>
+              <rect x="6" y="14" width="3" height="4" fill="#000"/>
+              <rect x="11" y="14" width="3" height="4" fill="#000"/>
+              <rect x="15" y="14" width="3" height="4" fill="#000"/>
+            </svg>
+            Apartamentos
           </button>
           <button class="filter-tab" data-category="hostales">
-            <span class="filter-tab-icon">🛏️</span>
+            <svg class="filter-tab-icon" viewBox="0 0 24 24" fill="none">
+              <rect x="4" y="6" width="16" height="12" rx="1" fill="currentColor"/>
+              <rect x="6" y="9" width="12" height="2" fill="#000"/>
+              <rect x="6" y="13" width="12" height="2" fill="#000"/>
+              <circle cx="8" cy="4" r="1" fill="currentColor"/>
+              <circle cx="12" cy="4" r="1" fill="currentColor"/>
+              <circle cx="16" cy="4" r="1" fill="currentColor"/>
+            </svg>
             Hostales
           </button>
         </div>
@@ -61,12 +81,162 @@
       height: 100vh;
     }
   
+    /* Mobile First Approach */
+    @media (max-width: 767px) {
+      .map-section {
+        height: 100vh;
+        overflow: hidden;
+      }
+  
+      .main-container {
+        flex-direction: column;
+        height: 100vh;
+        position: relative;
+      }
+      
+      .map-container {
+        height: 40vh;
+        order: 1;
+        width: 100%;
+        position: relative;
+        background: #1a1a1a;
+        min-height: 200px;
+      }
+      
+      .sidebar {
+        height: 60vh;
+        order: 2;
+        width: 100%;
+        border-right: none;
+        border-top: 1px solid #333;
+        overflow-y: auto;
+      }
+  
+      #map {
+        width: 100% !important;
+        height: 100% !important;
+        position: relative !important;
+        display: block !important;
+        min-height: 200px !important;
+      }
+  
+      .search-bar {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        width: 200px;
+        z-index: 1000;
+        background: rgba(0, 0, 0, 0.9);
+        padding: 0.4rem;
+        border-radius: 6px;
+        border: 1px solid #333;
+        display: flex;
+        gap: 0.3rem;
+        align-items: center;
+      }
+  
+      .search-input {
+        width: 80px;
+        font-size: 0.7rem;
+        padding: 0.3rem;
+      }
+      
+      .search-btn {
+        padding: 0.3rem 0.6rem;
+        font-size: 0.7rem;
+      }
+  
+      .map-controls {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        z-index: 1000;
+        flex-direction: column;
+        gap: 0.2rem;
+      }
+  
+      .map-control-btn {
+        padding: 0.4rem;
+        font-size: 0.7rem;
+        width: 35px;
+        height: 35px;
+      }
+  
+      .card-image {
+        height: 12px;
+      }
+  
+      .card-content {
+        padding: 0.2rem;
+      }
+  
+      .card-title {
+        font-size: 0.6rem;
+        margin-bottom: 0.15rem;
+      }
+  
+      .card-amenities-icons {
+        gap: 0.25rem;
+        margin-bottom: 0.2rem;
+      }
+  
+      .card-amenities-icons svg {
+        width: 10px;
+        height: 10px;
+      }
+  
+      .card-footer {
+        gap: 0.15rem;
+      }
+  
+      .price {
+        font-size: 0.6rem;
+      }
+  
+      .card-buttons {
+        gap: 0.2rem;
+      }
+  
+      .directions-btn {
+        width: 20px;
+        height: 20px;
+        font-size: 0.5rem;
+      }
+  
+      .reserve-btn {
+        padding: 0.2rem 0.4rem;
+        font-size: 0.55rem;
+        border-radius: 15px;
+      }
+  
+      .accommodation-card {
+        margin-bottom: 0.5rem;
+      }
+  
+      .filter-tab {
+        padding: 0.5rem 0.3rem;
+        font-size: 0.7rem;
+      }
+  
+      .filter-tab-icon {
+        width: 1rem;
+        height: 1rem;
+      }
+    }
+  
     /* Sidebar */
     .sidebar {
       width: 420px;
       background: #111;
       border-right: 1px solid #333;
       overflow-y: auto;
+      /* Hide scrollbar */
+      scrollbar-width: none; /* Firefox */
+      -ms-overflow-style: none; /* Internet Explorer 10+ */
+    }
+    
+    .sidebar::-webkit-scrollbar {
+      display: none; /* WebKit */
     }
   
     /* Filter Tabs */
@@ -111,9 +281,12 @@
     }
   
     .filter-tab-icon {
-      display: block;
-      font-size: 1.2rem;
+      width: 1.5rem;
+      height: 1.5rem;
       margin-bottom: 0.3rem;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
     }
   
     /* Accommodation Cards */
@@ -129,18 +302,44 @@
       border: 1px solid #333;
       transition: all 0.3s ease;
       cursor: pointer;
+      position: relative;
     }
   
     .accommodation-card:hover {
       border-color: #0EA5E9;
-      transform: translateY(-2px);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(14, 165, 233, 0.2);
+    }
+  
+    .accommodation-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(14, 165, 233, 0.1), rgba(255, 107, 53, 0.05));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: 1;
+      pointer-events: none;
+    }
+  
+    .accommodation-card:hover::before {
+      opacity: 1;
+    }
+  
+    .card-content {
+      position: relative;
+      z-index: 2;
     }
   
     .card-image {
       width: 100%;
-      height: 180px;
+      height: 60px;
       object-fit: cover;
       display: block;
+      border-radius: 8px 8px 0 0;
     }
   
     .card-content {
@@ -195,8 +394,15 @@
     }
   
     .amenity-icon {
-      font-size: 1rem;
+      display: inline-flex;
+      align-items: center;
       color: #0EA5E9;
+      margin-right: 0.3rem;
+    }
+  
+    .amenity-icon svg {
+      width: 16px;
+      height: 16px;
     }
   
     .card-price {
@@ -231,11 +437,13 @@
       transition: all 0.3s ease;
       text-decoration: none;
       display: inline-block;
+      box-shadow: 0 2px 8px rgba(255, 107, 53, 0.3);
     }
   
     .reserve-btn:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 8px 15px rgba(255, 107, 53, 0.3);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(255, 107, 53, 0.4);
+      background: linear-gradient(45deg, #FF8E53, #FFB366);
     }
   
     /* Map Container */
@@ -390,25 +598,52 @@
     }
   
     /* Responsive */
+    @media (max-width: 1200px) {
+      .sidebar {
+        width: 380px;
+      }
+      
+      .search-input {
+        width: 180px;
+      }
+    }
+  
     @media (max-width: 1024px) {
       .sidebar {
         width: 350px;
+      }
+      
+      .search-input {
+        width: 160px;
+      }
+      
+      .filter-tab {
+        padding: 0.8rem;
+        font-size: 0.8rem;
+      }
+      
+      .filter-tab-icon {
+        font-size: 1rem;
       }
     }
   
     @media (max-width: 768px) {
       .main-container {
         flex-direction: column;
+        height: auto;
+        min-height: calc(100vh - 80px);
       }
       
       .sidebar {
         width: 100%;
-        height: 50vh;
+        height: 60vh;
         order: 2;
+        border-right: none;
+        border-top: 1px solid #333;
       }
       
       .map-container {
-        height: 50vh;
+        height: 40vh;
         order: 1;
       }
   
@@ -416,129 +651,285 @@
         position: relative;
         top: 0;
         left: 0;
-        margin: 1rem;
-        width: calc(100% - 2rem);
+        margin: 0.5rem;
+        width: calc(100% - 1rem);
+        padding: 0.8rem;
       }
   
       .search-input {
-        width: 150px;
+        width: 140px;
+        font-size: 0.8rem;
+      }
+      
+      .search-btn {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+      }
+  
+      .map-controls {
+        top: 10px;
+        right: 10px;
+        gap: 0.3rem;
+      }
+  
+      .map-control-btn {
+        padding: 0.6rem;
+        font-size: 0.9rem;
+      }
+      
+      .card-image {
+        height: 80px;
+      }
+      
+      .filter-tab {
+        padding: 0.7rem 0.5rem;
+        font-size: 0.75rem;
+      }
+      
+      .filter-tab-icon {
+        width: 1.2rem;
+        height: 1.2rem;
+      }
+      
+      .accommodation-list {
+        padding: 0.8rem;
+      }
+      
+      .card-content {
+        padding: 0.8rem;
+      }
+      
+      .card-amenities {
+        gap: 0.8rem;
+      }
+      
+      .amenity {
+        font-size: 0.75rem;
+      }
+    }
+  
+    @media (max-width: 480px) {
+      .map-section {
+        margin-top: 0;
+      }
+      
+      .sidebar {
+        height: 55vh;
+      }
+      
+      .map-container {
+        height: 45vh;
+        display: block !important;
+      }
+  
+      #map {
+        display: block !important;
+        width: 100% !important;
+        height: 100% !important;
+      }
+  
+      .search-bar {
+        position: absolute;
+        top: 5px;
+        left: 5px;
+        width: calc(100% - 80px);
+        padding: 0.6rem;
+        margin: 0;
+        z-index: 100;
+      }
+  
+      .search-input {
+        width: 100px;
+        font-size: 0.8rem;
+        padding: 0.5rem;
+      }
+      
+      .search-btn {
+        padding: 0.5rem 0.8rem;
+        font-size: 0.8rem;
+      }
+  
+      .map-controls {
+        flex-direction: column;
+        top: 5px;
+        right: 5px;
+        gap: 0.3rem;
+      }
+  
+      .map-control-btn {
+        padding: 0.5rem;
+        font-size: 0.8rem;
+      }
+      
+      .filter-tabs {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+      }
+      
+      .filter-tabs::-webkit-scrollbar {
+        display: none;
+      }
+      
+      .filter-tab {
+        min-width: 80px;
+        padding: 0.6rem 0.4rem;
+        font-size: 0.7rem;
+        flex-shrink: 0;
+      }
+      
+      .filter-tab-icon {
+        width: 1rem;
+        height: 1rem;
+        margin-bottom: 0.2rem;
+      }
+      
+      .accommodation-list {
+        padding: 0.5rem;
+      }
+      
+      .accommodation-card {
+        margin-bottom: 0.8rem;
+      }
+      
+      .card-image {
+        height: 70px;
+      }
+      
+      .card-content {
+        padding: 0.6rem;
+      }
+      
+      .card-title {
+        font-size: 1rem;
+      }
+      
+      .card-location {
+        font-size: 0.8rem;
+        margin-bottom: 0.6rem;
+      }
+      
+      .card-amenities {
+        gap: 0.5rem;
+        margin-bottom: 0.8rem;
+      }
+      
+      .amenity {
+        font-size: 0.7rem;
+      }
+      
+      .price {
+        font-size: 1.1rem;
+      }
+      
+      .reserve-btn {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.8rem;
+      }
+    }
+  
+    @media (max-width: 320px) {
+      .search-bar {
+        margin: 0.2rem;
+        width: calc(100% - 0.4rem);
+        padding: 0.5rem;
+      }
+      
+      .filter-tab {
+        padding: 0.5rem 0.2rem;
+        font-size: 0.65rem;
+      }
+      
+      .accommodation-list {
+        padding: 0.3rem;
+      }
+      
+      .card-content {
+        padding: 0.5rem;
+      }
+      
+      .card-title {
+        font-size: 0.9rem;
+      }
+      
+      .card-rating {
+        padding: 0.2rem 0.4rem;
+        font-size: 0.7rem;
+      }
+      
+      .amenity {
+        font-size: 0.65rem;
+        gap: 0.2rem;
+      }
+      
+      .reserve-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.75rem;
       }
     }
   </style>
   
   <script is:inline>
     // @ts-nocheck
-    // Sample data
-    const accommodationsData = {
+    // FORCED LOCAL DATA - NO EXTERNAL IMPORTS
+    const SALINAS_DATA = {
       hoteles: [
         {
           id: 1,
-          name: "Hotel Paradise Resort",
-          location: "Maldivas",
-          rating: 9.2,
-          price: 450,
-          image: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+          name: "Hotel Salinas",
+          price: 85,
+          image: "https://images.unsplash.com/photo-1571896349842-33c89424de2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=60",
           amenities: [
-            { icon: "👥", text: "4 personas", value: 4 },
-            { icon: "📶", text: "WiFi gratis" },
-            { icon: "🏊‍♂️", text: "Piscina" },
-            { icon: "🅿️", text: "Parking" }
+            { icon: "👥" },
+            { icon: "📶" },
+            { icon: "🏊‍♂️" },
+            { icon: "🅿️" }
           ],
-          coordinates: [73.5093, 3.2028]
+          coordinates: [-80.9553, -2.2108]
         },
         {
           id: 2,
-          name: "Mountain Lodge",
-          location: "Zúrich, Suiza",
-          rating: 8.9,
-          price: 320,
-          image: "https://images.unsplash.com/photo-1571896349842-33c89424de2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+          name: "Hotel Miramar",
+          price: 65,
+          image: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=60",
           amenities: [
-            { icon: "👥", text: "6 personas", value: 6 },
-            { icon: "📶", text: "WiFi gratis" },
-            { icon: "🔥", text: "Chimenea" },
-            { icon: "🎿", text: "Ski" }
+            { icon: "👥" },
+            { icon: "📶" },
+            { icon: "🌅" },
+            { icon: "🍳" }
           ],
-          coordinates: [8.5417, 47.3769]
-        },
-        {
-          id: 3,
-          name: "Urban Luxury",
-          location: "Nueva York, USA",
-          rating: 9.0,
-          price: 280,
-          image: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
-          amenities: [
-            { icon: "👥", text: "2 personas", value: 2 },
-            { icon: "📶", text: "WiFi gratis" },
-            { icon: "🏋️‍♂️", text: "Gimnasio" },
-            { icon: "🛁", text: "Spa" }
-          ],
-          coordinates: [-74.0060, 40.7128]
+          coordinates: [-80.9563, -2.2118]
         }
       ],
       departamentos: [
         {
-          id: 4,
-          name: "Apartamento Central",
-          location: "Madrid, España",
-          rating: 8.5,
-          price: 120,
-          image: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+          id: 3,
+          name: "Depto Vista Mar",
+          price: 45,
+          image: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=60",
           amenities: [
-            { icon: "👥", text: "3 personas", value: 3 },
-            { icon: "📶", text: "WiFi gratis" },
-            { icon: "🍳", text: "Cocina" },
-            { icon: "🚗", text: "Parking" }
+            { icon: "👥" },
+            { icon: "📶" },
+            { icon: "🍳" },
+            { icon: "🌅" }
           ],
-          coordinates: [-3.7038, 40.4168]
-        },
-        {
-          id: 5,
-          name: "Loft Moderno",
-          location: "Barcelona, España",
-          rating: 8.8,
-          price: 150,
-          image: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
-          amenities: [
-            { icon: "👥", text: "4 personas", value: 4 },
-            { icon: "📶", text: "WiFi gratis" },
-            { icon: "🍳", text: "Cocina" },
-            { icon: "🌅", text: "Terraza" }
-          ],
-          coordinates: [2.1734, 41.3851]
+          coordinates: [-80.9548, -2.2103]
         }
       ],
       hostales: [
         {
-          id: 6,
-          name: "Backpacker Hub",
-          location: "Lima, Perú",
-          rating: 8.2,
-          price: 25,
-          image: "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
-          amenities: [
-            { icon: "👥", text: "8 personas", value: 8 },
-            { icon: "📶", text: "WiFi gratis" },
-            { icon: "🍳", text: "Cocina" },
-            { icon: "🧺", text: "Lavandería" }
-          ],
-          coordinates: [-77.0428, -12.0464]
-        },
-        {
-          id: 7,
-          name: "City Hostel",
-          location: "Buenos Aires, Argentina",
-          rating: 7.8,
+          id: 4,
+          name: "Hostal Surfero",
           price: 18,
-          image: "https://images.unsplash.com/photo-1566665797739-1674de7a421a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+          image: "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=60",
           amenities: [
-            { icon: "👥", text: "12 personas", value: 12 },
-            { icon: "📶", text: "WiFi gratis" },
-            { icon: "☕", text: "Café gratis" },
-            { icon: "🎮", text: "Sala de juegos" }
+            { icon: "👥" },
+            { icon: "📶" },
+            { icon: "🏄‍♂️" },
+            { icon: "🧺" }
           ],
-          coordinates: [-58.3816, -34.6037]
+          coordinates: [-80.9058, -2.2267]
         }
       ]
     };
@@ -546,6 +937,38 @@
     let map;
     let markers = [];
     let currentCategory = 'hoteles';
+  
+    // Get SVG icon for amenity - SIMPLIFIED
+    function getAmenityIcon(iconType) {
+      const iconMap = {
+        '👥': `<svg viewBox="0 0 24 24" fill="currentColor" width="12" height="12">
+          <path d="M16 7a4 4 0 1 1-8 0 4 4 0 0 1 8 0ZM12 14a7 7 0 0 0-7 7h14a7 7 0 0 0-7-7Z"/>
+        </svg>`,
+        '📶': `<svg viewBox="0 0 24 24" fill="currentColor" width="12" height="12">
+          <path d="M1 9l2 2c2.88-2.88 7.12-2.88 10 0l2-2C9.12 3.12 6.88 3.12 1 9zm8 8l3 3 3-3c-1.65-1.65-4.34-1.65-6 0zm-4-4l2 2c1.23-1.23 3.77-1.23 5 0l2-2C9.46 8.46 6.54 8.46 5 13z"/>
+        </svg>`,
+        '🏊‍♂️': `<svg viewBox="0 0 24 24" fill="currentColor" width="12" height="12">
+          <path d="M6 14c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm4.5-7C9.57 7 9 7.57 9 8.5S9.57 10 10.5 10s1.5-.57 1.5-1.5S11.43 7 10.5 7zM19 6H5C3.9 6 3 6.9 3 8v8c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm0 10H5V8h14v8z"/>
+        </svg>`,
+        '🅿️': `<svg viewBox="0 0 24 24" fill="currentColor" width="12" height="12">
+          <path d="M13 4H6C4.9 4 4 4.9 4 6v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V9l-5-5z"/>
+        </svg>`,
+        '🌅': `<svg viewBox="0 0 24 24" fill="currentColor" width="12" height="12">
+          <path d="M6.76 4.84l-1.8-1.79-1.41 1.41 1.79 1.79 1.42-1.41zM4 10.5H1v2h3v-2zm9-9.95h-2V3.5h2V.55zm7.45 3.91l-1.41-1.41-1.79 1.79 1.41 1.41 1.79-1.79zm-3.21 13.7l1.79 1.8 1.41-1.41-1.8-1.79-1.4 1.4z"/>
+        </svg>`,
+        '🍳': `<svg viewBox="0 0 24 24" fill="currentColor" width="12" height="12">
+          <circle cx="9" cy="9" r="8" stroke="currentColor" stroke-width="2" fill="none"/>
+          <path d="M16 16l4-4"/>
+        </svg>`,
+        '🏄‍♂️': `<svg viewBox="0 0 24 24" fill="currentColor" width="12" height="12">
+          <path d="M21 6c-1.1 0-2 .9-2 2v4c0 1.1.9 2 2 2s2-.9 2-2V8c0-1.1-.9-2-2-2zM7 6c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2s2-.9 2-2V8c0-1.1-.9-2-2-2z"/>
+        </svg>`,
+        '🧺': `<svg viewBox="0 0 24 24" fill="currentColor" width="12" height="12">
+          <path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v3.5c0 .28.22.5.5.5s.5-.22.5-.5V8h10v2.5c0 .28.22.5.5.5s.5-.22.5-.5z"/>
+        </svg>`
+      };
+      return iconMap[iconType] || `<svg viewBox="0 0 24 24" fill="currentColor" width="12" height="12"><circle cx="12" cy="12" r="4"/></svg>`;
+    }
   
     // Initialize when page loads
     document.addEventListener('DOMContentLoaded', function() {
@@ -561,10 +984,15 @@
               initMap();
             } else {
               console.error('Mapbox GL JS falló al cargar después de varios intentos');
+              // Show fallback message
+              const mapContainer = document.getElementById('map');
+              if (mapContainer) {
+                mapContainer.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;color:#666;">Cargando mapa...</div>';
+              }
             }
-          }, 1000);
+          }, 2000);
         }
-      }, 500);
+      }, 1000);
     });
   
     // Initialize map
@@ -572,16 +1000,45 @@
       // Mapbox Access Token
       mapboxgl.accessToken = 'pk.eyJ1IjoiZGVubnkyNyIsImEiOiJjbWZrbzMwYXkwMGJwMmxxMTFmdmM1cmh2In0.BCg8zmi25CEl_QURSA6A0w';
       
+      const mapContainer = document.getElementById('map');
+      if (!mapContainer) {
+        console.error('Map container not found');
+        return;
+      }
+      
       map = new mapboxgl.Map({
         container: 'map',
         style: 'mapbox://styles/mapbox/dark-v11',
-        center: [-74.0060, 40.7128], // NYC
-        zoom: 2
+        center: [-80.9553, -2.2108], // Salinas, Ecuador
+        zoom: 12,
+        attributionControl: false,
+        accessibilityText: false
       });
   
+      // Remove accessibility warnings
       map.on('load', () => {
+        // Hide all mapbox popups that might show text
+        const popups = document.querySelectorAll('.mapboxgl-popup');
+        popups.forEach(popup => {
+          popup.style.display = 'none';
+        });
+        
         loadAccommodations('hoteles');
         setupEventListeners();
+        
+        // Force resize for mobile
+        setTimeout(() => {
+          map.resize();
+        }, 500);
+      });
+  
+      // Add resize listener for responsive behavior
+      window.addEventListener('resize', () => {
+        if (map) {
+          setTimeout(() => {
+            map.resize();
+          }, 100);
+        }
       });
     }
   
@@ -621,7 +1078,7 @@
     // Load accommodations
     function loadAccommodations(category) {
       currentCategory = category;
-      const accommodations = accommodationsData[category] || [];
+      const accommodations = SALINAS_DATA[category] || [];
       
       updateAccommodationList(accommodations);
       updateMapMarkers(accommodations);
@@ -653,7 +1110,7 @@
             <div class="card-amenities">
               ${accommodation.amenities.map(amenity => `
                 <div class="amenity">
-                  <span class="amenity-icon">${amenity.icon}</span>
+                  <span class="amenity-icon">${getAmenityIcon(amenity.icon)}</span>
                   <span>${amenity.text}</span>
                 </div>
               `).join('')}
@@ -663,7 +1120,7 @@
                 <div class="price">${accommodation.price}</div>
                 <div class="price-per-night">por noche</div>
               </div>
-              <a href="/hotel-details?id=${accommodation.id}" class="reserve-btn">Reservar</a>
+              <a href="/hotel-details?id=${accommodation.id}" class="reserve-btn" style="background: linear-gradient(45deg, #FF6B35, #FF8E53); color: white; text-decoration: none;">Reservar</a>
             </div>
           </div>
         </div>
@@ -689,7 +1146,7 @@
                   <h3 class="popup-title">${accommodation.name}</h3>
                   <div class="popup-amenities">
                     ${accommodation.amenities.slice(0, 2).map(amenity => `
-                      <span>${amenity.icon} ${amenity.text}</span>
+                      <span>${getAmenityIcon(amenity.icon)} ${amenity.text}</span>
                     `).join('')}
                   </div>
                   <div class="popup-price">${accommodation.price}/noche</div>
@@ -711,24 +1168,45 @@
     }
   
     // Select accommodation
-    function selectAccommodation(id) {
-      const allAccommodations = [...accommodationsData.hoteles, ...accommodationsData.departamentos, ...accommodationsData.hostales];
+    function selectAccommodation(id, autoFocus = false) {
+      const allAccommodations = [...SALINAS_DATA.hoteles, ...SALINAS_DATA.departamentos, ...SALINAS_DATA.hostales];
       const accommodation = allAccommodations.find(acc => acc.id === id);
       
       if (accommodation) {
-        map.flyTo({
-          center: accommodation.coordinates,
-          zoom: 15,
-          duration: 2000
-        });
-        
-        const marker = markers.find(m => 
-          m.getLngLat().lng === accommodation.coordinates[0] && 
-          m.getLngLat().lat === accommodation.coordinates[1]
-        );
-        if (marker) {
-          marker.getPopup().addTo(map);
+        // Auto-scroll to map section if called from card click
+        if (autoFocus) {
+          document.querySelector('#mapa').scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+          
+          // Wait for scroll to complete, then focus map
+          setTimeout(() => {
+            map.flyTo({
+              center: accommodation.coordinates,
+              zoom: 16,
+              duration: 2500,
+              essential: true
+            });
+          }, 800);
+        } else {
+          map.flyTo({
+            center: accommodation.coordinates,
+            zoom: 16,
+            duration: 2000
+          });
         }
+        
+        // Show popup after animation
+        setTimeout(() => {
+          const marker = markers.find(m => 
+            Math.abs(m.getLngLat().lng - accommodation.coordinates[0]) < 0.001 && 
+            Math.abs(m.getLngLat().lat - accommodation.coordinates[1]) < 0.001
+          );
+          if (marker && marker.getPopup()) {
+            marker.getPopup().addTo(map);
+          }
+        }, autoFocus ? 3000 : 2000);
       }
     }
   
@@ -740,7 +1218,7 @@
     }
   
     function centerMap() {
-      const accommodations = accommodationsData[currentCategory] || [];
+      const accommodations = SALINAS_DATA[currentCategory] || [];
       if (accommodations.length > 0) {
         const bounds = new mapboxgl.LngLatBounds();
         accommodations.forEach(accommodation => {
@@ -750,7 +1228,15 @@
       }
     }
   
+    // Get directions function
+    function getDirections(lng, lat) {
+      // Open Google Maps with directions
+      const googleMapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}&travelmode=driving`;
+      window.open(googleMapsUrl, '_blank');
+    }
+  
     // Make functions global so they can be called from HTML
     window.selectAccommodation = selectAccommodation;
     window.toggleMapStyle = toggleMapStyle;
     window.centerMap = centerMap;
+    window.getDirections = getDirections;
