@@ -1,6 +1,11 @@
 ---
 // src/components/MapSection.astro
+import { accommodationsData, getAmenityIcon, MAPBOX_CONFIG } from '../data/accommodationData.js';
 ---
+
+<!-- Mapbox GL JS CDN -->
+<link href='https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css' rel='stylesheet' />
+<script src='https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js'></script>
 
 <section class="map-section" id="mapa">
   <div class="main-container">
@@ -81,162 +86,18 @@
     height: 100vh;
   }
 
-  /* Mobile First Approach */
-  @media (max-width: 767px) {
-    .map-section {
-      height: 100vh;
-      overflow: hidden;
-    }
-
-    .main-container {
-      flex-direction: column;
-      height: 100vh;
-      position: relative;
-    }
-    
-    .map-container {
-      height: 40vh;
-      order: 1;
-      width: 100%;
-      position: relative;
-      background: #1a1a1a;
-      min-height: 200px;
-    }
-    
-    .sidebar {
-      height: 60vh;
-      order: 2;
-      width: 100%;
-      border-right: none;
-      border-top: 1px solid #333;
-      overflow-y: auto;
-    }
-
-    #map {
-      width: 100% !important;
-      height: 100% !important;
-      position: relative !important;
-      display: block !important;
-      min-height: 200px !important;
-    }
-
-    .search-bar {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      width: 200px;
-      z-index: 1000;
-      background: rgba(0, 0, 0, 0.9);
-      padding: 0.4rem;
-      border-radius: 6px;
-      border: 1px solid #333;
-      display: flex;
-      gap: 0.3rem;
-      align-items: center;
-    }
-
-    .search-input {
-      width: 80px;
-      font-size: 0.7rem;
-      padding: 0.3rem;
-    }
-    
-    .search-btn {
-      padding: 0.3rem 0.6rem;
-      font-size: 0.7rem;
-    }
-
-    .map-controls {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      z-index: 1000;
-      flex-direction: column;
-      gap: 0.2rem;
-    }
-
-    .map-control-btn {
-      padding: 0.4rem;
-      font-size: 0.7rem;
-      width: 35px;
-      height: 35px;
-    }
-
-    .card-image {
-      height: 12px;
-    }
-
-    .card-content {
-      padding: 0.2rem;
-    }
-
-    .card-title {
-      font-size: 0.6rem;
-      margin-bottom: 0.15rem;
-    }
-
-    .card-amenities-icons {
-      gap: 0.25rem;
-      margin-bottom: 0.2rem;
-    }
-
-    .card-amenities-icons svg {
-      width: 10px;
-      height: 10px;
-    }
-
-    .card-footer {
-      gap: 0.15rem;
-    }
-
-    .price {
-      font-size: 0.6rem;
-    }
-
-    .card-buttons {
-      gap: 0.2rem;
-    }
-
-    .directions-btn {
-      width: 20px;
-      height: 20px;
-      font-size: 0.5rem;
-    }
-
-    .reserve-btn {
-      padding: 0.2rem 0.4rem;
-      font-size: 0.55rem;
-      border-radius: 15px;
-    }
-
-    .accommodation-card {
-      margin-bottom: 0.5rem;
-    }
-
-    .filter-tab {
-      padding: 0.5rem 0.3rem;
-      font-size: 0.7rem;
-    }
-
-    .filter-tab-icon {
-      width: 1rem;
-      height: 1rem;
-    }
-  }
-
   /* Sidebar */
   .sidebar {
     width: 420px;
     background: #111;
     border-right: 1px solid #333;
     overflow-y: auto;
-    /* Hide scrollbar */
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* Internet Explorer 10+ */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
   }
   
   .sidebar::-webkit-scrollbar {
-    display: none; /* WebKit */
+    display: none;
   }
 
   /* Filter Tabs */
@@ -329,28 +190,26 @@
     opacity: 1;
   }
 
-  .card-content {
-    position: relative;
-    z-index: 2;
-  }
-
   .card-image {
     width: 100%;
-    height: 60px;
+    height: 140px;
     object-fit: cover;
     display: block;
-    border-radius: 8px 8px 0 0;
+    border-radius: 12px 12px 0 0;
+    background-color: #333;
   }
 
   .card-content {
     padding: 1rem;
+    position: relative;
+    z-index: 2;
   }
 
   .card-header {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    margin-bottom: 0.8rem;
+    margin-bottom: 0.5rem;
   }
 
   .card-title {
@@ -358,6 +217,8 @@
     font-weight: bold;
     color: #fff;
     margin: 0;
+    flex: 1;
+    text-align: center;
   }
 
   .card-rating {
@@ -367,69 +228,77 @@
     border-radius: 6px;
     font-size: 0.8rem;
     font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 3;
   }
 
   .card-location {
     color: #888;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     margin-bottom: 0.8rem;
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 0.3rem;
   }
 
-  .card-amenities {
+  .card-amenities-icons {
     display: flex;
     gap: 1rem;
     margin-bottom: 1rem;
-    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
   }
 
-  .amenity {
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-    color: #ccc;
-    font-size: 0.8rem;
-  }
-
-  .amenity-icon {
-    display: inline-flex;
-    align-items: center;
+  .card-amenities-icons svg {
+    width: 18px;
+    height: 18px;
     color: #0EA5E9;
-    margin-right: 0.3rem;
   }
 
-  .amenity-icon svg {
-    width: 16px;
-    height: 16px;
-  }
-
-  .card-price {
+  .card-footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 1rem;
     padding-top: 1rem;
     border-top: 1px solid #333;
+    gap: 1rem;
+  }
+
+  .price-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
   }
 
   .price {
-    font-size: 1.2rem;
+    font-size: 1.6rem;
     font-weight: bold;
-    color: #fff;
+    color: #0EA5E9;
+    line-height: 1;
+    margin: 0;
+  }
+
+  .price::before {
+    content: '$';
+    font-size: 1.2rem;
+    margin-right: 0.1rem;
   }
 
   .price-per-night {
+    font-size: 0.75rem;
     color: #888;
-    font-size: 0.8rem;
+    font-weight: normal;
+    margin-top: 0.2rem;
   }
 
   .reserve-btn {
-    background: linear-gradient(45deg, #FF6B35, #FF8E53);
+    background: linear-gradient(135deg, #FF6B35 0%, #FF8E53 100%);
     color: #fff;
     border: none;
-    padding: 0.7rem 1.5rem;
+    padding: 0.8rem 1.5rem;
     border-radius: 25px;
     font-weight: bold;
     font-size: 0.9rem;
@@ -437,13 +306,37 @@
     transition: all 0.3s ease;
     text-decoration: none;
     display: inline-block;
-    box-shadow: 0 2px 8px rgba(255, 107, 53, 0.3);
+    box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .reserve-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s ease;
+  }
+
+  .reserve-btn:hover::before {
+    left: 100%;
   }
 
   .reserve-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(255, 107, 53, 0.4);
-    background: linear-gradient(45deg, #FF8E53, #FFB366);
+    box-shadow: 0 8px 25px rgba(255, 107, 53, 0.5);
+    background: linear-gradient(135deg, #FF8E53 0%, #FFB366 100%);
+  }
+
+  .reserve-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 10px rgba(255, 107, 53, 0.3);
   }
 
   /* Map Container */
@@ -598,53 +491,22 @@
   }
 
   /* Responsive */
-  @media (max-width: 1200px) {
-    .sidebar {
-      width: 380px;
-    }
-    
-    .search-input {
-      width: 180px;
-    }
-  }
-
-  @media (max-width: 1024px) {
-    .sidebar {
-      width: 350px;
-    }
-    
-    .search-input {
-      width: 160px;
-    }
-    
-    .filter-tab {
-      padding: 0.8rem;
-      font-size: 0.8rem;
-    }
-    
-    .filter-tab-icon {
-      font-size: 1rem;
-    }
-  }
-
   @media (max-width: 768px) {
     .main-container {
       flex-direction: column;
-      height: auto;
-      min-height: calc(100vh - 80px);
-    }
-    
-    .sidebar {
-      width: 100%;
-      height: 60vh;
-      order: 2;
-      border-right: none;
-      border-top: 1px solid #333;
     }
     
     .map-container {
       height: 40vh;
       order: 1;
+    }
+    
+    .sidebar {
+      height: 60vh;
+      order: 2;
+      width: 100%;
+      border-right: none;
+      border-top: 1px solid #333;
     }
 
     .search-bar {
@@ -676,269 +538,22 @@
       padding: 0.6rem;
       font-size: 0.9rem;
     }
-    
-    .card-image {
-      height: 80px;
-    }
-    
-    .filter-tab {
-      padding: 0.7rem 0.5rem;
-      font-size: 0.75rem;
-    }
-    
-    .filter-tab-icon {
-      width: 1.2rem;
-      height: 1.2rem;
-    }
-    
-    .accommodation-list {
-      padding: 0.8rem;
-    }
-    
-    .card-content {
-      padding: 0.8rem;
-    }
-    
-    .card-amenities {
-      gap: 0.8rem;
-    }
-    
-    .amenity {
-      font-size: 0.75rem;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .map-section {
-      margin-top: 0;
-    }
-    
-    .sidebar {
-      height: 55vh;
-    }
-    
-    .map-container {
-      height: 45vh;
-      display: block !important;
-    }
-
-    #map {
-      display: block !important;
-      width: 100% !important;
-      height: 100% !important;
-    }
-
-    .search-bar {
-      position: absolute;
-      top: 5px;
-      left: 5px;
-      width: calc(100% - 80px);
-      padding: 0.6rem;
-      margin: 0;
-      z-index: 100;
-    }
-
-    .search-input {
-      width: 100px;
-      font-size: 0.8rem;
-      padding: 0.5rem;
-    }
-    
-    .search-btn {
-      padding: 0.5rem 0.8rem;
-      font-size: 0.8rem;
-    }
-
-    .map-controls {
-      flex-direction: column;
-      top: 5px;
-      right: 5px;
-      gap: 0.3rem;
-    }
-
-    .map-control-btn {
-      padding: 0.5rem;
-      font-size: 0.8rem;
-    }
-    
-    .filter-tabs {
-      flex-wrap: nowrap;
-      overflow-x: auto;
-      scrollbar-width: none;
-      -ms-overflow-style: none;
-    }
-    
-    .filter-tabs::-webkit-scrollbar {
-      display: none;
-    }
-    
-    .filter-tab {
-      min-width: 80px;
-      padding: 0.6rem 0.4rem;
-      font-size: 0.7rem;
-      flex-shrink: 0;
-    }
-    
-    .filter-tab-icon {
-      width: 1rem;
-      height: 1rem;
-      margin-bottom: 0.2rem;
-    }
-    
-    .accommodation-list {
-      padding: 0.5rem;
-    }
-    
-    .accommodation-card {
-      margin-bottom: 0.8rem;
-    }
-    
-    .card-image {
-      height: 70px;
-    }
-    
-    .card-content {
-      padding: 0.6rem;
-    }
-    
-    .card-title {
-      font-size: 1rem;
-    }
-    
-    .card-location {
-      font-size: 0.8rem;
-      margin-bottom: 0.6rem;
-    }
-    
-    .card-amenities {
-      gap: 0.5rem;
-      margin-bottom: 0.8rem;
-    }
-    
-    .amenity {
-      font-size: 0.7rem;
-    }
-    
-    .price {
-      font-size: 1.1rem;
-    }
-    
-    .reserve-btn {
-      padding: 0.6rem 1.2rem;
-      font-size: 0.8rem;
-    }
-  }
-
-  @media (max-width: 320px) {
-    .search-bar {
-      margin: 0.2rem;
-      width: calc(100% - 0.4rem);
-      padding: 0.5rem;
-    }
-    
-    .filter-tab {
-      padding: 0.5rem 0.2rem;
-      font-size: 0.65rem;
-    }
-    
-    .accommodation-list {
-      padding: 0.3rem;
-    }
-    
-    .card-content {
-      padding: 0.5rem;
-    }
-    
-    .card-title {
-      font-size: 0.9rem;
-    }
-    
-    .card-rating {
-      padding: 0.2rem 0.4rem;
-      font-size: 0.7rem;
-    }
-    
-    .amenity {
-      font-size: 0.65rem;
-      gap: 0.2rem;
-    }
-    
-    .reserve-btn {
-      padding: 0.5rem 1rem;
-      font-size: 0.75rem;
-    }
   }
 </style>
 
-<script is:inline>
-  // @ts-nocheck
-  // FORCED LOCAL DATA - NO EXTERNAL IMPORTS
-  const SALINAS_DATA = {
-    hoteles: [
-      {
-        id: 1,
-        name: "Hotel Salinas",
-        price: 85,
-        image: "https://images.unsplash.com/photo-1571896349842-33c89424de2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=60",
-        amenities: [
-          { icon: "👥" },
-          { icon: "📶" },
-          { icon: "🏊‍♂️" },
-          { icon: "🅿️" }
-        ],
-        coordinates: [-80.9553, -2.2108]
-      },
-      {
-        id: 2,
-        name: "Hotel Miramar",
-        price: 65,
-        image: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=60",
-        amenities: [
-          { icon: "👥" },
-          { icon: "📶" },
-          { icon: "🌅" },
-          { icon: "🍳" }
-        ],
-        coordinates: [-80.9563, -2.2118]
-      }
-    ],
-    departamentos: [
-      {
-        id: 3,
-        name: "Depto Vista Mar",
-        price: 45,
-        image: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=60",
-        amenities: [
-          { icon: "👥" },
-          { icon: "📶" },
-          { icon: "🍳" },
-          { icon: "🌅" }
-        ],
-        coordinates: [-80.9548, -2.2103]
-      }
-    ],
-    hostales: [
-      {
-        id: 4,
-        name: "Hostal Surfero",
-        price: 18,
-        image: "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=60",
-        amenities: [
-          { icon: "👥" },
-          { icon: "📶" },
-          { icon: "🏄‍♂️" },
-          { icon: "🧺" }
-        ],
-        coordinates: [-80.9058, -2.2267]
-      }
-    ]
-  };
-
+<script is:inline define:vars={{ accommodationsData, MAPBOX_CONFIG }}>
+// @ts-nocheck
+(function() {
+  // Variables globales
   let map;
   let markers = [];
   let currentCategory = 'hoteles';
 
-  // Get SVG icon for amenity - BIGGER AND MORE INTUITIVE
+  // Datos pasados desde el servidor
+  console.log('accommodationsData:', accommodationsData);
+  console.log('MAPBOX_CONFIG:', MAPBOX_CONFIG);
+
+  // getAmenityIcon function (client-side)
   function getAmenityIcon(iconType) {
     const iconMap = {
       '👥': `<svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
@@ -950,8 +565,20 @@
       '🏊‍♂️': `<svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
         <path d="M6 14c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm4.5-7C9.57 7 9 7.57 9 8.5S9.57 10 10.5 10s1.5-.57 1.5-1.5S11.43 7 10.5 7zM19 6H5C3.9 6 3 6.9 3 8v8c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm0 10H5V8h14v8z"/>
       </svg>`,
-      '🅿️': `<svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
-        <path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/>
+      '☕': `<svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
+        <path d="M18.5 3H6c-1.1 0-2 .9-2 2v5.71c0 3.83 2.95 7.18 6.78 7.29 3.96.12 7.22-3.06 7.22-7v-1h.5c1.93 0 3.5-1.57 3.5-3.5S20.43 3 18.5 3zM16 10c0 2.76-2.24 5-5 5s-5-2.24-5-5V5h10v5zm2.5-3H18V5h.5c.83 0 1.5.67 1.5 1.5S19.33 7 18.5 7z"/>
+      </svg>`,
+      '🏄‍♂️': `<svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
+        <path d="M21 6c-1.1 0-2 .9-2 2v4c0 1.1.9 2 2 2s2-.9 2-2V8c0-1.1-.9-2-2-2zM7 6c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2s2-.9 2-2V8c0-1.1-.9-2-2-2z"/>
+      </svg>`,
+      '🧺': `<svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
+        <path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v3.5c0 .28.22.5.5.5s.5-.22.5-.5V8h10v2.5c0 .28.22.5.5.5s.5-.22.5-.5z"/>
+      </svg>`,
+      '🛁': `<svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
+        <path d="M7 7h10v1c0 .55.45 1 1 1s1-.45 1-1V6c0-.55-.45-1-1-1h-1V4c0-.55-.45-1-1-1s-1 .45-1 1v1H9V4c0-.55-.45-1-1-1s-1 .45-1 1v1H6c-.55 0-1 .45-1 1v2c0 .55.45 1 1 1s1-.45 1-1V7z"/>
+      </svg>`,
+      '🏋️‍♂️': `<svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
+        <path d="M20.57 14.86L22 13.43 20.57 12 17 15.57 8.43 7 12 3.43 10.57 2 9.14 3.43 7.71 2 5.57 4.14 4.14 2.71 2.71 4.14l1.43 1.43L2 7.71l1.43 1.43L2 10.57 3.43 12 7 8.43 15.57 17 12 20.57 13.43 22l1.43-1.43L16.29 22l2.14-2.14 1.43 1.43 1.43-1.43-1.43-1.43L22 16.29l-1.43-1.43z"/>
       </svg>`,
       '🌅': `<svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
         <path d="M6.76 4.84l-1.8-1.79-1.41 1.41 1.79 1.79 1.42-1.41zM4 10.5H1v2h3v-2zm9-9.95h-2V3.5h2V.55zm7.45 3.91l-1.41-1.41-1.79 1.79 1.41 1.41 1.79-1.79zm-3.21 13.7l1.79 1.8 1.41-1.41-1.8-1.79-1.4 1.4zM20 10.5v2h3v-2h-3zm-8-5c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6z"/>
@@ -959,116 +586,169 @@
       '🍳': `<svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
         <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
       </svg>`,
-      '🏄‍♂️': `<svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
-        <path d="M21 6c-1.1 0-2 .9-2 2v4c0 1.1.9 2 2 2s2-.9 2-2V8c0-1.1-.9-2-2-2zM7 6c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2s2-.9 2-2V8c0-1.1-.9-2-2-2z"/>
-      </svg>`,
-      '🧺': `<svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
-        <path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v3.5c0 .28.22.5.5.5s.5-.22.5-.5V8h10v2.5c0 .28.22.5.5.5s.5-.22.5-.5z"/>
+      '🅿️': `<svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
+        <path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/>
       </svg>`
     };
     return iconMap[iconType] || `<svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><circle cx="12" cy="12" r="4"/></svg>`;
   }
 
-  // Initialize when page loads
-  document.addEventListener('DOMContentLoaded', function() {
-    // Wait a bit for mapboxgl to be available
-    setTimeout(() => {
+  // Función para esperar a que Mapbox se cargue
+  function waitForMapbox() {
+    return new Promise(function(resolve) {
       if (typeof mapboxgl !== 'undefined') {
-        initMap();
+        resolve();
       } else {
-        console.error('Mapbox GL JS no se cargó correctamente');
-        // Retry after additional delay
-        setTimeout(() => {
+        const checkMapbox = setInterval(function() {
           if (typeof mapboxgl !== 'undefined') {
-            initMap();
-          } else {
-            console.error('Mapbox GL JS falló al cargar después de varios intentos');
-            // Show fallback message
-            const mapContainer = document.getElementById('map');
-            if (mapContainer) {
-              mapContainer.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;color:#666;">Cargando mapa...</div>';
-            }
+            clearInterval(checkMapbox);
+            resolve();
           }
-        }, 2000);
-      }
-    }, 1000);
-  });
-
-  // Initialize map
-  function initMap() {
-    // Mapbox Access Token
-    mapboxgl.accessToken = 'pk.eyJ1IjoiZGVubnkyNyIsImEiOiJjbWZrbzMwYXkwMGJwMmxxMTFmdmM1cmh2In0.BCg8zmi25CEl_QURSA6A0w';
-    
-    const mapContainer = document.getElementById('map');
-    if (!mapContainer) {
-      console.error('Map container not found');
-      return;
-    }
-    
-    map = new mapboxgl.Map({
-      container: 'map',
-      style: 'mapbox://styles/mapbox/dark-v11',
-      center: [-80.9553, -2.2108], // Salinas, Ecuador
-      zoom: 12,
-      attributionControl: false,
-      accessibilityText: false
-    });
-
-    // Remove accessibility warnings
-    map.on('load', () => {
-      // Hide all mapbox popups that might show text
-      const popups = document.querySelectorAll('.mapboxgl-popup');
-      popups.forEach(popup => {
-        popup.style.display = 'none';
-      });
-      
-      loadAccommodations('hoteles');
-      setupEventListeners();
-      
-      // Force resize for mobile
-      setTimeout(() => {
-        map.resize();
-      }, 500);
-    });
-
-    // Add resize listener for responsive behavior
-    window.addEventListener('resize', () => {
-      if (map) {
-        setTimeout(() => {
-          map.resize();
         }, 100);
+        
+        // Timeout después de 10 segundos
+        setTimeout(function() {
+          clearInterval(checkMapbox);
+          console.error('Timeout waiting for Mapbox');
+          resolve();
+        }, 10000);
       }
     });
   }
 
+  // Initialize when DOM loads
+  document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOM loaded, waiting for Mapbox...');
+    
+    waitForMapbox().then(function() {
+      if (typeof mapboxgl !== 'undefined') {
+        console.log('Mapbox loaded, initializing map...');
+        initMap();
+      } else {
+        console.error('Mapbox failed to load');
+        const mapContainer = document.getElementById('map');
+        if (mapContainer) {
+          mapContainer.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;color:#666;">Error cargando el mapa. Verifica tu conexión a internet.</div>';
+        }
+      }
+    });
+  });
+
+  // Initialize map
+  function initMap() {
+    try {
+      console.log('Initializing map with config:', MAPBOX_CONFIG);
+      
+      if (!MAPBOX_CONFIG || !MAPBOX_CONFIG.accessToken) {
+        console.error('MAPBOX_CONFIG or accessToken not found');
+        return;
+      }
+      
+      mapboxgl.accessToken = MAPBOX_CONFIG.accessToken;
+      
+      const mapContainer = document.getElementById('map');
+      if (!mapContainer) {
+        console.error('Map container not found');
+        return;
+      }
+      
+      map = new mapboxgl.Map({
+        container: 'map',
+        style: MAPBOX_CONFIG.defaultStyle || 'mapbox://styles/mapbox/dark-v11',
+        center: MAPBOX_CONFIG.defaultCenter || [-80.9553, -2.2108],
+        zoom: MAPBOX_CONFIG.defaultZoom || 12,
+        attributionControl: false
+      });
+
+      map.on('load', function() {
+        console.log('Map loaded successfully');
+        
+        // Cargar datos iniciales
+        loadAccommodations('hoteles');
+        setupEventListeners();
+        
+        // Redimensionar mapa después de un momento
+        setTimeout(function() {
+          if (map) {
+            map.resize();
+          }
+        }, 500);
+      });
+
+      map.on('error', function(e) {
+        console.error('Map error:', e);
+      });
+
+      // Redimensionar mapa en cambio de ventana
+      window.addEventListener('resize', function() {
+        if (map) {
+          setTimeout(function() {
+            map.resize();
+          }, 100);
+        }
+      });
+
+    } catch (error) {
+      console.error('Error initializing map:', error);
+    }
+  }
+
   // Setup event listeners
   function setupEventListeners() {
-    // Tab switching
-    document.querySelectorAll('.filter-tab').forEach(tab => {
-      tab.addEventListener('click', () => {
-        document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
-        tab.classList.add('active');
+    // Filter tabs
+    const filterTabs = document.querySelectorAll('.filter-tab');
+    for (let i = 0; i < filterTabs.length; i++) {
+      filterTabs[i].addEventListener('click', function() {
+        // Remove active class from all tabs
+        for (let j = 0; j < filterTabs.length; j++) {
+          filterTabs[j].classList.remove('active');
+        }
         
-        const category = tab.dataset?.category;
+        // Add active class to clicked tab
+        this.classList.add('active');
+        
+        const category = this.getAttribute('data-category');
         if (category) {
+          currentCategory = category;
           loadAccommodations(category);
         }
       });
-    });
+    }
 
     // Map controls
     const toggleBtn = document.getElementById('toggle-style');
     const centerBtn = document.getElementById('center-map');
     const searchBtn = document.querySelector('.search-btn');
     
-    if (toggleBtn) toggleBtn.addEventListener('click', toggleMapStyle);
-    if (centerBtn) centerBtn.addEventListener('click', centerMap);
+    if (toggleBtn) {
+      toggleBtn.addEventListener('click', toggleMapStyle);
+    }
+    
+    if (centerBtn) {
+      centerBtn.addEventListener('click', centerMap);
+    }
+    
     if (searchBtn) {
-      searchBtn.addEventListener('click', () => {
+      searchBtn.addEventListener('click', function() {
         const searchInput = document.querySelector('.search-input');
-        const query = searchInput?.value;
+        const query = searchInput ? searchInput.value.trim() : '';
         if (query) {
           console.log('Searching for:', query);
+          // Aquí puedes implementar la funcionalidad de búsqueda
+        }
+      });
+    }
+
+    // Enter key para búsqueda
+    const searchInput = document.querySelector('.search-input');
+    if (searchInput) {
+      searchInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+          const query = e.target.value.trim();
+          if (query) {
+            console.log('Searching for:', query);
+            // Implementar búsqueda
+          }
         }
       });
     }
@@ -1076,8 +756,19 @@
 
   // Load accommodations
   function loadAccommodations(category) {
-    currentCategory = category;
-    const accommodations = SALINAS_DATA[category] || [];
+    console.log('Loading accommodations for category:', category);
+    
+    if (!accommodationsData || !accommodationsData[category]) {
+      console.error('No data found for category:', category);
+      const listContainer = document.getElementById('accommodation-list');
+      if (listContainer) {
+        listContainer.innerHTML = '<div class="loading">No hay datos disponibles</div>';
+      }
+      return;
+    }
+    
+    const accommodations = accommodationsData[category];
+    console.log('Found accommodations:', accommodations.length);
     
     updateAccommodationList(accommodations);
     updateMapMarkers(accommodations);
@@ -1087,87 +778,141 @@
   function updateAccommodationList(accommodations) {
     const listContainer = document.getElementById('accommodation-list');
     
-    if (!listContainer) return;
+    if (!listContainer) {
+      console.error('Accommodation list container not found');
+      return;
+    }
     
     if (accommodations.length === 0) {
       listContainer.innerHTML = '<div class="loading">No hay alojamientos disponibles</div>';
       return;
     }
 
-    listContainer.innerHTML = accommodations.map(accommodation => `
-      <div class="accommodation-card" onclick="selectAccommodation(${accommodation.id}, true)">
-        <div class="card-image"></div>
-        <div class="card-content">
-          <h3 class="card-title">${accommodation.name}</h3>
-          
-          <div class="card-amenities-icons">
-            ${accommodation.amenities.map(amenity => getAmenityIcon(amenity.icon)).join('')}
-          </div>
-          
-          <div class="card-footer">
-            <span class="price">${accommodation.price}</span>
-            <button class="reserve-btn" onclick="window.open('/reservar?id=${accommodation.id}', '_blank')">RESERVAR</button>
+    const accommodationCards = accommodations.map(function(accommodation) {
+      const amenityIcons = accommodation.amenities.map(function(amenity) {
+        return getAmenityIcon(amenity.icon);
+      }).join('');
+
+      return `
+        <div class="accommodation-card" onclick="selectAccommodation(${accommodation.id}, true)">
+          <img src="${accommodation.image}" alt="${accommodation.name}" class="card-image" loading="lazy">
+          <div class="card-rating">${accommodation.rating}</div>
+          <div class="card-content">
+            <div class="card-header">
+              <h3 class="card-title">${accommodation.name}</h3>
+            </div>
+            
+            <div class="card-location">${accommodation.location}</div>
+            
+            <div class="card-amenities-icons">
+              ${amenityIcons}
+            </div>
+            
+            <div class="card-footer">
+              <div class="price-container">
+                <span class="price">${accommodation.price}</span>
+                <span class="price-per-night">por noche</span>
+              </div>
+              <button class="reserve-btn" onclick="event.stopPropagation(); window.open('/reservas?id=${accommodation.id}', '_blank')">RESERVAR</button>
+            </div>
           </div>
         </div>
-      </div>
-    `).join('');
+      `;
+    }).join('');
+
+    listContainer.innerHTML = accommodationCards;
   }
 
   // Update map markers
   function updateMapMarkers(accommodations) {
-    markers.forEach(marker => marker.remove());
+    if (!map) {
+      console.error('Map not initialized');
+      return;
+    }
+
+    // Remover marcadores existentes
+    for (let i = 0; i < markers.length; i++) {
+      markers[i].remove();
+    }
     markers = [];
 
-    accommodations.forEach(accommodation => {
+    for (let i = 0; i < accommodations.length; i++) {
+      const accommodation = accommodations[i];
       const markerColor = currentCategory === 'hoteles' ? '#FF6B35' : 
                         currentCategory === 'departamentos' ? '#0EA5E9' : '#10B981';
 
-      const marker = new mapboxgl.Marker({ color: markerColor })
-        .setLngLat(accommodation.coordinates)
-        .setPopup(
-          new mapboxgl.Popup({ offset: 25 })
-            .setHTML(`
-              <div class="popup-content">
-                <img src="${accommodation.image}" alt="${accommodation.name}" class="popup-image">
-                <h3 class="popup-title">${accommodation.name}</h3>
-                <div class="popup-amenities">
-                  ${accommodation.amenities.slice(0, 2).map(amenity => `
-                    <span>${getAmenityIcon(amenity.icon)} ${amenity.text}</span>
-                  `).join('')}
+      try {
+        const popupAmenities = accommodation.amenities.slice(0, 2).map(function(amenity) {
+          return `<span>${getAmenityIcon(amenity.icon)}</span>`;
+        }).join('');
+
+        const marker = new mapboxgl.Marker({ color: markerColor })
+          .setLngLat(accommodation.coordinates)
+          .setPopup(
+            new mapboxgl.Popup({ offset: 25 })
+              .setHTML(`
+                <div class="popup-content">
+                  <img src="${accommodation.image}" alt="${accommodation.name}" class="popup-image">
+                  <h3 class="popup-title">${accommodation.name}</h3>
+                  <div class="popup-amenities">
+                    ${popupAmenities}
+                  </div>
+                  <div class="popup-price">${accommodation.price}/noche</div>
                 </div>
-                <div class="popup-price">${accommodation.price}/noche</div>
-              </div>
-            `)
-        )
-        .addTo(map);
+              `)
+          )
+          .addTo(map);
 
-      markers.push(marker);
-    });
+        markers.push(marker);
+      } catch (error) {
+        console.error('Error creating marker for accommodation:', accommodation.name, error);
+      }
+    }
 
+    // Ajustar vista del mapa para mostrar todos los marcadores
     if (accommodations.length > 0) {
-      const bounds = new mapboxgl.LngLatBounds();
-      accommodations.forEach(accommodation => {
-        bounds.extend(accommodation.coordinates);
-      });
-      map.fitBounds(bounds, { padding: 50 });
+      try {
+        const bounds = new mapboxgl.LngLatBounds();
+        for (let i = 0; i < accommodations.length; i++) {
+          bounds.extend(accommodations[i].coordinates);
+        }
+        map.fitBounds(bounds, { padding: 50 });
+      } catch (error) {
+        console.error('Error fitting bounds:', error);
+      }
     }
   }
 
   // Select accommodation
-  function selectAccommodation(id, autoFocus = false) {
-    const allAccommodations = [...SALINAS_DATA.hoteles, ...SALINAS_DATA.departamentos, ...SALINAS_DATA.hostales];
-    const accommodation = allAccommodations.find(acc => acc.id === id);
+  function selectAccommodation(id, autoFocus) {
+    autoFocus = autoFocus || false;
     
-    if (accommodation) {
-      // Auto-scroll to map section if called from card click
+    const allAccommodations = []
+      .concat(accommodationsData.hoteles || [])
+      .concat(accommodationsData.departamentos || [])
+      .concat(accommodationsData.hostales || []);
+    
+    let accommodation = null;
+    for (let i = 0; i < allAccommodations.length; i++) {
+      if (allAccommodations[i].id === id) {
+        accommodation = allAccommodations[i];
+        break;
+      }
+    }
+    
+    if (accommodation && map) {
       if (autoFocus) {
-        document.querySelector('#mapa').scrollIntoView({
-          behavior: 'smooth',
-          block: 'start'
-        });
+        // Scroll to map section
+        const mapSection = document.querySelector('#mapa');
+        if (mapSection) {
+          mapSection.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
         
-        // Wait for scroll to complete, then focus map
-        setTimeout(() => {
+        // Fly to location after scroll
+        setTimeout(function() {
           map.flyTo({
             center: accommodation.coordinates,
             zoom: 16,
@@ -1183,14 +928,19 @@
         });
       }
       
-      // Show popup after animation
-      setTimeout(() => {
-        const marker = markers.find(m => 
-          Math.abs(m.getLngLat().lng - accommodation.coordinates[0]) < 0.001 && 
-          Math.abs(m.getLngLat().lat - accommodation.coordinates[1]) < 0.001
-        );
-        if (marker && marker.getPopup()) {
-          marker.getPopup().addTo(map);
+      // Show popup
+      setTimeout(function() {
+        for (let i = 0; i < markers.length; i++) {
+          const marker = markers[i];
+          const lngLat = marker.getLngLat();
+          if (Math.abs(lngLat.lng - accommodation.coordinates[0]) < 0.001 && 
+              Math.abs(lngLat.lat - accommodation.coordinates[1]) < 0.001) {
+            const popup = marker.getPopup();
+            if (popup) {
+              popup.addTo(map);
+            }
+            break;
+          }
         }
       }, autoFocus ? 3000 : 2000);
     }
@@ -1198,25 +948,38 @@
 
   // Map controls
   function toggleMapStyle() {
-    const currentStyle = map.getStyle().name;
-    const newStyle = currentStyle === 'Mapbox Dark' ? 'mapbox://styles/mapbox/streets-v12' : 'mapbox://styles/mapbox/dark-v11';
-    map.setStyle(newStyle);
+    if (!map) return;
+    
+    try {
+      const currentStyle = map.getStyle().name;
+      const newStyle = currentStyle === 'Mapbox Dark' ? 
+        'mapbox://styles/mapbox/streets-v12' : 
+        'mapbox://styles/mapbox/dark-v11';
+      map.setStyle(newStyle);
+    } catch (error) {
+      console.error('Error toggling map style:', error);
+    }
   }
 
   function centerMap() {
-    const accommodations = SALINAS_DATA[currentCategory] || [];
+    if (!map || !accommodationsData[currentCategory]) return;
+    
+    const accommodations = accommodationsData[currentCategory];
     if (accommodations.length > 0) {
-      const bounds = new mapboxgl.LngLatBounds();
-      accommodations.forEach(accommodation => {
-        bounds.extend(accommodation.coordinates);
-      });
-      map.fitBounds(bounds, { padding: 50 });
+      try {
+        const bounds = new mapboxgl.LngLatBounds();
+        for (let i = 0; i < accommodations.length; i++) {
+          bounds.extend(accommodations[i].coordinates);
+        }
+        map.fitBounds(bounds, { padding: 50 });
+      } catch (error) {
+        console.error('Error centering map:', error);
+      }
     }
   }
 
   // Get directions function
   function getDirections(lng, lat) {
-    // Open Google Maps with directions
     const googleMapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}&travelmode=driving`;
     window.open(googleMapsUrl, '_blank');
   }
@@ -1226,3 +989,6 @@
   window.toggleMapStyle = toggleMapStyle;
   window.centerMap = centerMap;
   window.getDirections = getDirections;
+
+})();
+</script>
