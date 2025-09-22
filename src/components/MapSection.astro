@@ -200,298 +200,195 @@ import { accommodationsData, getAmenityIcon, MAPBOX_CONFIG } from '../data/accom
     background-color: #333;
   }
 
-  .card-content {
-    padding: 1.5rem 1.2rem;
-    position: relative;
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    justify-content: center;
-    min-height: 180px;
-    width: 100%;
+  /* ELIMINAMOS TODOS LOS ESTILOS CONFLICTIVOS ANTERIORES */
+
+  /* ESTILOS SUPER ESPECÍFICOS PARA CENTRADO PERFECTO - PRIORIDAD MÁXIMA */
+  .accommodation-card .card-content-center {
+    padding: 2rem 1.5rem !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: space-evenly !important;
+    text-align: center !important;
+    min-height: 280px !important;
+    width: 100% !important;
+    position: relative !important;
+    z-index: 2 !important;
   }
 
-  .card-header {
-    margin-bottom: 1.5rem;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  .accommodation-card .card-header-center {
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    margin: 0 !important;
+    padding: 0 !important;
   }
 
-  .card-title {
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: #fff;
-    margin: 0;
-    text-align: center;
-    line-height: 1.4;
-    max-width: 100%;
-    word-wrap: break-word;
+  .accommodation-card .card-title-center {
+    font-size: 1.4rem !important;
+    font-weight: 700 !important;
+    color: #fff !important;
+    margin: 0 auto !important;
+    text-align: center !important;
+    line-height: 1.3 !important;
+    max-width: 100% !important;
+    display: block !important;
+    word-wrap: break-word !important;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.4) !important;
   }
 
-  /* Iconos de amenidades perfectamente centrados */
-  .card-amenities-icons {
-    display: flex;
-    gap: 1.8rem;
-    margin: 1.5rem 0;
-    align-items: center;
-    justify-content: center;
-    min-height: 40px;
-    flex-wrap: nowrap;
-    width: 100%;
+  .accommodation-card .card-amenities-icons-center {
+    display: flex !important;
+    gap: 1.2rem !important;
+    justify-content: center !important;
+    align-items: center !important;
+    margin: 0 !important;
+    flex-wrap: nowrap !important;
+    width: 100% !important;
+    overflow-x: auto !important;
+    padding: 10px 0 !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
   }
 
-  .card-amenities-icons svg {
-    width: 32px;
-    height: 32px;
-    color: #0EA5E9;
-    flex-shrink: 0;
-    transition: all 0.3s ease;
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
-    cursor: help;
-    position: relative;
+  .accommodation-card .card-amenities-icons-center::-webkit-scrollbar {
+    display: none !important;
   }
 
-  .card-amenities-icons svg:hover {
-    transform: scale(1.15);
-    filter: drop-shadow(0 4px 8px rgba(14, 165, 233, 0.4));
+  .accommodation-card .card-footer-center {
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    margin: 0 !important;
+    padding: 0 !important;
   }
 
-  /* Tooltips para iconos */
-  .amenity-icon {
-    position: relative;
-    display: inline-block;
-  }
-
-  .amenity-icon .tooltip {
-    visibility: hidden;
-    width: 120px;
-    background-color: rgba(0, 0, 0, 0.9);
-    color: #fff;
-    text-align: center;
-    border-radius: 8px;
-    padding: 8px;
-    position: absolute;
-    z-index: 1000;
-    bottom: 125%;
-    left: 50%;
-    margin-left: -60px;
-    opacity: 0;
-    transition: opacity 0.3s, visibility 0.3s;
-    font-size: 12px;
-    font-weight: 500;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-    border: 1px solid #333;
-  }
-
-  .amenity-icon .tooltip::after {
-    content: "";
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    margin-left: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: rgba(0, 0, 0, 0.9) transparent transparent transparent;
-  }
-
-  .amenity-icon:hover .tooltip {
-    visibility: visible;
-    opacity: 1;
-  }
-
-  .card-footer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-top: 1.5rem;
-    border-top: 1px solid #444;
-    width: 100%;
-    margin-top: auto;
-  }
-
-
-
-  .reserve-btn {
-    background: #FF6B35 !important;
-    color: #ffffff !important;
-    border: none !important;
-    padding: 0.8rem 2.2rem;
-    border-radius: 30px;
-    font-weight: bold;
-    font-size: 0.85rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    text-decoration: none;
-    display: block;
-    box-shadow: 0 4px 15px rgba(255, 107, 53, 0.5);
-    text-transform: uppercase;
-    letter-spacing: 0.8px;
-    position: relative;
-    overflow: hidden;
-    margin: 0 auto;
-    text-align: center;
-    width: fit-content;
-    min-width: 140px;
-  }
-
-  .reserve-btn::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-    transition: left 0.5s ease;
-  }
-
-  .reserve-btn:hover::before {
-    left: 100%;
-  }
-
-  .reserve-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(255, 107, 53, 0.7);
-    background: #E55A2B !important;
-    color: #ffffff !important;
-  }
-
-  .reserve-btn:active {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 15px rgba(255, 107, 53, 0.6);
-  }
-
-  /* Refuerzo adicional para el botón naranja */
-  button.reserve-btn,
-  .reserve-btn {
-    background-color: #FF6B35 !important;
-    background: #FF6B35 !important;
-    border-color: #FF6B35 !important;
-  }
-
-  button.reserve-btn:hover,
-  .reserve-btn:hover {
-    background-color: #E55A2B !important;
-    background: #E55A2B !important;
-    border-color: #E55A2B !important;
-  }
-
-  /* Estilos específicos para centrado perfecto */
-  .card-content-center {
-    padding: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    min-height: 200px;
-    width: 100%;
-  }
-
-  .card-header-center {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    margin-bottom: 1.5rem;
-  }
-
-  .card-title-center {
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: #fff;
-    margin: 0;
-    text-align: center;
-    line-height: 1.4;
-  }
-
-  .card-amenities-icons-center {
-    display: flex;
-    gap: 1.5rem;
-    justify-content: center;
-    align-items: center;
-    margin: 1.5rem 0;
-    flex-wrap: wrap;
-    width: 100%;
-  }
-
-  .card-footer-center {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    margin-top: auto;
-    padding-top: 1rem;
-  }
-
-  /* Botón naranja específico */
-  .reserve-btn-orange {
-    background: #FF6B35 !important;
-    background-color: #FF6B35 !important;
+  /* BOTÓN NARANJA SUPER ESPECÍFICO - PRIORIDAD MÁXIMA */
+  .accommodation-card .card-footer-center .reserve-btn-orange,
+  .accommodation-card button.reserve-btn-orange,
+  button.reserve-btn-orange {
+    background: linear-gradient(145deg, #FF6B35 0%, #FF8A50 25%, #E55A2B 50%, #FF6B35 75%, #FF8A50 100%) !important;
+    background-size: 200% 200% !important;
     color: white !important;
     border: none !important;
-    padding: 12px 24px;
-    border-radius: 25px;
-    font-weight: bold;
-    font-size: 0.9rem;
-    cursor: pointer;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
-    transition: all 0.3s ease;
-    min-width: 120px;
+    padding: 16px 32px !important;
+    border-radius: 50px !important;
+    font-weight: 800 !important;
+    font-size: 0.9rem !important;
+    cursor: pointer !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1.5px !important;
+    box-shadow: 
+      0 10px 30px rgba(255, 107, 53, 0.5),
+      0 5px 15px rgba(255, 107, 53, 0.3),
+      inset 0 2px 0 rgba(255,255,255,0.4),
+      inset 0 -2px 0 rgba(0,0,0,0.1) !important;
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+    min-width: 160px !important;
+    position: relative !important;
+    overflow: hidden !important;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3) !important;
+    border: 3px solid transparent !important;
+    background-clip: padding-box !important;
+    animation: pulse-glow 3s ease-in-out infinite alternate !important;
   }
 
-  .reserve-btn-orange:hover {
-    background: #E55A2B !important;
-    background-color: #E55A2B !important;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(255, 107, 53, 0.6);
+  @keyframes pulse-glow {
+    0% {
+      box-shadow: 
+        0 10px 30px rgba(255, 107, 53, 0.4),
+        0 5px 15px rgba(255, 107, 53, 0.2),
+        inset 0 2px 0 rgba(255,255,255,0.4);
+    }
+    100% {
+      box-shadow: 
+        0 15px 40px rgba(255, 107, 53, 0.6),
+        0 8px 20px rgba(255, 107, 53, 0.4),
+        inset 0 2px 0 rgba(255,255,255,0.5);
+    }
   }
 
-  /* Estilos para tooltips mejorados */
-  .amenity-icon {
-    position: relative;
-    display: inline-block;
-    cursor: help;
+  .accommodation-card .reserve-btn-orange::before,
+  button.reserve-btn-orange::before {
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: -100% !important;
+    width: 100% !important;
+    height: 100% !important;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent) !important;
+    transition: left 0.8s ease !important;
   }
 
-  .amenity-icon .tooltip {
-    visibility: hidden;
-    width: 140px;
-    background-color: rgba(0, 0, 0, 0.9);
-    color: #fff;
-    text-align: center;
-    border-radius: 8px;
-    padding: 8px;
-    position: absolute;
-    z-index: 1000;
-    bottom: 120%;
-    left: 50%;
-    margin-left: -70px;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    font-size: 11px;
-    font-weight: 500;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  .accommodation-card .reserve-btn-orange:hover::before,
+  button.reserve-btn-orange:hover::before {
+    left: 100% !important;
   }
 
-  .amenity-icon .tooltip::after {
-    content: "";
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    margin-left: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: rgba(0, 0, 0, 0.9) transparent transparent transparent;
+  .accommodation-card .reserve-btn-orange:hover,
+  button.reserve-btn-orange:hover {
+    background: linear-gradient(145deg, #E55A2B 0%, #FF6B35 25%, #FD79A8 50%, #E55A2B 75%, #FF6B35 100%) !important;
+    background-size: 300% 300% !important;
+    background-position: 50% 0% !important;
+    transform: translateY(-6px) scale(1.08) !important;
+    animation: none !important;
+    box-shadow: 
+      0 20px 50px rgba(255, 107, 53, 0.8),
+      0 10px 25px rgba(255, 107, 53, 0.6),
+      inset 0 3px 0 rgba(255,255,255,0.6),
+      inset 0 -3px 0 rgba(0,0,0,0.2),
+      0 0 0 4px rgba(255, 107, 53, 0.2) !important;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.4) !important;
   }
 
-  .amenity-icon:hover .tooltip {
-    visibility: visible;
-    opacity: 1;
+  .accommodation-card .reserve-btn-orange:active,
+  button.reserve-btn-orange:active {
+    transform: translateY(-3px) scale(1.05) !important;
+    box-shadow: 
+      0 12px 30px rgba(255, 107, 53, 0.7),
+      0 6px 15px rgba(255, 107, 53, 0.5),
+      inset 0 2px 0 rgba(255,255,255,0.5) !important;
+    transition: all 0.1s ease !important;
+  }
+
+  .accommodation-card .reserve-btn-orange:focus,
+  button.reserve-btn-orange:focus {
+    outline: none !important;
+    box-shadow: 
+      0 0 0 4px rgba(255, 107, 53, 0.4), 
+      0 15px 40px rgba(255, 107, 53, 0.6),
+      inset 0 2px 0 rgba(255,255,255,0.4) !important;
+  }
+
+  /* ICONOS ESPECÍFICOS PARA CENTRADO PERFECTO */
+  .accommodation-card .card-amenities-icons-center .amenity-icon {
+    position: relative !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    padding: 8px !important;
+    border-radius: 8px !important;
+    flex-shrink: 0 !important;
+  }
+
+  .accommodation-card .card-amenities-icons-center .amenity-icon:hover {
+    transform: scale(1.15) !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+  }
+
+  .accommodation-card .card-amenities-icons-center .amenity-icon svg {
+    width: 32px !important;
+    height: 32px !important;
+    transition: all 0.3s ease !important;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3)) !important;
+  }
+
+  .accommodation-card .card-amenities-icons-center .amenity-icon:hover svg {
+    filter: drop-shadow(0 4px 8px rgba(255, 107, 53, 0.4)) !important;
   }
 
   /* Map Container */
@@ -1021,24 +918,47 @@ import { accommodationsData, getAmenityIcon, MAPBOX_CONFIG } from '../data/accom
         }
         return `<div class="amenity-icon" title="${description}">
           ${iconSvg}
-          <span class="tooltip">${description}</span>
         </div>`;
       }).join('');
 
       return `
         <div class="accommodation-card" onclick="selectAccommodation(${accommodation.id}, true)">
           <img src="${accommodation.image}" alt="${accommodation.name}" class="card-image" loading="lazy">
-          <div class="card-content-center">
-            <div class="card-header-center">
-              <h3 class="card-title-center">${accommodation.name}</h3>
+          <div style="padding: 2rem 1.5rem; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly; text-align: center; min-height: 280px; width: 100%; position: relative; z-index: 2;">
+            <!-- Nombre del hotel centrado -->
+            <div style="width: 100%; display: flex; justify-content: center; align-items: center; margin: 0; padding: 0;">
+              <h3 style="font-size: 1.4rem; font-weight: 700; color: #fff; margin: 0 auto; text-align: center; line-height: 1.3; max-width: 100%; display: block; word-wrap: break-word; text-shadow: 0 2px 4px rgba(0,0,0,0.4);">${accommodation.name}</h3>
             </div>
             
-            <div class="card-amenities-icons-center">
+            <!-- Iconos centrados en una fila horizontal -->
+            <div style="display: flex; gap: 1.2rem; justify-content: center; align-items: center; margin: 0; flex-wrap: nowrap; width: 100%; overflow-x: auto; padding: 10px 0; scrollbar-width: none; -ms-overflow-style: none;">
               ${amenityIcons}
             </div>
             
-            <div class="card-footer-center">
-              <button class="reserve-btn-orange" style="background: #FF6B35 !important; color: white !important; border: none !important;" onclick="event.stopPropagation(); window.open('/reservas?id=${accommodation.id}', '_blank')">RESERVAR</button>
+            <!-- Botón naranja centrado -->
+            <div style="width: 100%; display: flex; justify-content: center; align-items: center; margin: 0; padding: 0;">
+              <button 
+                onclick="event.stopPropagation(); window.open('https://wa.me/593123456789?text=Hola, estoy interesado en reservar ${accommodation.name}', '_blank')"
+                style="
+                  background: linear-gradient(145deg, #FF6B35 0%, #FF8A50 25%, #E55A2B 50%, #FF6B35 75%, #FF8A50 100%) !important;
+                  background-size: 200% 200% !important;
+                  color: white !important;
+                  border: none !important;
+                  padding: 16px 32px !important;
+                  border-radius: 50px !important;
+                  font-weight: 800 !important;
+                  font-size: 0.9rem !important;
+                  cursor: pointer !important;
+                  text-transform: uppercase !important;
+                  letter-spacing: 1.5px !important;
+                  box-shadow: 0 10px 30px rgba(255, 107, 53, 0.5), 0 5px 15px rgba(255, 107, 53, 0.3), inset 0 2px 0 rgba(255,255,255,0.4), inset 0 -2px 0 rgba(0,0,0,0.1) !important;
+                  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+                  min-width: 160px !important;
+                  position: relative !important;
+                  overflow: hidden !important;
+                  text-shadow: 0 2px 4px rgba(0,0,0,0.3) !important;
+                "
+              >RESERVAR</button>
             </div>
           </div>
         </div>

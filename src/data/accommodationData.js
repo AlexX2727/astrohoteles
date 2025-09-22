@@ -147,37 +147,74 @@ export function getAmenityIcon(iconType) {
   const iconMap = {
     '👥': `<svg viewBox="0 0 32 32" fill="none" width="32" height="32">
       <defs>
-        <linearGradient id="peopleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <linearGradient id="peopleGrad3D" x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
-          <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+          <stop offset="30%" style="stop-color:#764ba2;stop-opacity:1" />
+          <stop offset="70%" style="stop-color:#f093fb;stop-opacity:1" />
+          <stop offset="100%" style="stop-color:#f5576c;stop-opacity:1" />
         </linearGradient>
-        <filter id="peopleShadow">
-          <dropShadow dx="0" dy="2" stdDeviation="2" flood-color="#000" flood-opacity="0.3"/>
+        <radialGradient id="peopleGlow" cx="50%" cy="30%" r="60%">
+          <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.8" />
+          <stop offset="100%" style="stop-color:#ffffff;stop-opacity:0" />
+        </radialGradient>
+        <filter id="peopleShadow3D">
+          <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#000" flood-opacity="0.4"/>
+          <feDropShadow dx="0" dy="2" stdDeviation="1" flood-color="#764ba2" flood-opacity="0.3"/>
         </filter>
       </defs>
-      <circle cx="10" cy="8" r="3" fill="url(#peopleGrad)" filter="url(#peopleShadow)"/>
-      <circle cx="22" cy="8" r="3" fill="url(#peopleGrad)" filter="url(#peopleShadow)"/>
-      <path d="M4 26v-4c0-3 3-5 6-5s6 2 6 5v4" stroke="url(#peopleGrad)" stroke-width="2.5" stroke-linecap="round" fill="none"/>
-      <path d="M16 26v-4c0-3 3-5 6-5s6 2 6 5v4" stroke="url(#peopleGrad)" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+      <ellipse cx="16" cy="26" rx="15" ry="3" fill="url(#peopleGlow)" opacity="0.2"/>
+      <g filter="url(#peopleShadow3D)">
+        <circle cx="10" cy="8" r="3.5" fill="url(#peopleGrad3D)"/>
+        <circle cx="22" cy="8" r="3.5" fill="url(#peopleGrad3D)"/>
+        <circle cx="10" cy="6.5" r="1.5" fill="url(#peopleGlow)" opacity="0.6"/>
+        <circle cx="22" cy="6.5" r="1.5" fill="url(#peopleGlow)" opacity="0.6"/>
+      </g>
+      <path d="M4 26v-4c0-3.5 3-6 6-6s6 2.5 6 6v4" stroke="url(#peopleGrad3D)" stroke-width="3" stroke-linecap="round" fill="none" filter="url(#peopleShadow3D)"/>
+      <path d="M16 26v-4c0-3.5 3-6 6-6s6 2.5 6 6v4" stroke="url(#peopleGrad3D)" stroke-width="3" stroke-linecap="round" fill="none" filter="url(#peopleShadow3D)"/>
+      <animateTransform attributeName="transform" attributeType="XML" type="scale" values="1;1.05;1" dur="3s" repeatCount="indefinite"/>
     </svg>`,
     '📶': `<svg viewBox="0 0 32 32" fill="none" width="32" height="32">
       <defs>
-        <linearGradient id="wifiGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <linearGradient id="wifiGrad3D" x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" style="stop-color:#4facfe;stop-opacity:1" />
-          <stop offset="100%" style="stop-color:#00f2fe;stop-opacity:1" />
+          <stop offset="25%" style="stop-color:#00f2fe;stop-opacity:1" />
+          <stop offset="75%" style="stop-color:#43e97b;stop-opacity:1" />
+          <stop offset="100%" style="stop-color:#38f9d7;stop-opacity:1" />
         </linearGradient>
-        <filter id="wifiGlow">
-          <feGaussianBlur stdDeviation="1" result="coloredBlur"/>
+        <radialGradient id="wifiRadial" cx="50%" cy="80%" r="70%">
+          <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.8" />
+          <stop offset="100%" style="stop-color:#ffffff;stop-opacity:0" />
+        </radialGradient>
+        <filter id="wifiGlow3D">
+          <feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#4facfe" flood-opacity="0.6"/>
+          <feGaussianBlur stdDeviation="0.5" result="coloredBlur"/>
+          <feMerge>
+            <feMergeNode in="coloredBlur"/>
+            <feMergeNode in="SourceGraphic"/>
+          </feMerge>
+        </filter>
+        <filter id="pulseGlow">
+          <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
           <feMerge>
             <feMergeNode in="coloredBlur"/>
             <feMergeNode in="SourceGraphic"/>
           </feMerge>
         </filter>
       </defs>
-      <path d="M4 14c6-6 18-6 24 0" stroke="url(#wifiGrad)" stroke-width="2.5" stroke-linecap="round" fill="none" filter="url(#wifiGlow)"/>
-      <path d="M8 18c4-4 12-4 16 0" stroke="url(#wifiGrad)" stroke-width="2.5" stroke-linecap="round" fill="none" filter="url(#wifiGlow)"/>
-      <path d="M12 22c2-2 6-2 8 0" stroke="url(#wifiGrad)" stroke-width="2.5" stroke-linecap="round" fill="none" filter="url(#wifiGlow)"/>
-      <circle cx="16" cy="26" r="2" fill="url(#wifiGrad)" filter="url(#wifiGlow)"/>
+      <ellipse cx="16" cy="28" rx="12" ry="2" fill="url(#wifiRadial)" opacity="0.4"/>
+      <g filter="url(#wifiGlow3D)">
+        <path d="M4 14c6-6 18-6 24 0" stroke="url(#wifiGrad3D)" stroke-width="3.5" stroke-linecap="round" fill="none" opacity="0.4"/>
+        <path d="M8 18c4-4 12-4 16 0" stroke="url(#wifiGrad3D)" stroke-width="3.5" stroke-linecap="round" fill="none" opacity="0.7"/>
+        <path d="M12 22c2-2 6-2 8 0" stroke="url(#wifiGrad3D)" stroke-width="3.5" stroke-linecap="round" fill="none" opacity="1"/>
+        <circle cx="16" cy="26" r="2.5" fill="url(#wifiGrad3D)"/>
+      </g>
+      <circle cx="16" cy="25" r="1" fill="url(#wifiRadial)" opacity="0.8"/>
+      <g filter="url(#pulseGlow)">
+        <circle cx="16" cy="26" r="1" fill="#ffffff" opacity="0.6">
+          <animate attributeName="r" values="1;3;1" dur="2s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0.6;0;0.6" dur="2s" repeatCount="indefinite"/>
+        </circle>
+      </g>
     </svg>`,
     '🏊‍♂️': `<svg viewBox="0 0 32 32" fill="none" width="32" height="32">
       <defs>
