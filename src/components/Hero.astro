@@ -33,7 +33,7 @@
         </div>
       </div>
     </div>
-    <div class="scroll-indicator" onclick="document.querySelector('#mapa').scrollIntoView({behavior: 'smooth'})">
+    <div class="scroll-indicator" onclick="scrollToMap()">
       <svg width="56" height="56" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M7 10L12 15L17 10" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
@@ -41,51 +41,61 @@
   </section>
   
   <style>
-    .hero {
-      height: 100vh;
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      overflow: hidden;
-    }
+  .hero {
+    height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+    background-color: #000;
+  }
   
-    .hero-background {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: 1fr 1fr;
-      opacity: 0.7;
-    }
+  .hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    opacity: 0.8;
+    z-index: 0;
+  }
   
-    .hero-bg-1 {
-      background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80') center/cover;
-      grid-column: 1;
-      grid-row: 1;
-    }
-  
-    .hero-bg-2 {
-      background: url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80') center/cover;
-      grid-column: 2;
-      grid-row: 1;
-    }
-  
-    .hero-bg-3 {
-      background: url('https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80') center/cover;
-      grid-column: 1;
-      grid-row: 2;
-    }
-  
-    .hero-bg-4 {
-      background: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80') center/cover;
-      grid-column: 2;
-      grid-row: 2;
-    }
+  .hero-bg-1 {
+    background: url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80') center/cover;
+    grid-column: 1;
+    grid-row: 1;
+    background-position: center center;
+    background-attachment: fixed;
+  }
+
+  .hero-bg-2 {
+    background: url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80') center/cover;
+    grid-column: 2;
+    grid-row: 1;
+    background-position: center center;
+    background-attachment: fixed;
+  }
+
+  .hero-bg-3 {
+    background: url('https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80') center/cover;
+    grid-column: 1;
+    grid-row: 2;
+    background-position: center center;
+    background-attachment: fixed;
+  }
+
+  .hero-bg-4 {
+    background: url('https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80') center/cover;
+    grid-column: 2;
+    grid-row: 2;
+    background-position: center center;
+    background-attachment: fixed;
+  }
   
     .hero::before {
       content: '';
@@ -319,3 +329,27 @@
       }
     }
   </style>
+
+<script is:inline>
+  function scrollToMap() {
+    const mapSection = document.querySelector('#mapa');
+    if (mapSection) {
+      // Calculamos la altura del header para el offset correcto
+      const header = document.querySelector('.header');
+      const headerHeight = header ? header.offsetHeight : 80;
+      const elementPosition = mapSection.offsetTop;
+      const offsetPosition = elementPosition - headerHeight;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  }
+  
+  // También agregamos evento para cuando el DOM esté listo
+  document.addEventListener('DOMContentLoaded', function() {
+    // Asegurar que la función esté disponible globalmente
+    window.scrollToMap = scrollToMap;
+  });
+</script>

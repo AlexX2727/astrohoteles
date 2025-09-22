@@ -142,42 +142,209 @@ export function getMarkerColor(category) {
   return colors[category] || '#FF6B35';
 }
 
-// Get SVG icon for amenity with intuitive icons
+// Get SVG icon for amenity with gorgeous modern icons
 export function getAmenityIcon(iconType) {
   const iconMap = {
-    '👥': `<svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
-      <path d="M16 7a4 4 0 1 1-8 0 4 4 0 0 1 8 0ZM12 14a7 7 0 0 0-7 7h14a7 7 0 0 0-7-7Z"/>
+    '👥': `<svg viewBox="0 0 32 32" fill="none" width="32" height="32">
+      <defs>
+        <linearGradient id="peopleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+          <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+        </linearGradient>
+        <filter id="peopleShadow">
+          <dropShadow dx="0" dy="2" stdDeviation="2" flood-color="#000" flood-opacity="0.3"/>
+        </filter>
+      </defs>
+      <circle cx="10" cy="8" r="3" fill="url(#peopleGrad)" filter="url(#peopleShadow)"/>
+      <circle cx="22" cy="8" r="3" fill="url(#peopleGrad)" filter="url(#peopleShadow)"/>
+      <path d="M4 26v-4c0-3 3-5 6-5s6 2 6 5v4" stroke="url(#peopleGrad)" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+      <path d="M16 26v-4c0-3 3-5 6-5s6 2 6 5v4" stroke="url(#peopleGrad)" stroke-width="2.5" stroke-linecap="round" fill="none"/>
     </svg>`,
-    '📶': `<svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
-      <path d="M1 9l2 2c2.88-2.88 7.12-2.88 10 0l2-2C9.12 3.12 6.88 3.12 1 9zm8 8l3 3 3-3c-1.65-1.65-4.34-1.65-6 0zm-4-4l2 2c1.23-1.23 3.77-1.23 5 0l2-2C9.46 8.46 6.54 8.46 5 13z"/>
+    '📶': `<svg viewBox="0 0 32 32" fill="none" width="32" height="32">
+      <defs>
+        <linearGradient id="wifiGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:#4facfe;stop-opacity:1" />
+          <stop offset="100%" style="stop-color:#00f2fe;stop-opacity:1" />
+        </linearGradient>
+        <filter id="wifiGlow">
+          <feGaussianBlur stdDeviation="1" result="coloredBlur"/>
+          <feMerge>
+            <feMergeNode in="coloredBlur"/>
+            <feMergeNode in="SourceGraphic"/>
+          </feMerge>
+        </filter>
+      </defs>
+      <path d="M4 14c6-6 18-6 24 0" stroke="url(#wifiGrad)" stroke-width="2.5" stroke-linecap="round" fill="none" filter="url(#wifiGlow)"/>
+      <path d="M8 18c4-4 12-4 16 0" stroke="url(#wifiGrad)" stroke-width="2.5" stroke-linecap="round" fill="none" filter="url(#wifiGlow)"/>
+      <path d="M12 22c2-2 6-2 8 0" stroke="url(#wifiGrad)" stroke-width="2.5" stroke-linecap="round" fill="none" filter="url(#wifiGlow)"/>
+      <circle cx="16" cy="26" r="2" fill="url(#wifiGrad)" filter="url(#wifiGlow)"/>
     </svg>`,
-    '🏊‍♂️': `<svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
-      <path d="M6 14c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm4.5-7C9.57 7 9 7.57 9 8.5S9.57 10 10.5 10s1.5-.57 1.5-1.5S11.43 7 10.5 7zM19 6H5C3.9 6 3 6.9 3 8v8c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm0 10H5V8h14v8z"/>
+    '🏊‍♂️': `<svg viewBox="0 0 32 32" fill="none" width="32" height="32">
+      <defs>
+        <linearGradient id="poolGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:#74b9ff;stop-opacity:1" />
+          <stop offset="100%" style="stop-color:#0984e3;stop-opacity:1" />
+        </linearGradient>
+        <radialGradient id="bubbleGrad">
+          <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.8" />
+          <stop offset="100%" style="stop-color:#ffffff;stop-opacity:0.2" />
+        </radialGradient>
+      </defs>
+      <rect x="3" y="12" width="26" height="12" rx="4" fill="url(#poolGrad)"/>
+      <path d="M6 16h20" stroke="#81D4FA" stroke-width="1" opacity="0.7"/>
+      <path d="M6 18h20" stroke="#81D4FA" stroke-width="1" opacity="0.5"/>
+      <path d="M6 20h20" stroke="#81D4FA" stroke-width="1" opacity="0.3"/>
+      <circle cx="10" cy="17" r="1.5" fill="url(#bubbleGrad)"/>
+      <circle cx="22" cy="19" r="1" fill="url(#bubbleGrad)"/>
+      <circle cx="16" cy="15" r="0.8" fill="url(#bubbleGrad)"/>
+      <circle cx="25" cy="16" r="1.2" fill="url(#bubbleGrad)"/>
     </svg>`,
-    '🅿️': `<svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
-      <path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/>
+    '🅿️': `<svg viewBox="0 0 32 32" fill="none" width="32" height="32">
+      <defs>
+        <linearGradient id="carGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:#ff6b35;stop-opacity:1" />
+          <stop offset="100%" style="stop-color:#f7931e;stop-opacity:1" />
+        </linearGradient>
+        <filter id="carShadow">
+          <dropShadow dx="0" dy="3" stdDeviation="3" flood-color="#000" flood-opacity="0.4"/>
+        </filter>
+      </defs>
+      <rect x="4" y="10" width="24" height="14" rx="3" fill="url(#carGrad)" filter="url(#carShadow)"/>
+      <circle cx="10" cy="22" r="3" fill="#2d3436"/>
+      <circle cx="22" cy="22" r="3" fill="#2d3436"/>
+      <circle cx="10" cy="22" r="1.5" fill="#636e72"/>
+      <circle cx="22" cy="22" r="1.5" fill="#636e72"/>
+      <rect x="6" y="12" width="20" height="8" rx="1" fill="none" stroke="#fff" stroke-width="2"/>
+      <text x="16" y="18" text-anchor="middle" fill="#fff" font-size="12" font-weight="bold">P</text>
     </svg>`,
-    '🌅': `<svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
-      <path d="M6.76 4.84l-1.8-1.79-1.41 1.41 1.79 1.79 1.42-1.41zM4 10.5H1v2h3v-2zm9-9.95h-2V3.5h2V.55zm7.45 3.91l-1.41-1.41-1.79 1.79 1.41 1.41 1.79-1.79zm-3.21 13.7l1.79 1.8 1.41-1.41-1.8-1.79-1.4 1.4zM20 10.5v2h3v-2h-3zm-8-5c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6z"/>
+    '🌅': `<svg viewBox="0 0 32 32" fill="none" width="32" height="32">
+      <defs>
+        <radialGradient id="sunGrad">
+          <stop offset="0%" style="stop-color:#fff3a0;stop-opacity:1" />
+          <stop offset="70%" style="stop-color:#fed65f;stop-opacity:1" />
+          <stop offset="100%" style="stop-color:#f7931e;stop-opacity:1" />
+        </radialGradient>
+        <linearGradient id="seaGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" style="stop-color:#0984e3;stop-opacity:1" />
+          <stop offset="50%" style="stop-color:#74b9ff;stop-opacity:1" />
+          <stop offset="100%" style="stop-color:#00cec9;stop-opacity:1" />
+        </linearGradient>
+      </defs>
+      <circle cx="16" cy="10" r="4" fill="url(#sunGrad)"/>
+      <path d="M16 2v3M16 17v3M6.34 6.34l2.12 2.12M23.66 6.34l-2.12 2.12M2 16h3M27 16h3" stroke="url(#sunGrad)" stroke-width="2" stroke-linecap="round"/>
+      <rect x="2" y="20" width="28" height="8" fill="url(#seaGrad)"/>
+      <path d="M4 22c3-1 6 1 9 0s6-1 9 0s6 1 9 0" stroke="#ffffff" stroke-width="1" opacity="0.6"/>
+      <path d="M6 24c2-1 4 1 6 0s4-1 6 0s4 1 6 0" stroke="#ffffff" stroke-width="0.8" opacity="0.4"/>
     </svg>`,
-    '🍳': `<svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
-      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+    '🍳': `<svg viewBox="0 0 32 32" fill="none" width="32" height="32">
+      <defs>
+        <linearGradient id="stoveGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:#636e72;stop-opacity:1" />
+          <stop offset="100%" style="stop-color:#2d3436;stop-opacity:1" />
+        </linearGradient>
+        <radialGradient id="flameGrad">
+          <stop offset="0%" style="stop-color:#fd79a8;stop-opacity:1" />
+          <stop offset="50%" style="stop-color:#e84393;stop-opacity:1" />
+          <stop offset="100%" style="stop-color:#e17055;stop-opacity:1" />
+        </radialGradient>
+      </defs>
+      <rect x="4" y="8" width="24" height="16" rx="3" fill="url(#stoveGrad)"/>
+      <rect x="6" y="10" width="20" height="12" rx="2" fill="#74b9ff" opacity="0.1"/>
+      <circle cx="12" cy="16" r="3" fill="url(#flameGrad)"/>
+      <circle cx="20" cy="16" r="3" fill="url(#flameGrad)"/>
+      <circle cx="12" cy="16" r="1.5" fill="#fdcb6e" opacity="0.8"/>
+      <circle cx="20" cy="16" r="1.5" fill="#fdcb6e" opacity="0.8"/>
+      <rect x="26" y="12" width="4" height="2" rx="1" fill="#74b9ff"/>
     </svg>`,
-    '🏄‍♂️': `<svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
-      <path d="M21 6c-1.1 0-2 .9-2 2v4c0 1.1.9 2 2 2s2-.9 2-2V8c0-1.1-.9-2-2-2zM7 6c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2s2-.9 2-2V8c0-1.1-.9-2-2-2z"/>
+    '🏄‍♂️': `<svg viewBox="0 0 32 32" fill="none" width="32" height="32">
+      <defs>
+        <linearGradient id="waveGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" style="stop-color:#74b9ff;stop-opacity:1" />
+          <stop offset="100%" style="stop-color:#0984e3;stop-opacity:1" />
+        </linearGradient>
+        <linearGradient id="boardGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:#ff7675;stop-opacity:1" />
+          <stop offset="100%" style="stop-color:#d63031;stop-opacity:1" />
+        </linearGradient>
+      </defs>
+      <path d="M2 24c4-2 8 2 12 0s8-2 12 0v4H2z" fill="url(#waveGrad)"/>
+      <path d="M4 22c3-1 6 1 9 0s6-1 9 0s6 1 9 0" stroke="url(#waveGrad)" stroke-width="2"/>
+      <rect x="12" y="8" width="8" height="16" rx="2" fill="url(#boardGrad)"/>
+      <circle cx="16" cy="6" r="2.5" fill="#fdcb6e"/>
     </svg>`,
-    '🧺': `<svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
-      <path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v3.5c0 .28.22.5.5.5s.5-.22.5-.5V8h10v2.5c0 .28.22.5.5.5s.5-.22.5-.5z"/>
+    '🧺': `<svg viewBox="0 0 32 32" fill="none" width="32" height="32">
+      <defs>
+        <linearGradient id="washerGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:#74b9ff;stop-opacity:1" />
+          <stop offset="100%" style="stop-color:#0984e3;stop-opacity:1" />
+        </linearGradient>
+        <radialGradient id="bubbleWash">
+          <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.9" />
+          <stop offset="100%" style="stop-color:#ffffff;stop-opacity:0.3" />
+        </radialGradient>
+      </defs>
+      <rect x="6" y="8" width="20" height="18" rx="3" fill="url(#washerGrad)"/>
+      <circle cx="16" cy="17" r="6" fill="none" stroke="#fff" stroke-width="2.5"/>
+      <circle cx="16" cy="17" r="3" fill="url(#bubbleWash)"/>
+      <circle cx="13" cy="15" r="1" fill="url(#bubbleWash)"/>
+      <circle cx="19" cy="19" r="0.8" fill="url(#bubbleWash)"/>
+      <circle cx="16" cy="20" r="0.6" fill="url(#bubbleWash)"/>
+      <rect x="8" y="6" width="16" height="3" rx="1" fill="#2d3436"/>
     </svg>`,
-    '🛁': `<svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
-      <path d="M7 7h10v1c0 .55.45 1 1 1s1-.45 1-1V6c0-.55-.45-1-1-1h-1V4c0-.55-.45-1-1-1s-1 .45-1 1v1H9V4c0-.55-.45-1-1-1s-1 .45-1 1v1H6c-.55 0-1 .45-1 1v2c0 .55.45 1 1 1s1-.45 1-1V7z"/>
+    '🛁': `<svg viewBox="0 0 32 32" fill="none" width="32" height="32">
+      <defs>
+        <linearGradient id="bathtubGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+          <stop offset="100%" style="stop-color:#ddd;stop-opacity:1" />
+        </linearGradient>
+        <linearGradient id="waterGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:#74b9ff;stop-opacity:0.7" />
+          <stop offset="100%" style="stop-color:#0984e3;stop-opacity:0.7" />
+        </linearGradient>
+      </defs>
+      <ellipse cx="16" cy="20" rx="12" ry="6" fill="url(#bathtubGrad)"/>
+      <ellipse cx="16" cy="18" rx="10" ry="4" fill="url(#waterGrad)"/>
+      <circle cx="12" cy="17" r="0.8" fill="#ffffff" opacity="0.8"/>
+      <circle cx="20" cy="19" r="0.6" fill="#ffffff" opacity="0.6"/>
+      <circle cx="16" cy="16" r="0.5" fill="#ffffff" opacity="0.7"/>
+      <rect x="4" y="22" width="3" height="6" rx="1" fill="#8d6e63"/>
+      <rect x="25" y="22" width="3" height="6" rx="1" fill="#8d6e63"/>
     </svg>`,
-    '🏋️‍♂️': `<svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
-      <path d="M20.57 14.86L22 13.43 20.57 12 17 15.57 8.43 7 12 3.43 10.57 2 9.14 3.43 7.71 2 5.57 4.14 4.14 2.71 2.71 4.14l1.43 1.43L2 7.71l1.43 1.43L2 10.57 3.43 12 7 8.43 15.57 17 12 20.57 13.43 22l1.43-1.43L16.29 22l2.14-2.14 1.43 1.43 1.43-1.43-1.43-1.43L22 16.29l-1.43-1.43z"/>
+    '🏋️‍♂️': `<svg viewBox="0 0 32 32" fill="none" width="32" height="32">
+      <defs>
+        <linearGradient id="barbellGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:#636e72;stop-opacity:1" />
+          <stop offset="100%" style="stop-color:#2d3436;stop-opacity:1" />
+        </linearGradient>
+        <radialGradient id="weightGrad">
+          <stop offset="0%" style="stop-color:#e17055;stop-opacity:1" />
+          <stop offset="100%" style="stop-color:#d63031;stop-opacity:1" />
+        </radialGradient>
+      </defs>
+      <rect x="4" y="15" width="24" height="2" rx="1" fill="url(#barbellGrad)"/>
+      <circle cx="6" cy="16" r="4" fill="url(#weightGrad)"/>
+      <circle cx="26" cy="16" r="4" fill="url(#weightGrad)"/>
+      <rect x="12" y="13" width="8" height="6" rx="2" fill="url(#barbellGrad)"/>
+      <rect x="13" y="8" width="6" height="3" rx="1" fill="#00b894"/>
     </svg>`,
-    '☕': `<svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
-      <path d="M18.5 3H6c-1.1 0-2 .9-2 2v5.71c0 3.83 2.95 7.18 6.78 7.29 3.96.12 7.22-3.06 7.22-7v-1h.5c1.93 0 3.5-1.57 3.5-3.5S20.43 3 18.5 3zM16 10c0 2.76-2.24 5-5 5s-5-2.24-5-5V5h10v5zm2.5-3H18V5h.5c.83 0 1.5.67 1.5 1.5S19.33 7 18.5 7z"/>
+    '☕': `<svg viewBox="0 0 32 32" fill="none" width="32" height="32">
+      <defs>
+        <linearGradient id="cupGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:#8d6e63;stop-opacity:1" />
+          <stop offset="100%" style="stop-color:#5d4037;stop-opacity:1" />
+        </linearGradient>
+        <linearGradient id="coffeeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:#6c5ce7;stop-opacity:1" />
+          <stop offset="100%" style="stop-color:#5f3dc4;stop-opacity:1" />
+        </linearGradient>
+      </defs>
+      <path d="M8 12h12v10c0 3-3 5-6 5s-6-2-6-5V12z" fill="url(#cupGrad)"/>
+      <path d="M8 12h12v8c0 2-2 3-4 3h-4c-2 0-4-1-4-3V12z" fill="url(#coffeeGrad)"/>
+      <ellipse cx="14" cy="14" rx="4" ry="1.5" fill="#fdcb6e" opacity="0.9"/>
+      <path d="M20 14h4c2 0 3 1 3 3s-1 3-3 3h-4" stroke="url(#cupGrad)" stroke-width="2" fill="none"/>
+      <path d="M11 8c0-1 1-3 3-3s3 2 3 3" stroke="#ddd" stroke-width="1.5" fill="none"/>
+      <path d="M13 7c0-1 0-2 1-2s1 1 1 2" stroke="#ddd" stroke-width="1" fill="none"/>
     </svg>`
   };
-  return iconMap[iconType] || `<svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><circle cx="12" cy="12" r="4"/></svg>`;
+  return iconMap[iconType] || `<svg viewBox="0 0 24 24" fill="currentColor" width="30" height="30"><circle cx="12" cy="12" r="4" fill="#0EA5E9"/></svg>`;
 }
