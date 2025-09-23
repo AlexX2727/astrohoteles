@@ -3,353 +3,529 @@
 ---
 
 <section class="hero" id="inicio">
-    <div class="hero-background">
-      <div class="hero-bg-1"></div>
-      <div class="hero-bg-2"></div>
-      <div class="hero-bg-3"></div>
-      <div class="hero-bg-4"></div>
+  <div class="hero-background">
+    <div class="main-bg"></div>
+    
+    <div class="image-collage">
+      <div class="floating-img img-1">
+        <img src="/images/hero/img1.jpg" alt="Playa de Salinas, Ecuador" />
+        <div class="img-label">Playa de Salinas</div>
+      </div>
+      
+      <div class="floating-img img-2">
+        <img src="/images/hero/img2.jpg" alt="Hoteles de lujo en Salinas" />
+        <div class="img-label">Hoteles de Lujo</div>
+      </div>
+      
+      <div class="floating-img img-3">
+        <img src="/images/hero/img3.jpg" alt="La Chocolatera en Salinas" />
+        <div class="img-label">La Chocolatera</div>
+      </div>
+      
+      <div class="floating-img img-4">
+        <img src="/images/hero/img4.jpg" alt="Yacht Club de Salinas" />
+        <div class="img-label">Yacht Club</div>
+      </div>
     </div>
     
-    <div class="hero-content">
-      <h1>Bienvenido a Salinas</h1>
-      <p class="subtitle">El balneario más popular de Ecuador te espera con sus hermosas playas</p>
-      
-      <div class="hero-highlights">
-        <div class="highlight-item">
-          <span class="highlight-icon">🏖️</span>
-          <span class="highlight-text">Playa Chipipe</span>
+    <div class="hero-overlay"></div>
+  </div>
+  
+  <div class="hero-content">
+    <h1 class="hero-title">
+      <span class="title-small">Bienvenido a</span>
+      <span class="title-main">SALINAS</span>
+    </h1>
+    
+    <p class="hero-subtitle">
+      El balneario más exclusivo del Ecuador te espera con hermosas playas de arena dorada, 
+      modernas torres hoteleras y espectaculares atardeceres en el Pacífico
+    </p>
+    
+    <div class="hero-highlights">
+      <div class="highlight-item">
+        <span class="highlight-icon">🏖️</span>
+        <div class="highlight-text">
+          <h3>Playa Chipipe</h3>
+          <p>Aguas cristalinas y arena fina</p>
         </div>
-        <div class="highlight-item">
-          <span class="highlight-icon">🐋</span>
-          <span class="highlight-text">Avistamiento de Ballenas</span>
+      </div>
+      <div class="highlight-item">
+        <span class="highlight-icon">🐋</span>
+        <div class="highlight-text">
+          <h3>Avistamiento de Ballenas</h3>
+          <p>Junio a Septiembre</p>
         </div>
-        <div class="highlight-item">
-          <span class="highlight-icon">🌅</span>
-          <span class="highlight-text">La Chocolatera</span>
+      </div>
+      <div class="highlight-item">
+        <span class="highlight-icon">🌅</span>
+        <div class="highlight-text">
+          <h3>La Chocolatera</h3>
+          <p>Punto más occidental del país</p>
         </div>
-        <div class="highlight-item">
-          <span class="highlight-icon">🏄‍♂️</span>
-          <span class="highlight-text">Deportes Acuáticos</span>
+      </div>
+      <div class="highlight-item">
+        <span class="highlight-icon">🏄‍♂️</span>
+        <div class="highlight-text">
+          <h3>Deportes Acuáticos</h3>
+          <p>Surf, vela y deportes náuticos</p>
         </div>
       </div>
     </div>
-    <div class="scroll-indicator" onclick="scrollToMap()">
-      <svg width="56" height="56" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M7 10L12 15L17 10" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </div>
-  </section>
+  </div>
   
-  <style>
-  .hero {
-    height: 100vh;
-    position: relative;
-    display: flex;
+  <div class="scroll-indicator" onclick="scrollToMap()">
+    <svg width="56" height="56" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M7 10L12 15L17 10" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>
+</section>
+<style>
+.hero {
+  height: 100vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+  background-color: #000;
+}
+
+/* Fondo de playa tropical apropiado */
+.hero-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+}
+
+.main-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('/images/hero/main.jpg');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+/* Collage de imágenes flotantes */
+.image-collage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+.floating-img {
+  position: absolute;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255,255,255,0.1);
+  opacity: 0.7;
+  transition: all 0.6s ease;
+}
+
+.floating-img:hover {
+  transform: scale(1.05) rotate(2deg);
+  opacity: 1;
+  z-index: 10;
+  box-shadow: 0 30px 60px rgba(14, 165, 233, 0.5);
+}
+
+.floating-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.floating-img:hover img {
+  transform: scale(1.1);
+}
+
+.img-label {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0,0,0,0.9));
+  color: white;
+  padding: 1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+}
+
+/* Posiciones de las imágenes - corregidas para evitar solapamiento */
+.img-1 {
+  width: 280px;
+  height: 180px;
+  top: 8%;
+  left: 5%;
+  animation: float-1 8s ease-in-out infinite;
+  z-index: 4;
+}
+
+.img-2 {
+  width: 260px;
+  height: 170px;
+  top: 12%;
+  right: 5%;
+  animation: float-2 7s ease-in-out infinite;
+  z-index: 5;
+}
+
+.img-3 {
+  width: 240px;
+  height: 150px;
+  bottom: 35%;
+  left: 3%;
+  animation: float-3 9s ease-in-out infinite;
+  z-index: 6;
+}
+
+.img-4 {
+  width: 220px;
+  height: 160px;
+  bottom: 25%;
+  right: 3%;
+  animation: float-4 6s ease-in-out infinite;
+  z-index: 7;
+}
+
+@keyframes float-1 {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(1deg); }
+}
+
+@keyframes float-2 {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(15px) rotate(-1deg); }
+}
+
+@keyframes float-3 {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-15px) rotate(1deg); }
+}
+
+@keyframes float-4 {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(10px) rotate(-1deg); }
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(0,0,0,0.6), rgba(14, 165, 233, 0.3), rgba(255, 107, 53, 0.2), rgba(0,0,0,0.7));
+  z-index: 2;
+}
+
+/* Contenido principal */
+.hero-content {
+  position: relative;
+  z-index: 3;
+  max-width: 1000px;
+  padding: 0 2rem;
+  width: 100%;
+}
+
+/* Badge superior */
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(14, 165, 233, 0.2);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(14, 165, 233, 0.3);
+  padding: 0.8rem 1.5rem;
+  border-radius: 50px;
+  color: #0EA5E9;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 8px 25px rgba(14, 165, 233, 0.2);
+}
+
+.badge-icon {
+  font-size: 1.2rem;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+}
+
+/* Título ARREGLADO - Bienvenido visible */
+.hero-title {
+  margin-bottom: 2rem;
+  line-height: 1.2;
+}
+
+.title-small {
+  display: block;
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  color: #ffffff;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  text-shadow: 0 4px 8px rgba(0,0,0,0.9);
+  letter-spacing: 1px;
+}
+
+.title-main {
+  display: block;
+  font-size: clamp(4rem, 10vw, 7rem);
+  font-weight: 900;
+  background: linear-gradient(135deg, 
+    #0EA5E9 0%,     /* Azul océano */
+    #22D3EE 25%,    /* Azul caribe */
+    #FFFFFF 50%,    /* Blanco espuma */
+    #0EA5E9 75%,    /* Azul profundo */
+    #0284C7 100%    /* Azul marino */
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 5px 10px rgba(0,0,0,0.8);
+  letter-spacing: -2px;
+  text-transform: uppercase;
+  filter: drop-shadow(0 4px 8px rgba(14, 165, 233, 0.6));
+}
+
+/* Subtítulo más pequeño */
+.hero-subtitle {
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  color: #ffffff;
+  margin-bottom: 1.5rem;
+  font-weight: 400;
+  line-height: 1.5;
+  text-shadow: 0 4px 8px rgba(0,0,0,0.9);
+  max-width: 650px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Highlights en una sola fila más arriba */
+.hero-highlights {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.highlight-item {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  background: rgba(0,0,0,0.4);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 12px;
+  padding: 0.8rem 1rem;
+  text-align: left;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  min-width: 180px;
+  max-width: 200px;
+}
+
+.highlight-item:hover {
+  transform: translateY(-5px);
+  background: rgba(14, 165, 233, 0.3);
+  border-color: rgba(14, 165, 233, 0.5);
+  box-shadow: 0 15px 35px rgba(14, 165, 233, 0.4);
+}
+
+.highlight-icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+}
+
+.highlight-text h3 {
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin: 0 0 0.2rem 0;
+  text-shadow: 0 3px 6px rgba(0,0,0,0.9);
+}
+
+.highlight-text p {
+  color: #e2e8f0;
+  font-size: 0.75rem;
+  margin: 0;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.9);
+}
+
+/* Solo la flecha - posición más baja */
+.scroll-indicator {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #0EA5E9;
+  animation: bounce 2s infinite;
+  cursor: pointer;
+  z-index: 3;
+  transition: all 0.3s ease;
+  background: rgba(0,0,0,0.6);
+  padding: 1rem;
+  border-radius: 50%;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(14, 165, 233, 0.3);
+}
+
+.scroll-indicator:hover {
+  color: #fff;
+  background: rgba(14, 165, 233, 0.6);
+  transform: translateX(-50%) scale(1.1);
+}
+
+.scroll-indicator svg {
+  width: 3.5rem;
+  height: 3.5rem;
+  filter: drop-shadow(0 3px 6px rgba(0,0,0,0.8));
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% { 
+    transform: translateX(-50%) translateY(0); 
+  }
+  40% { 
+    transform: translateX(-50%) translateY(-15px); 
+  }
+  60% { 
+    transform: translateX(-50%) translateY(-8px); 
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .floating-img {
+    opacity: 0.5;
+  }
+  
+  .hero-highlights {
+    gap: 0.8rem;
+  }
+  
+  .highlight-item {
+    min-width: 160px;
+    padding: 0.6rem 0.8rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .image-collage {
+    display: none;
+  }
+
+  .hero-content {
+    padding: 0 1.5rem;
+  }
+
+  .hero-highlights {
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
+    gap: 0.8rem;
+  }
+
+  .highlight-item {
+    min-width: 250px;
+    padding: 0.8rem;
+  }
+
+  .hero-badge {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.8rem;
+  }
+
+  .scroll-indicator {
+    bottom: 1rem;
+    padding: 0.8rem;
+  }
+
+  .scroll-indicator svg {
+    width: 3rem;
+    height: 3rem;
+  }
+  
+  /* Mejorar experiencia en móvil */
+  .hero {
+    min-height: 100vh;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-content {
+    padding: 0 1rem;
+  }
+
+  .highlight-item {
+    flex-direction: column;
     text-align: center;
-    overflow: hidden;
-    background-color: #000;
-  }
-  
-  .hero-background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    opacity: 0.8;
-    z-index: 0;
-  }
-  
-  .hero-bg-1 {
-    background: url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80') center/cover;
-    grid-column: 1;
-    grid-row: 1;
-    background-position: center center;
-    background-attachment: fixed;
+    padding: 0.8rem;
   }
 
-  .hero-bg-2 {
-    background: url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80') center/cover;
-    grid-column: 2;
-    grid-row: 1;
-    background-position: center center;
-    background-attachment: fixed;
+  .highlight-icon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
   }
 
-  .hero-bg-3 {
-    background: url('https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80') center/cover;
-    grid-column: 1;
-    grid-row: 2;
-    background-position: center center;
-    background-attachment: fixed;
+  .hero-subtitle {
+    margin-bottom: 2rem;
   }
 
-  .hero-bg-4 {
-    background: url('https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80') center/cover;
-    grid-column: 2;
-    grid-row: 2;
-    background-position: center center;
-    background-attachment: fixed;
+  .scroll-indicator {
+    bottom: 0.8rem;
+    padding: 0.6rem;
   }
-  
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: linear-gradient(135deg, rgba(0,0,0,0.7), rgba(14, 165, 233, 0.4), rgba(255, 107, 53, 0.3), rgba(0,0,0,0.6));
-      z-index: 1;
-    }
-  
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      max-width: 1200px;
-      padding: 0 2rem;
-    }
-  
-    .hero-content h1 {
-      font-size: clamp(2.8rem, 8vw, 5.5rem);
-      margin-bottom: 1.5rem;
-      color: #fff;
-      text-shadow: 3px 3px 10px rgba(0,0,0,0.9);
-      font-weight: 700;
-      line-height: 1.1;
-      letter-spacing: -1px;
-      text-transform: uppercase;
-    }
-  
-    .hero-content .subtitle {
-      font-size: clamp(1.3rem, 4vw, 2.2rem);
-      color: #0EA5E9;
-      margin-bottom: 3rem;
-      font-weight: 500;
-      text-shadow: 2px 2px 6px rgba(0,0,0,0.8);
-      max-width: 900px;
-      margin-left: auto;
-      margin-right: auto;
-      line-height: 1.3;
-    }
-  
-    .hero-highlights {
-      position: relative;
-      z-index: 2;
-      display: flex;
-      justify-content: center;
-      gap: 3rem;
-      margin-top: 2rem;
-      flex-wrap: wrap;
-    }
-  
-    .highlight-item {
-      text-align: center;
-      color: #fff;
-      background: rgba(0,0,0,0.3);
-      padding: 1rem;
-      border-radius: 12px;
-      backdrop-filter: blur(5px);
-      border: 1px solid rgba(255,255,255,0.1);
-      transition: transform 0.3s ease;
-    }
-  
-    .highlight-item:hover {
-      transform: translateY(-5px);
-      background: rgba(14, 165, 233, 0.2);
-    }
-  
-    .highlight-icon {
-      font-size: 2.5rem;
-      margin-bottom: 0.5rem;
-      display: block;
-    }
-  
-    .highlight-text {
-      font-size: 0.9rem;
-      font-weight: 500;
-      text-shadow: 0 1px 3px rgba(0,0,0,0.8);
-    }
-  
-    .scroll-indicator {
-      position: absolute;
-      bottom: 3rem;
-      left: 50%;
-      transform: translateX(-50%);
-      color: #0EA5E9;
-      animation: bounce 2s infinite;
-      cursor: pointer;
-      z-index: 2;
-      transition: all 0.3s ease;
-      background: rgba(0,0,0,0.5);
-      padding: 1rem;
-      border-radius: 50%;
-      backdrop-filter: blur(10px);
-    }
-  
-    .scroll-indicator:hover {
-      color: #fff;
-      background: rgba(14, 165, 233, 0.6);
-      transform: translateX(-50%) scale(1.1);
-    }
-  
-    .scroll-indicator svg {
-      width: 3.5rem;
-      height: 3.5rem;
-      filter: drop-shadow(0 2px 8px rgba(0,0,0,0.6));
-    }
-  
-    @keyframes bounce {
-      0%, 20%, 50%, 80%, 100% { 
-        transform: translateX(-50%) translateY(0); 
-      }
-      40% { 
-        transform: translateX(-50%) translateY(-15px); 
-      }
-      60% { 
-        transform: translateX(-50%) translateY(-8px); 
-      }
-    }
-  
-    /* Responsive adjustments */
-    @media (max-width: 768px) {
-      .hero-background {
-        grid-template-columns: 1fr;
-        grid-template-rows: repeat(4, 1fr);
-      }
-  
-      .hero-bg-1 { grid-column: 1; grid-row: 1; }
-      .hero-bg-2 { grid-column: 1; grid-row: 2; }
-      .hero-bg-3 { grid-column: 1; grid-row: 3; }
-      .hero-bg-4 { grid-column: 1; grid-row: 4; }
-  
-      .hero-content {
-        padding: 0 1.5rem;
-      }
-  
-      .hero-highlights {
-        gap: 2rem;
-        margin-top: 1.5rem;
-      }
-  
-      .highlight-item {
-        padding: 0.8rem;
-      }
-  
-      .highlight-icon {
-        font-size: 2rem;
-      }
-  
-      .highlight-text {
-        font-size: 0.8rem;
-      }
-  
-      .scroll-indicator {
-        bottom: 2rem;
-        padding: 0.8rem;
-      }
-  
-      .scroll-indicator svg {
-        width: 3rem;
-        height: 3rem;
-      }
-    }
-  
-    @media (max-width: 480px) {
-      .hero-content {
-        padding: 0 1rem;
-      }
-  
-      .hero-content h1 {
-        margin-bottom: 1rem;
-      }
-  
-      .hero-content .subtitle {
-        margin-bottom: 2rem;
-      }
-  
-      .hero-highlights {
-        gap: 1.5rem;
-        margin-top: 1rem;
-      }
-  
-      .highlight-item {
-        flex: 1;
-        min-width: 120px;
-        padding: 0.6rem;
-      }
-  
-      .highlight-icon {
-        font-size: 1.8rem;
-      }
-  
-      .highlight-text {
-        font-size: 0.7rem;
-      }
-  
-      .scroll-indicator {
-        padding: 0.6rem;
-      }
-  
-      .scroll-indicator svg {
-        width: 2.5rem;
-        height: 2.5rem;
-      }
-    }
-  
-    @media (max-width: 320px) {
-      .hero-content {
-        padding: 0 0.5rem;
-      }
-  
-      .hero-highlights {
-        gap: 1rem;
-      }
-  
-      .highlight-item {
-        padding: 0.5rem;
-      }
-  
-      .highlight-text {
-        font-size: 0.65rem;
-      }
-  
-      .scroll-indicator {
-        padding: 0.5rem;
-      }
-  
-      .scroll-indicator svg {
-        width: 2rem;
-        height: 2rem;
-      }
-    }
-  </style>
+
+  .scroll-indicator svg {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+}
+</style>
 
 <script is:inline>
-  function scrollToMap() {
-    const mapSection = document.querySelector('#mapa');
-    if (mapSection) {
-      // Calculamos la altura del header para el offset correcto
+function scrollToMap() {
+  const mapSection = document.querySelector('#mapa');
+  if (mapSection) {
+    const isMobile = window.innerWidth <= 768;
+    
+    if (isMobile) {
+      // En móvil: header estático, scroll simple
+      mapSection.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    } else {
+      // En desktop: header fijo, calcular offset
       const header = document.querySelector('.header');
       const headerHeight = header ? header.offsetHeight : 80;
       const elementPosition = mapSection.offsetTop;
       const offsetPosition = elementPosition - headerHeight;
-
+      
       window.scrollTo({
         top: offsetPosition,
         behavior: 'smooth'
       });
     }
   }
-  
-  // También agregamos evento para cuando el DOM esté listo
-  document.addEventListener('DOMContentLoaded', function() {
-    // Asegurar que la función esté disponible globalmente
-    window.scrollToMap = scrollToMap;
-  });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  window.scrollToMap = scrollToMap;
+});
 </script>

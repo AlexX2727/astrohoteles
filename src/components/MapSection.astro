@@ -547,6 +547,21 @@ import { accommodationsData, getAmenityIcon, MAPBOX_CONFIG } from '../data/accom
       border-right: none;
       border-top: 1px solid #333;
     }
+    
+    /* Hacer las pestañas de filtro sticky en móvil */
+    .filter-tabs {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: #1a1a1a;
+      border-bottom: 2px solid #0EA5E9;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+    }
+    
+    /* Ajustar el contenido para las pestañas sticky */
+    .accommodation-list {
+      padding-top: 0.5rem;
+    }
 
     .search-bar {
       position: relative;
@@ -1024,7 +1039,7 @@ import { accommodationsData, getAmenityIcon, MAPBOX_CONFIG } from '../data/accom
     }
   }
 
-  // Select accommodation
+  // Select accommodation - mejorado para móbil
   function selectAccommodation(id, autoFocus) {
     autoFocus = autoFocus || false;
     
@@ -1042,48 +1057,72 @@ import { accommodationsData, getAmenityIcon, MAPBOX_CONFIG } from '../data/accom
     }
     
     if (accommodation && map) {
+      const isMobile = window.innerWidth <= 768;
+      
       if (autoFocus) {
-        // Scroll to map section
-        const mapSection = document.querySelector('#mapa');
-        if (mapSection) {
-          mapSection.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
+        if (isMobile) {
+          // En móvil: scroll suave al mapa manteniendo las pestañas visibles
+          const mapContainer = document.querySelector('.map-container');
+          if (mapContainer) {
+            mapContainer.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
+        } else {
+          // En desktop: scroll normal
+          const mapSection = document.querySelector('#mapa');
+          if (mapSection) {
+            const header = document.querySelector('.header');
+            const headerHeight = header ? header.offsetHeight : 80;
+            const elementPosition = mapSection.offsetTop;
+            const offsetPosition = elementPosition - headerHeight;
+            
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: 'smooth'
+            });
+          }
         }
         
         // Fly to location after scroll
         setTimeout(function() {
+          if (map && typeof map.flyTo === 'function') {
+            map.flyTo({
+              center: accommodation.coordinates,
+              zoom: 16,
+              duration: 2500,
+              essential: true
+            });
+          }
+        }, isMobile ? 600 : 800);
+      } else {
+        if (map && typeof map.flyTo === 'function') {
           map.flyTo({
             center: accommodation.coordinates,
             zoom: 16,
-            duration: 2500,
-            essential: true
+            duration: 2000
           });
-        }, 800);
-      } else {
-        map.flyTo({
-          center: accommodation.coordinates,
-          zoom: 16,
-          duration: 2000
-        });
+        }
       }
       
       // Show popup
       setTimeout(function() {
         for (let i = 0; i < markers.length; i++) {
           const marker = markers[i];
-          const lngLat = marker.getLngLat();
-          if (Math.abs(lngLat.lng - accommodation.coordinates[0]) < 0.001 && 
-              Math.abs(lngLat.lat - accommodation.coordinates[1]) < 0.001) {
-            const popup = marker.getPopup();
-            if (popup) {
-              popup.addTo(map);
+          if (marker && typeof marker.getLngLat === 'function') {
+            const lngLat = marker.getLngLat();
+            if (Math.abs(lngLat.lng - accommodation.coordinates[0]) < 0.001 && 
+                Math.abs(lngLat.lat - accommodation.coordinates[1]) < 0.001) {
+              const popup = marker.getPopup();
+              if (popup && typeof popup.addTo === 'function') {
+                popup.addTo(map);
+              }
+              break;
             }
-            break;
           }
         }
-      }, autoFocus ? 3000 : 2000);
+      }, autoFocus ? (isMobile ? 2500 : 3000) : 2000);
     }
   }
 
