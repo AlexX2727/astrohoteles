@@ -411,6 +411,10 @@
 
 /* Responsive Design */
 @media (max-width: 1024px) {
+  /* iOS Safari: evitar parpadeos con fixed */
+  .main-bg { 
+    background-attachment: scroll; 
+  }
   .floating-img {
     opacity: 0.5;
   }
@@ -426,23 +430,45 @@
 }
 
 @media (max-width: 768px) {
+  /* Mostrar las 4 imágenes como grid 2x2 en móvil */
   .image-collage {
-    display: none;
+    position: absolute;
+    inset: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    padding: 20px;
+    z-index: 1;
+    opacity: 0.7;
   }
+  .floating-img {
+    position: relative;
+    width: 100%;
+    height: 120px;
+    animation: none;
+    border-radius: 12px;
+  }
+  .img-1, .img-2, .img-3, .img-4 {
+    top: auto; bottom: auto; left: auto; right: auto;
+    width: 100%; height: 120px;
+  }
+  .img-label { font-size: 0.8rem; padding: 0.5rem; }
 
   .hero-content {
-    padding: 0 1.5rem;
+    padding: 0 1.2rem;
   }
 
   .hero-highlights {
     flex-direction: column;
     align-items: center;
-    gap: 0.8rem;
+    gap: 0.6rem;
   }
 
   .highlight-item {
-    min-width: 250px;
-    padding: 0.8rem;
+    width: 100%;
+    max-width: 360px;
+    min-width: auto;
+    padding: 0.7rem 0.9rem;
   }
 
   .hero-badge {
@@ -502,26 +528,11 @@
 function scrollToMap() {
   const mapSection = document.querySelector('#mapa');
   if (mapSection) {
-    const isMobile = window.innerWidth <= 768;
-    
-    if (isMobile) {
-      // En móvil: header estático, scroll simple
-      mapSection.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-      });
-    } else {
-      // En desktop: header fijo, calcular offset
-      const header = document.querySelector('.header');
-      const headerHeight = header ? header.offsetHeight : 80;
-      const elementPosition = mapSection.offsetTop;
-      const offsetPosition = elementPosition - headerHeight;
-      
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
-    }
+    const header = document.querySelector('.header');
+    const headerHeight = header ? header.offsetHeight : 70;
+    const elementY = mapSection.getBoundingClientRect().top + window.pageYOffset;
+    const offsetY = Math.max(elementY - headerHeight, 0);
+    window.scrollTo({ top: offsetY, behavior: 'smooth' });
   }
 }
 
