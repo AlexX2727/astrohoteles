@@ -74,6 +74,17 @@ import { accommodationsData, getAmenityIcon, MAPBOX_CONFIG } from '../data/accom
       <div id="map"></div>
     </div>
   </div>
+
+  <!-- Mini Map Overlay for mobile/desktop when clicking an image -->
+  <div id="mini-map-overlay" class="mini-map-overlay" hidden>
+    <div class="mini-map-dialog">
+      <button class="mini-map-close" id="mini-map-close" aria-label="Cerrar">×</button>
+      <iframe id="mini-map-iframe" class="mini-map-iframe" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <div class="mini-map-actions">
+        <a id="mini-map-directions" target="_blank" rel="noopener" class="reserve-btn-orange" href="#">Cómo llegar</a>
+      </div>
+    </div>
+  </div>
 </section>
 
 <style is:global>
@@ -89,7 +100,7 @@ import { accommodationsData, getAmenityIcon, MAPBOX_CONFIG } from '../data/accom
 
   /* Sidebar */
   .sidebar {
-    width: 600px;
+    width: 720px;
     background: #111;
     border-right: 1px solid #333;
     overflow-y: auto;
@@ -98,10 +109,10 @@ import { accommodationsData, getAmenityIcon, MAPBOX_CONFIG } from '../data/accom
   }
   
   @media (min-width: 1440px) {
-    .sidebar { width: 680px; }
+    .sidebar { width: 800px; }
   }
   @media (min-width: 1680px) {
-    .sidebar { width: 760px; }
+    .sidebar { width: 880px; }
   }
   
   .sidebar::-webkit-scrollbar {
@@ -161,14 +172,14 @@ import { accommodationsData, getAmenityIcon, MAPBOX_CONFIG } from '../data/accom
   /* Accommodation Cards */
   .accommodation-list {
     display: grid;
-    grid-template-columns: repeat(3, minmax(160px, 1fr));
+    grid-template-columns: repeat(3, minmax(190px, 1fr));
     gap: 1rem;
     padding: 0.75rem;
   }
   
   @media (max-width: 1024px) {
     .accommodation-list {
-      grid-template-columns: repeat(2, minmax(140px, 1fr));
+      grid-template-columns: repeat(2, minmax(170px, 1fr));
     }
   }
 
@@ -209,7 +220,7 @@ import { accommodationsData, getAmenityIcon, MAPBOX_CONFIG } from '../data/accom
 
   .card-image {
     width: 100%;
-    height: 100px;
+    height: 130px;
     object-fit: cover;
     display: block;
     border-radius: 12px 12px 0 0;
@@ -220,18 +231,18 @@ import { accommodationsData, getAmenityIcon, MAPBOX_CONFIG } from '../data/accom
 
   /* ESTILOS SUPER ESPECÍFICOS PARA CENTRADO PERFECTO - PRIORIDAD MÁXIMA */
   .accommodation-card .card-content-center {
-    padding: 0.9rem 0.7rem !important;
+    padding: 1rem 0.8rem !important;
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
     justify-content: space-between !important;
     text-align: center !important;
-    min-height: 180px !important;
+    min-height: 210px !important;
     width: 100% !important;
     position: relative !important;
     z-index: 2 !important;
   }
-  .accommodation-card .card-content { padding: 0.9rem 0.7rem; }
+  .accommodation-card .card-content { padding: 1rem 0.8rem; }
 
   .accommodation-card .card-header-center {
     width: 100% !important;
@@ -243,10 +254,10 @@ import { accommodationsData, getAmenityIcon, MAPBOX_CONFIG } from '../data/accom
   }
 
   .accommodation-card .card-title-center {
-    font-size: 1rem !important;
-    font-weight: 700 !important;
+    font-size: 1.15rem !important;
+    font-weight: 800 !important;
     color: #fff !important;
-    margin: 0.2rem auto 0.4rem auto !important;
+    margin: 0.25rem auto 0.5rem auto !important;
     text-align: center !important;
     line-height: 1.2 !important;
     max-width: 100% !important;
@@ -290,21 +301,21 @@ import { accommodationsData, getAmenityIcon, MAPBOX_CONFIG } from '../data/accom
     align-items: center !important;
     justify-content: center !important;
     width: 100% !important;
-    max-width: 180px !important;
+    max-width: 200px !important;
     background: linear-gradient(145deg, #FF6B35 0%, #FF8A50 25%, #E55A2B 50%, #FF6B35 75%, #FF8A50 100%) !important;
     background-size: 200% 200% !important;
     color: white !important;
     border: none !important;
-    padding: 12px 18px !important;
+    padding: 14px 22px !important;
     border-radius: 50px !important;
     font-weight: 800 !important;
-    font-size: 0.85rem !important;
+    font-size: 0.95rem !important;
     cursor: pointer !important;
     text-transform: uppercase !important;
-    letter-spacing: 1.2px !important;
+    letter-spacing: 1.3px !important;
     box-shadow: 
-      0 10px 30px rgba(255, 107, 53, 0.5),
-      0 5px 15px rgba(255, 107, 53, 0.3),
+      0 12px 32px rgba(255, 107, 53, 0.5),
+      0 6px 16px rgba(255, 107, 53, 0.32),
       inset 0 2px 0 rgba(255,255,255,0.4),
       inset 0 -2px 0 rgba(0,0,0,0.1) !important;
     transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
@@ -402,8 +413,8 @@ import { accommodationsData, getAmenityIcon, MAPBOX_CONFIG } from '../data/accom
   }
 
   .accommodation-card .card-amenities-icons-center .amenity-icon svg {
-    width: 22px !important;
-    height: 22px !important;
+    width: 26px !important;
+    height: 26px !important;
     transition: all 0.3s ease !important;
     filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3)) !important;
   }
@@ -517,6 +528,47 @@ import { accommodationsData, getAmenityIcon, MAPBOX_CONFIG } from '../data/accom
     100% { transform: rotate(360deg); }
   }
 
+  /* Mini map overlay */
+  .mini-map-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.65);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1500;
+  }
+  .mini-map-overlay[hidden] { display: none !important; }
+  .mini-map-dialog {
+    position: relative;
+    width: min(92vw, 520px);
+    background: #111;
+    border: 1px solid #333;
+    border-radius: 12px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+    overflow: hidden;
+  }
+  .mini-map-close {
+    position: absolute;
+    margin: 8px;
+    right: 8px;
+    top: 8px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid #333;
+    background: rgba(0,0,0,0.6);
+    color: #fff;
+    cursor: pointer;
+  }
+  .mini-map-iframe {
+    width: 100%;
+    height: 320px;
+    border: 0;
+    display: block;
+  }
+  .mini-map-actions { display: flex; justify-content: center; padding: 12px; }
+
   /* Custom Mapbox Popup */
   :global(.mapboxgl-popup-content) {
     background: #1a1a1a !important;
@@ -556,13 +608,13 @@ import { accommodationsData, getAmenityIcon, MAPBOX_CONFIG } from '../data/accom
       flex-direction: column;
     }
     
+    /* Ocultar mapa en móvil */
     .map-container {
-      height: 40vh;
-      order: 1;
+      display: none;
     }
     
     .sidebar {
-      height: 60vh;
+      height: auto;
       order: 2;
       width: 100%;
       border-right: none;
@@ -582,37 +634,14 @@ import { accommodationsData, getAmenityIcon, MAPBOX_CONFIG } from '../data/accom
     /* Ajustar el contenido para las pestañas sticky */
     .accommodation-list {
       padding-top: 0.5rem;
+      grid-template-columns: repeat(2, minmax(180px, 1fr));
+      gap: 1rem;
     }
 
-    .search-bar {
-      position: relative;
-      top: 0;
-      left: 0;
-      margin: 0.5rem;
-      width: calc(100% - 1rem);
-      padding: 0.8rem;
-    }
-
-    .search-input {
-      width: 140px;
-      font-size: 0.8rem;
-    }
-    
-    .search-btn {
-      padding: 0.6rem 1rem;
-      font-size: 0.9rem;
-    }
-
-    .map-controls {
-      top: 10px;
-      right: 10px;
-      gap: 0.3rem;
-    }
-
-    .map-control-btn {
-      padding: 0.6rem;
-      font-size: 0.9rem;
-    }
+    .card-image { height: 150px; }
+    .accommodation-card .card-amenities-icons-center .amenity-icon svg { width: 30px !important; height: 30px !important; }
+    .accommodation-card .card-title-center { font-size: 1.2rem !important; }
+    .accommodation-card .card-footer-center .reserve-btn-orange, .accommodation-card button.reserve-btn-orange, button.reserve-btn-orange { max-width: 220px !important; }
   }
 </style>
 
@@ -624,10 +653,8 @@ import { accommodationsData, getAmenityIcon, MAPBOX_CONFIG } from '../data/accom
   let markers = [];
   let currentCategory = 'hoteles';
 
-  // Datos pasados desde el servidor
-  console.log('accommodationsData:', accommodationsData);
-  console.log('MAPBOX_CONFIG:', MAPBOX_CONFIG);
-
+  // Datos pasados desde el servidor (no se loguean por privacidad)
+  
   // getAmenityIcon function (client-side) - Iconos hermosos y modernos
   function getAmenityIcon(iconType) {
     const iconMap = {
@@ -725,27 +752,29 @@ import { accommodationsData, getAmenityIcon, MAPBOX_CONFIG } from '../data/accom
 
   // Initialize when DOM loads
   document.addEventListener('DOMContentLoaded', function() {
-    console.log('DOM loaded, waiting for Mapbox...');
-    
-    waitForMapbox().then(function() {
-      if (typeof mapboxgl !== 'undefined') {
-        console.log('Mapbox loaded, initializing map...');
-        initMap();
-      } else {
-        console.error('Mapbox failed to load');
-        const mapContainer = document.getElementById('map');
-        if (mapContainer) {
-          mapContainer.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;color:#666;">Error cargando el mapa. Verifica tu conexión a internet.</div>';
+    const isMobile = window.innerWidth <= 768;
+
+    if (isMobile) {
+      // Modo móvil: no inicializamos Mapbox para ahorrar recursos
+      loadAccommodations('hoteles');
+      setupEventListeners();
+    } else {
+      waitForMapbox().then(function() {
+        if (typeof mapboxgl !== 'undefined') {
+          initMap();
+        } else {
+          const mapContainer = document.getElementById('map');
+          if (mapContainer) {
+            mapContainer.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;color:#666;">Error cargando el mapa.</div>';
+          }
         }
-      }
-    });
+      });
+    }
   });
 
   // Initialize map
   function initMap() {
     try {
-      console.log('Initializing map with config:', MAPBOX_CONFIG);
-      
       if (!MAPBOX_CONFIG || !MAPBOX_CONFIG.accessToken) {
         console.error('MAPBOX_CONFIG or accessToken not found');
         return;
@@ -768,8 +797,6 @@ import { accommodationsData, getAmenityIcon, MAPBOX_CONFIG } from '../data/accom
       });
 
       map.on('load', function() {
-        console.log('Map loaded successfully');
-        
         // Cargar datos iniciales
         loadAccommodations('hoteles');
         setupEventListeners();
@@ -875,7 +902,6 @@ import { accommodationsData, getAmenityIcon, MAPBOX_CONFIG } from '../data/accom
     }
     
     const accommodations = accommodationsData[category];
-    console.log('Found accommodations:', accommodations.length);
     
     updateAccommodationList(accommodations);
     updateMapMarkers(accommodations);
@@ -910,6 +936,7 @@ import { accommodationsData, getAmenityIcon, MAPBOX_CONFIG } from '../data/accom
       '☕': 'Desayuno incluido'
     };
 
+    const isMobile = window.innerWidth <= 768;
     const accommodationCards = accommodations.map(function(accommodation) {
       const amenityIcons = accommodation.amenities.map(function(amenity) {
         const description = iconDescriptions[amenity.icon] || 'Amenidad';
@@ -959,7 +986,7 @@ import { accommodationsData, getAmenityIcon, MAPBOX_CONFIG } from '../data/accom
 
       return `
         <div class="accommodation-card" onclick="selectAccommodation(${accommodation.id}, true)">
-          <img src="${accommodation.image}" alt="${accommodation.name}" class="card-image" loading="lazy">
+          <img src="${accommodation.image}" alt="${accommodation.name}" class="card-image" loading="lazy" ${isMobile ? `onclick="event.stopPropagation(); openMiniMap(${accommodation.coordinates[0]}, ${accommodation.coordinates[1]}, '${accommodation.name.replace(/'/g, "\'")}')"` : ''}>
           <div class="card-content card-content-center">
             <!-- Nombre del hotel centrado -->
             <div class="card-header-center">
@@ -1167,11 +1194,48 @@ import { accommodationsData, getAmenityIcon, MAPBOX_CONFIG } from '../data/accom
     window.open(googleMapsUrl, '_blank');
   }
 
+  // Mini map overlay helpers
+  function openMiniMap(lng, lat, name) {
+    try {
+      if (window.innerWidth > 768) return; // Solo en móvil
+      const overlay = document.getElementById('mini-map-overlay');
+      const iframe = document.getElementById('mini-map-iframe');
+      const directions = document.getElementById('mini-map-directions');
+      if (!overlay || !iframe || !directions) return;
+
+      const src = `https://www.google.com/maps?q=${lat},${lng}&z=15&output=embed`;
+      iframe.src = src;
+      directions.href = `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}&travelmode=driving`;
+      overlay.hidden = false;
+      document.body.classList.add('menu-open');
+    } catch {}
+  }
+  function closeMiniMap() {
+    const overlay = document.getElementById('mini-map-overlay');
+    const iframe = document.getElementById('mini-map-iframe');
+    if (overlay) overlay.hidden = true;
+    if (iframe) iframe.src = '';
+    document.body.classList.remove('menu-open');
+  }
+
+  document.addEventListener('click', function(e){
+    const overlay = document.getElementById('mini-map-overlay');
+    if (!overlay || overlay.hidden) return;
+    const dialog = overlay.querySelector('.mini-map-dialog');
+    const closeBtn = document.getElementById('mini-map-close');
+    if (e.target === overlay || e.target === closeBtn) {
+      closeMiniMap();
+    }
+  });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeMiniMap(); });
+
   // Make functions global so they can be called from HTML
   window.selectAccommodation = selectAccommodation;
   window.toggleMapStyle = toggleMapStyle;
   window.centerMap = centerMap;
   window.getDirections = getDirections;
+  window.openMiniMap = openMiniMap;
+  window.closeMiniMap = closeMiniMap;
 
 })();
 </script>
