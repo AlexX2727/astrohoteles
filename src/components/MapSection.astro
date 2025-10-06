@@ -3,13 +3,9 @@
 import { accommodationsData, getAmenityIcon, MAPBOX_CONFIG } from '../data/accommodationData.js';
 ---
 
-<!-- Mapbox GL JS CDN -->
-<link href='https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css' rel='stylesheet' />
-<script src='https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js'></script>
-
 <section class="map-section" id="mapa">
   <div class="main-container">
-    <!-- Sidebar -->
+    <!-- Sidebar ahora ocupa todo el ancho -->
     <div class="sidebar">
       <!-- Filter Tabs -->
       <div class="filter-tabs">
@@ -55,27 +51,9 @@ import { accommodationsData, getAmenityIcon, MAPBOX_CONFIG } from '../data/accom
         </div>
       </div>
     </div>
-
-    <!-- Map Container -->
-    <div class="map-container">
-      <!-- Search Bar -->
-      <div class="search-bar">
-        <input type="text" class="search-input" placeholder="Buscar ubicación...">
-        <button class="search-btn">Buscar</button>
-      </div>
-
-      <!-- Map Controls -->
-      <div class="map-controls">
-        <button class="map-control-btn" id="toggle-style">🗺️</button>
-        <button class="map-control-btn" id="center-map">📍</button>
-      </div>
-
-      <!-- Map -->
-      <div id="map"></div>
-    </div>
   </div>
 
-  <!-- Mini Map Overlay for mobile/desktop when clicking an image -->
+  <!-- Mini Map Overlay para cuando hacen clic en una imagen -->
   <div id="mini-map-overlay" class="mini-map-overlay" hidden>
     <div class="mini-map-dialog">
       <button class="mini-map-close" id="mini-map-close" aria-label="Cerrar">×</button>
@@ -98,25 +76,26 @@ import { accommodationsData, getAmenityIcon, MAPBOX_CONFIG } from '../data/accom
     height: 100vh;
   }
 
-  /* Sidebar */
+  /* Sidebar ahora ocupa todo el ancho */
   .sidebar {
-    width: 720px;
+    width: 100%;
     background: #111;
-    border-right: 1px solid #333;
     overflow-y: auto;
     scrollbar-width: none;
     -ms-overflow-style: none;
   }
-  
-  @media (min-width: 1440px) {
-    .sidebar { width: 800px; }
-  }
-  @media (min-width: 1680px) {
-    .sidebar { width: 880px; }
-  }
-  
-  .sidebar::-webkit-scrollbar {
-    display: none;
+
+  @media (min-width: 1200px) {
+    .main-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+    
+    .sidebar {
+      border-radius: 16px;
+      border: 1px solid #333;
+    }
   }
 
   /* Filter Tabs */
@@ -169,24 +148,33 @@ import { accommodationsData, getAmenityIcon, MAPBOX_CONFIG } from '../data/accom
     margin-right: auto;
   }
 
-  /* Accommodation Cards */
+  /* Accommodation Cards - Grid responsivo */
   .accommodation-list {
     display: grid;
-    grid-template-columns: repeat(3, minmax(190px, 1fr));
-    gap: 1rem;
-    padding: 0.75rem;
+    grid-template-columns: repeat(4, minmax(250px, 1fr));
+    gap: 2rem;
+    padding: 2rem;
   }
   
-  @media (max-width: 1024px) {
+  @media (max-width: 1200px) {
     .accommodation-list {
-      grid-template-columns: repeat(2, minmax(170px, 1fr));
+      grid-template-columns: repeat(3, minmax(220px, 1fr));
+      gap: 1.5rem;
+      padding: 1.5rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .accommodation-list {
+      grid-template-columns: repeat(2, minmax(180px, 1fr));
+      gap: 1rem;
+      padding: 0.75rem;
     }
   }
 
   .accommodation-card {
     background: #1a1a1a;
     border-radius: 12px;
-    margin: 0;
     overflow: hidden;
     border: 1px solid #333;
     transition: all 0.3s ease;
@@ -225,11 +213,10 @@ import { accommodationsData, getAmenityIcon, MAPBOX_CONFIG } from '../data/accom
     display: block;
     border-radius: 12px 12px 0 0;
     background-color: #333;
+    cursor: pointer;
   }
 
-  /* ELIMINAMOS TODOS LOS ESTILOS CONFLICTIVOS ANTERIORES */
-
-  /* ESTILOS SUPER ESPECÍFICOS PARA CENTRADO PERFECTO - PRIORIDAD MÁXIMA */
+  /* ESTILOS CENTRADOS PARA CARDS */
   .accommodation-card .card-content-center {
     padding: 1rem 0.8rem !important;
     display: flex !important;
@@ -254,7 +241,7 @@ import { accommodationsData, getAmenityIcon, MAPBOX_CONFIG } from '../data/accom
   }
 
   .accommodation-card .card-title-center {
-    font-size: 1.15rem !important;
+    font-size: 1rem !important;
     font-weight: 800 !important;
     color: #fff !important;
     margin: 0.25rem auto 0.5rem auto !important;
@@ -264,6 +251,12 @@ import { accommodationsData, getAmenityIcon, MAPBOX_CONFIG } from '../data/accom
     display: block !important;
     word-wrap: break-word !important;
     text-shadow: 0 2px 4px rgba(0,0,0,0.4) !important;
+  }
+
+  @media (min-width: 768px) {
+    .accommodation-card .card-title-center {
+      font-size: 1.15rem !important;
+    }
   }
 
   .accommodation-card .card-amenities-icons-center {
@@ -293,7 +286,7 @@ import { accommodationsData, getAmenityIcon, MAPBOX_CONFIG } from '../data/accom
     padding: 0 !important;
   }
 
-  /* BOTÓN NARANJA SUPER ESPECÍFICO - PRIORIDAD MÁXIMA */
+  /* BOTÓN NARANJA */
   .accommodation-card .card-footer-center .reserve-btn-orange,
   .accommodation-card button.reserve-btn-orange,
   button.reserve-btn-orange {
@@ -385,16 +378,7 @@ import { accommodationsData, getAmenityIcon, MAPBOX_CONFIG } from '../data/accom
     transition: all 0.1s ease !important;
   }
 
-  .accommodation-card .reserve-btn-orange:focus,
-  button.reserve-btn-orange:focus {
-    outline: none !important;
-    box-shadow: 
-      0 0 0 4px rgba(255, 107, 53, 0.4), 
-      0 15px 40px rgba(255, 107, 53, 0.6),
-      inset 0 2px 0 rgba(255,255,255,0.4) !important;
-  }
-
-  /* ICONOS ESPECÍFICOS PARA CENTRADO PERFECTO */
+  /* ICONOS */
   .accommodation-card .card-amenities-icons-center .amenity-icon {
     position: relative !important;
     display: inline-flex !important;
@@ -413,96 +397,17 @@ import { accommodationsData, getAmenityIcon, MAPBOX_CONFIG } from '../data/accom
   }
 
   .accommodation-card .card-amenities-icons-center .amenity-icon svg {
-    width: 26px !important;
-    height: 26px !important;
+    width: 22px !important;
+    height: 22px !important;
     transition: all 0.3s ease !important;
     filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3)) !important;
   }
 
-  .accommodation-card .card-amenities-icons-center .amenity-icon:hover svg {
-    filter: drop-shadow(0 4px 8px rgba(255, 107, 53, 0.4)) !important;
-  }
-
-  /* Map Container */
-  .map-container {
-    flex: 1;
-    position: relative;
-  }
-
-  #map {
-    width: 100%;
-    height: 100%;
-  }
-
-  /* Map Controls */
-  .map-controls {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    z-index: 100;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .map-control-btn {
-    background: rgba(0, 0, 0, 0.8);
-    color: #fff;
-    border: 1px solid #333;
-    padding: 0.8rem;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 1rem;
-    transition: all 0.3s ease;
-  }
-
-  .map-control-btn:hover {
-    background: #0EA5E9;
-    border-color: #0EA5E9;
-  }
-
-  /* Search Bar */
-  .search-bar {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    z-index: 100;
-    background: rgba(0, 0, 0, 0.9);
-    padding: 1rem;
-    border-radius: 12px;
-    border: 1px solid #333;
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-  }
-
-  .search-input {
-    background: #222;
-    border: 1px solid #444;
-    color: #fff;
-    padding: 0.7rem 1rem;
-    border-radius: 8px;
-    font-size: 0.9rem;
-    width: 200px;
-  }
-
-  .search-input::placeholder {
-    color: #666;
-  }
-
-  .search-btn {
-    background: #0EA5E9;
-    color: #fff;
-    border: none;
-    padding: 0.7rem 1.2rem;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: background 0.3s ease;
-  }
-
-  .search-btn:hover {
-    background: #0284c7;
+  @media (min-width: 768px) {
+    .accommodation-card .card-amenities-icons-center .amenity-icon svg {
+      width: 26px !important;
+      height: 26px !important;
+    }
   }
 
   /* Loading Animation */
@@ -532,7 +437,7 @@ import { accommodationsData, getAmenityIcon, MAPBOX_CONFIG } from '../data/accom
   .mini-map-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,0.65);
+    background: rgba(0,0,0,0.75);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -541,7 +446,7 @@ import { accommodationsData, getAmenityIcon, MAPBOX_CONFIG } from '../data/accom
   .mini-map-overlay[hidden] { display: none !important; }
   .mini-map-dialog {
     position: relative;
-    width: min(92vw, 520px);
+    width: min(92vw, 700px);
     background: #111;
     border: 1px solid #333;
     border-radius: 12px;
@@ -560,91 +465,37 @@ import { accommodationsData, getAmenityIcon, MAPBOX_CONFIG } from '../data/accom
     background: rgba(0,0,0,0.6);
     color: #fff;
     cursor: pointer;
+    z-index: 10;
   }
   .mini-map-iframe {
     width: 100%;
-    height: 320px;
+    height: 450px;
     border: 0;
     display: block;
   }
-  .mini-map-actions { display: flex; justify-content: center; padding: 12px; }
-
-  /* Custom Mapbox Popup */
-:global(.mapboxgl-popup) {
-    filter: drop-shadow(0 10px 25px rgba(0,0,0,0.5));
-  }
-  /* Forzar tema oscuro del popup con máxima especificidad */
-  :global(.mapboxgl-map .mapboxgl-popup .mapboxgl-popup-content),
-  :global(.mapboxgl-popup .mapboxgl-popup-content),
-  :global(.mapboxgl-popup-content) {
-    background: #0b0b0c !important;
-    border: 1px solid #2a2a2a !important;
-    border-radius: 12px !important;
-    color: #ffffff !important;
-    padding: 0 !important;
-    width: 220px !important;
-  }
-  :global(.mapboxgl-popup-content *) {
-    color: #ffffff !important;
-  }
-  :global(.mapboxgl-popup-close-button) {
-    color: #fff !important;
-    background: rgba(0,0,0,0.45) !important;
-    border: 1px solid #2a2a2a !important;
-    border-radius: 50% !important;
-    width: 22px; height: 22px;
-    top: 6px; right: 6px;
-  }
-  :global(.mapboxgl-popup-tip),
-  :global(.mapboxgl-popup-anchor-top .mapboxgl-popup-tip),
-  :global(.mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip),
-  :global(.mapboxgl-popup-anchor-left .mapboxgl-popup-tip),
-  :global(.mapboxgl-popup-anchor-right .mapboxgl-popup-tip) {
-    border-top-color: #0b0b0c !important;
-    border-bottom-color: #0b0b0c !important;
-    border-left-color: #0b0b0c !important;
-    border-right-color: #0b0b0c !important;
-  }
-
-  .popup-content {
-    padding: 0.8rem;
-  }
-
-  .popup-image {
-    width: 100%;
-    height: 60px;
-    object-fit: cover;
-    border-radius: 8px 8px 0 0;
-  }
-
-  .popup-title {
-    font-size: 0.9rem;
-    font-weight: bold;
-    margin: 0.5rem 0;
-    color: #fff;
-    text-align: center;
+  .mini-map-actions { 
+    display: flex; 
+    justify-content: center; 
+    padding: 16px; 
+    background: #0b0b0c;
   }
 
   /* Responsive */
   @media (max-width: 768px) {
     .main-container {
       flex-direction: column;
-    }
-    
-    /* Ocultar mapa en móvil */
-    .map-container {
-      display: none;
+      height: auto;
     }
     
     .sidebar {
       height: auto;
-      order: 2;
       width: 100%;
       border-right: none;
       border-top: 1px solid #333;
+      border-radius: 0;
+      border-left: none;
     }
-    
-    /* Hacer las pestañas de filtro sticky en móvil */
+
     .filter-tabs {
       position: sticky;
       top: 0;
@@ -653,32 +504,55 @@ import { accommodationsData, getAmenityIcon, MAPBOX_CONFIG } from '../data/accom
       border-bottom: 2px solid #0EA5E9;
       box-shadow: 0 2px 8px rgba(0,0,0,0.4);
     }
-    
-    /* Ajustar el contenido para las pestañas sticky */
+
     .accommodation-list {
       padding-top: 0.5rem;
       grid-template-columns: repeat(2, minmax(180px, 1fr));
       gap: 1rem;
     }
 
-    .card-image { height: 150px; }
-    .accommodation-card .card-amenities-icons-center .amenity-icon svg { width: 30px !important; height: 30px !important; }
-    .accommodation-card .card-title-center { font-size: 1.2rem !important; }
-    .accommodation-card .card-footer-center .reserve-btn-orange, .accommodation-card button.reserve-btn-orange, button.reserve-btn-orange { max-width: 220px !important; }
+    .card-image { 
+      height: 150px; 
+    }
+    
+    .accommodation-card .card-amenities-icons-center .amenity-icon svg { 
+      width: 30px !important; 
+      height: 30px !important; 
+    }
+    
+    .accommodation-card .card-title-center { 
+      font-size: 1.2rem !important; 
+    }
+    
+    .accommodation-card .card-footer-center .reserve-btn-orange, 
+    .accommodation-card button.reserve-btn-orange, 
+    button.reserve-btn-orange { 
+      max-width: 220px !important; 
+    }
+
+    .mini-map-dialog {
+      width: 95vw;
+    }
+
+    .mini-map-iframe {
+      height: 350px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .accommodation-list {
+      grid-template-columns: repeat(2, minmax(180px, 1fr)) !important;
+      gap: 1rem !important;
+    }
   }
 </style>
 
 <script is:inline define:vars={{ accommodationsData, MAPBOX_CONFIG }}>
 // @ts-nocheck
 (function() {
-  // Variables globales
-  let map;
-  let markers = [];
   let currentCategory = 'hoteles';
 
-  // Datos pasados desde el servidor (no se loguean por privacidad)
-  
-  // getAmenityIcon function (client-side) - Iconos hermosos y modernos
+  // getAmenityIcon function (client-side)
   function getAmenityIcon(iconType) {
     const iconMap = {
       '👥': `<svg viewBox="0 0 32 32" fill="none" width="32" height="32">
@@ -687,12 +561,9 @@ import { accommodationsData, getAmenityIcon, MAPBOX_CONFIG } from '../data/accom
             <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
             <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
           </linearGradient>
-          <filter id="peopleShadowC">
-            <dropShadow dx="0" dy="2" stdDeviation="2" flood-color="#000" flood-opacity="0.3"/>
-          </filter>
         </defs>
-        <circle cx="10" cy="8" r="3" fill="url(#peopleGradC)" filter="url(#peopleShadowC)"/>
-        <circle cx="22" cy="8" r="3" fill="url(#peopleGradC)" filter="url(#peopleShadowC)"/>
+        <circle cx="10" cy="8" r="3" fill="url(#peopleGradC)"/>
+        <circle cx="22" cy="8" r="3" fill="url(#peopleGradC)"/>
         <path d="M4 26v-4c0-3 3-5 6-5s6 2 6 5v4" stroke="url(#peopleGradC)" stroke-width="2.5" stroke-linecap="round" fill="none"/>
         <path d="M16 26v-4c0-3 3-5 6-5s6 2 6 5v4" stroke="url(#peopleGradC)" stroke-width="2.5" stroke-linecap="round" fill="none"/>
       </svg>`,
@@ -717,10 +588,7 @@ import { accommodationsData, getAmenityIcon, MAPBOX_CONFIG } from '../data/accom
         </defs>
         <rect x="3" y="12" width="26" height="12" rx="4" fill="url(#poolGradC)"/>
         <path d="M6 16h20" stroke="#81D4FA" stroke-width="1" opacity="0.7"/>
-        <path d="M6 18h20" stroke="#81D4FA" stroke-width="1" opacity="0.5"/>
         <circle cx="10" cy="17" r="1.5" fill="#ffffff" opacity="0.8"/>
-        <circle cx="22" cy="19" r="1" fill="#ffffff" opacity="0.6"/>
-        <circle cx="16" cy="15" r="0.8" fill="#ffffff" opacity="0.7"/>
       </svg>`,
       '🅿️': `<svg viewBox="0 0 32 32" fill="none" width="32" height="32">
         <defs>
@@ -744,126 +612,24 @@ import { accommodationsData, getAmenityIcon, MAPBOX_CONFIG } from '../data/accom
         <path d="M8 12h12v10c0 3-3 5-6 5s-6-2-6-5V12z" fill="#8d6e63"/>
         <path d="M8 12h12v8c0 2-2 3-4 3h-4c-2 0-4-1-4-3V12z" fill="url(#coffeeGradC)"/>
         <ellipse cx="14" cy="14" rx="4" ry="1.5" fill="#fdcb6e" opacity="0.9"/>
-        <path d="M20 14h4c2 0 3 1 3 3s-1 3-3 3h-4" stroke="#8d6e63" stroke-width="2" fill="none"/>
       </svg>`
     };
     return iconMap[iconType] || `<svg viewBox="0 0 32 32" fill="currentColor" width="32" height="32"><circle cx="16" cy="16" r="6" fill="#0EA5E9"/></svg>`;
   }
 
-  // Función para esperar a que Mapbox se cargue
-  function waitForMapbox() {
-    return new Promise(function(resolve) {
-      if (typeof mapboxgl !== 'undefined') {
-        resolve();
-      } else {
-        const checkMapbox = setInterval(function() {
-          if (typeof mapboxgl !== 'undefined') {
-            clearInterval(checkMapbox);
-            resolve();
-          }
-        }, 100);
-        
-        // Timeout después de 10 segundos
-        setTimeout(function() {
-          clearInterval(checkMapbox);
-          console.error('Timeout waiting for Mapbox');
-          resolve();
-        }, 10000);
-      }
-    });
-  }
-
-  // Initialize when DOM loads
   document.addEventListener('DOMContentLoaded', function() {
-    const isMobile = window.innerWidth <= 768;
-
-    if (isMobile) {
-      // Modo móvil: no inicializamos Mapbox para ahorrar recursos
-      loadAccommodations('hoteles');
-      setupEventListeners();
-    } else {
-      waitForMapbox().then(function() {
-        if (typeof mapboxgl !== 'undefined') {
-          initMap();
-        } else {
-          const mapContainer = document.getElementById('map');
-          if (mapContainer) {
-            mapContainer.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;color:#666;">Error cargando el mapa.</div>';
-          }
-        }
-      });
-    }
+    loadAccommodations('hoteles');
+    setupEventListeners();
   });
 
-  // Initialize map
-  function initMap() {
-    try {
-      if (!MAPBOX_CONFIG || !MAPBOX_CONFIG.accessToken) {
-        console.error('MAPBOX_CONFIG or accessToken not found');
-        return;
-      }
-      
-      mapboxgl.accessToken = MAPBOX_CONFIG.accessToken;
-      
-      const mapContainer = document.getElementById('map');
-      if (!mapContainer) {
-        console.error('Map container not found');
-        return;
-      }
-      
-      map = new mapboxgl.Map({
-        container: 'map',
-        style: MAPBOX_CONFIG.defaultStyle || 'mapbox://styles/mapbox/dark-v11',
-        center: MAPBOX_CONFIG.defaultCenter || [-80.9553, -2.2108],
-        zoom: MAPBOX_CONFIG.defaultZoom || 12,
-        attributionControl: false
-      });
-
-      map.on('load', function() {
-        // Cargar datos iniciales
-        loadAccommodations('hoteles');
-        setupEventListeners();
-        
-        // Redimensionar mapa después de un momento
-        setTimeout(function() {
-          if (map) {
-            map.resize();
-          }
-        }, 500);
-      });
-
-      map.on('error', function(e) {
-        console.error('Map error:', e);
-      });
-
-      // Redimensionar mapa en cambio de ventana
-      window.addEventListener('resize', function() {
-        if (map) {
-          setTimeout(function() {
-            map.resize();
-          }, 100);
-        }
-      });
-
-    } catch (error) {
-      console.error('Error initializing map:', error);
-    }
-  }
-
-  // Setup event listeners
   function setupEventListeners() {
-    // Filter tabs
     const filterTabs = document.querySelectorAll('.filter-tab');
     for (let i = 0; i < filterTabs.length; i++) {
       filterTabs[i].addEventListener('click', function() {
-        // Remove active class from all tabs
         for (let j = 0; j < filterTabs.length; j++) {
           filterTabs[j].classList.remove('active');
         }
-        
-        // Add active class to clicked tab
         this.classList.add('active');
-        
         const category = this.getAttribute('data-category');
         if (category) {
           currentCategory = category;
@@ -871,80 +637,29 @@ import { accommodationsData, getAmenityIcon, MAPBOX_CONFIG } from '../data/accom
         }
       });
     }
-
-    // Map controls
-    const toggleBtn = document.getElementById('toggle-style');
-    const centerBtn = document.getElementById('center-map');
-    const searchBtn = document.querySelector('.search-btn');
-    
-    if (toggleBtn) {
-      toggleBtn.addEventListener('click', toggleMapStyle);
-    }
-    
-    if (centerBtn) {
-      centerBtn.addEventListener('click', centerMap);
-    }
-    
-    if (searchBtn) {
-      searchBtn.addEventListener('click', function() {
-        const searchInput = document.querySelector('.search-input');
-        const query = searchInput ? searchInput.value.trim() : '';
-        if (query) {
-          console.log('Searching for:', query);
-          // Aquí puedes implementar la funcionalidad de búsqueda
-        }
-      });
-    }
-
-    // Enter key para búsqueda
-    const searchInput = document.querySelector('.search-input');
-    if (searchInput) {
-      searchInput.addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') {
-          const query = e.target.value.trim();
-          if (query) {
-            console.log('Searching for:', query);
-            // Implementar búsqueda
-          }
-        }
-      });
-    }
   }
 
-  // Load accommodations
   function loadAccommodations(category) {
-    console.log('Loading accommodations for category:', category);
-    
     if (!accommodationsData || !accommodationsData[category]) {
-      console.error('No data found for category:', category);
       const listContainer = document.getElementById('accommodation-list');
       if (listContainer) {
         listContainer.innerHTML = '<div class="loading">No hay datos disponibles</div>';
       }
       return;
     }
-    
     const accommodations = accommodationsData[category];
-    
     updateAccommodationList(accommodations);
-    updateMapMarkers(accommodations);
   }
 
-  // Update accommodation list in sidebar
   function updateAccommodationList(accommodations) {
     const listContainer = document.getElementById('accommodation-list');
-    
-    if (!listContainer) {
-      console.error('Accommodation list container not found');
-      return;
-    }
+    if (!listContainer) return;
     
     if (accommodations.length === 0) {
       listContainer.innerHTML = '<div class="loading">No hay alojamientos disponibles</div>';
       return;
     }
 
-    // Mapeo de iconos a descripciones
     const iconDescriptions = {
       '👥': 'Capacidad de huéspedes',
       '📶': 'WiFi gratuito',
@@ -952,80 +667,37 @@ import { accommodationsData, getAmenityIcon, MAPBOX_CONFIG } from '../data/accom
       '🅿️': 'Parqueadero',
       '🌅': 'Vista al mar',
       '🍳': 'Cocina equipada',
-      '🏄‍♂️': 'Deportes acuáticos',
-      '🧺': 'Lavandería',
-      '🛁': 'Baño privado',
-      '🏋️‍♂️': 'Gimnasio',
       '☕': 'Desayuno incluido'
     };
 
-    const isMobile = window.innerWidth <= 768;
     const accommodationCards = accommodations.map(function(accommodation) {
       const amenityIcons = accommodation.amenities.map(function(amenity) {
         const description = iconDescriptions[amenity.icon] || 'Amenidad';
-        // Iconos SVG directos
-        let iconSvg = '';
-        switch(amenity.icon) {
-          case '👥':
-            iconSvg = '<svg viewBox="0 0 32 32" fill="none" width="32" height="32"><circle cx="10" cy="8" r="3" fill="#667eea"/><circle cx="22" cy="8" r="3" fill="#667eea"/><path d="M4 26v-4c0-3 3-5 6-5s6 2 6 5v4" stroke="#667eea" stroke-width="2.5" stroke-linecap="round" fill="none"/><path d="M16 26v-4c0-3 3-5 6-5s6 2 6 5v4" stroke="#667eea" stroke-width="2.5" stroke-linecap="round" fill="none"/></svg>';
-            break;
-          case '📶':
-            iconSvg = '<svg viewBox="0 0 32 32" fill="none" width="32" height="32"><path d="M4 14c6-6 18-6 24 0" stroke="#4facfe" stroke-width="2.5" stroke-linecap="round" fill="none"/><path d="M8 18c4-4 12-4 16 0" stroke="#4facfe" stroke-width="2.5" stroke-linecap="round" fill="none"/><path d="M12 22c2-2 6-2 8 0" stroke="#4facfe" stroke-width="2.5" stroke-linecap="round" fill="none"/><circle cx="16" cy="26" r="2" fill="#4facfe"/></svg>';
-            break;
-          case '🏊‍♂️':
-            iconSvg = '<svg viewBox="0 0 32 32" fill="none" width="32" height="32"><rect x="3" y="12" width="26" height="12" rx="4" fill="#74b9ff"/><path d="M6 16h20" stroke="#81D4FA" stroke-width="1" opacity="0.7"/><circle cx="10" cy="17" r="1.5" fill="#ffffff" opacity="0.8"/><circle cx="22" cy="19" r="1" fill="#ffffff" opacity="0.6"/></svg>';
-            break;
-          case '🅿️':
-            iconSvg = '<svg viewBox="0 0 32 32" fill="none" width="32" height="32"><rect x="4" y="10" width="24" height="14" rx="3" fill="#ff6b35"/><circle cx="10" cy="22" r="3" fill="#2d3436"/><circle cx="22" cy="22" r="3" fill="#2d3436"/><text x="16" y="18" text-anchor="middle" fill="#fff" font-size="12" font-weight="bold">P</text></svg>';
-            break;
-          case '🌅':
-            iconSvg = '<svg viewBox="0 0 32 32" fill="none" width="32" height="32"><circle cx="16" cy="10" r="4" fill="#fed65f"/><path d="M16 2v3M16 17v3M6.34 6.34l2.12 2.12M23.66 6.34l-2.12 2.12" stroke="#fed65f" stroke-width="2" stroke-linecap="round"/><rect x="2" y="20" width="28" height="8" fill="#74b9ff"/></svg>';
-            break;
-          case '🍳':
-            iconSvg = '<svg viewBox="0 0 32 32" fill="none" width="32" height="32"><rect x="4" y="8" width="24" height="16" rx="3" fill="#636e72"/><circle cx="12" cy="16" r="3" fill="#e84393"/><circle cx="20" cy="16" r="3" fill="#e84393"/></svg>';
-            break;
-          case '🏄‍♂️':
-            iconSvg = '<svg viewBox="0 0 32 32" fill="none" width="32" height="32"><path d="M2 24c4-2 8 2 12 0s8-2 12 0v4H2z" fill="#74b9ff"/><rect x="12" y="8" width="8" height="16" rx="2" fill="#d63031"/><circle cx="16" cy="6" r="2.5" fill="#fdcb6e"/></svg>';
-            break;
-          case '🧺':
-            iconSvg = '<svg viewBox="0 0 32 32" fill="none" width="32" height="32"><rect x="6" y="8" width="20" height="18" rx="3" fill="#74b9ff"/><circle cx="16" cy="17" r="6" fill="none" stroke="#fff" stroke-width="2.5"/><circle cx="16" cy="17" r="3" fill="#ffffff" opacity="0.7"/></svg>';
-            break;
-          case '🛁':
-            iconSvg = '<svg viewBox="0 0 32 32" fill="none" width="32" height="32"><ellipse cx="16" cy="18" rx="10" ry="4" fill="#74b9ff" opacity="0.7"/><circle cx="12" cy="17" r="0.8" fill="#ffffff" opacity="0.8"/><circle cx="20" cy="19" r="0.6" fill="#ffffff" opacity="0.6"/></svg>';
-            break;
-          case '🏋️‍♂️':
-            iconSvg = '<svg viewBox="0 0 32 32" fill="none" width="32" height="32"><rect x="4" y="15" width="24" height="2" rx="1" fill="#636e72"/><circle cx="6" cy="16" r="4" fill="#e17055"/><circle cx="26" cy="16" r="4" fill="#e17055"/></svg>';
-            break;
-          case '☕':
-            iconSvg = '<svg viewBox="0 0 32 32" fill="none" width="32" height="32"><path d="M8 12h12v10c0 3-3 5-6 5s-6-2-6-5V12z" fill="#8d6e63"/><path d="M8 12h12v8c0 2-2 3-4 3h-4c-2 0-4-1-4-3V12z" fill="#6c5ce7"/><ellipse cx="14" cy="14" rx="4" ry="1.5" fill="#fdcb6e" opacity="0.9"/></svg>';
-            break;
-          default:
-            iconSvg = '<svg viewBox="0 0 32 32" fill="none" width="32" height="32"><circle cx="16" cy="16" r="6" fill="#0EA5E9"/></svg>';
-        }
         return `<div class="amenity-icon" title="${description}">
-          ${iconSvg}
+          ${getAmenityIcon(amenity.icon)}
         </div>`;
       }).join('');
 
       return `
-        <div class="accommodation-card" onclick="selectAccommodation(${accommodation.id}, true)">
-          <img src="${accommodation.image}" alt="${accommodation.name}" class="card-image" loading="lazy" ${isMobile ? `onclick="event.stopPropagation(); openMiniMap(${accommodation.coordinates[0]}, ${accommodation.coordinates[1]}, '${accommodation.name.replace(/'/g, "\'")}')"` : ''}>
+        <div class="accommodation-card">
+          <img 
+            src="${accommodation.image}" 
+            alt="${accommodation.name}" 
+            class="card-image" 
+            loading="lazy"
+            onclick="openMiniMap(${accommodation.coordinates[0]}, ${accommodation.coordinates[1]}, '${accommodation.name.replace(/'/g, "\\'")}')"
+          >
           <div class="card-content card-content-center">
-            <!-- Nombre del hotel centrado -->
             <div class="card-header-center">
               <h3 class="card-title-center">${accommodation.name}</h3>
             </div>
-            
-            <!-- Iconos centrados en una fila horizontal -->
             <div class="card-amenities-icons-center">
               ${amenityIcons}
             </div>
-            
-            <!-- Botón naranja centrado -->
             <div class="card-footer-center">
               <button 
                 class="reserve-btn-orange"
-                onclick="event.stopPropagation(); window.open('https://wa.me/593123456789?text=Hola, estoy interesado en reservar ${accommodation.name}', '_blank')"
+                onclick="window.open('https://wa.me/593996779325?text=Hola, estoy interesado en reservar ${accommodation.name}', '_blank')"
               >RESERVAR</button>
             </div>
           </div>
@@ -1036,191 +708,8 @@ import { accommodationsData, getAmenityIcon, MAPBOX_CONFIG } from '../data/accom
     listContainer.innerHTML = accommodationCards;
   }
 
-  // Update map markers
-  function updateMapMarkers(accommodations) {
-    if (!map) {
-      console.error('Map not initialized');
-      return;
-    }
-
-    // Remover marcadores existentes
-    for (let i = 0; i < markers.length; i++) {
-      markers[i].remove();
-    }
-    markers = [];
-
-    for (let i = 0; i < accommodations.length; i++) {
-      const accommodation = accommodations[i];
-      const markerColor = currentCategory === 'hoteles' ? '#FF6B35' : 
-                        currentCategory === 'departamentos' ? '#0EA5E9' : '#10B981';
-
-      try {
-        const popupAmenities = accommodation.amenities.slice(0, 2).map(function(amenity) {
-          return `<span>${getAmenityIcon(amenity.icon)}</span>`;
-        }).join('');
-
-        const marker = new mapboxgl.Marker({ color: markerColor })
-          .setLngLat(accommodation.coordinates)
-          .setPopup(
-            new mapboxgl.Popup({ offset: 25 })
-              .setHTML(`
-                <div class="popup-content">
-                  <img src="${accommodation.image}" alt="${accommodation.name}" class="popup-image">
-                  <h3 class="popup-title">${accommodation.name}</h3>
-                </div>
-              `)
-          )
-          .addTo(map);
-
-        markers.push(marker);
-      } catch (error) {
-        console.error('Error creating marker for accommodation:', accommodation.name, error);
-      }
-    }
-
-    // Ajustar vista del mapa para mostrar todos los marcadores
-    if (accommodations.length > 0) {
-      try {
-        const bounds = new mapboxgl.LngLatBounds();
-        for (let i = 0; i < accommodations.length; i++) {
-          bounds.extend(accommodations[i].coordinates);
-        }
-        map.fitBounds(bounds, { padding: 50 });
-      } catch (error) {
-        console.error('Error fitting bounds:', error);
-      }
-    }
-  }
-
-  // Select accommodation - mejorado para móbil
-  function selectAccommodation(id, autoFocus) {
-    autoFocus = autoFocus || false;
-    
-    const allAccommodations = []
-      .concat(accommodationsData.hoteles || [])
-      .concat(accommodationsData.departamentos || [])
-      .concat(accommodationsData.hostales || []);
-    
-    let accommodation = null;
-    for (let i = 0; i < allAccommodations.length; i++) {
-      if (allAccommodations[i].id === id) {
-        accommodation = allAccommodations[i];
-        break;
-      }
-    }
-    
-    if (accommodation && map) {
-      const isMobile = window.innerWidth <= 768;
-      
-      if (autoFocus) {
-        if (isMobile) {
-          // En móvil: scroll suave al mapa manteniendo las pestañas visibles
-          const mapContainer = document.querySelector('.map-container');
-          if (mapContainer) {
-            mapContainer.scrollIntoView({
-              behavior: 'smooth',
-              block: 'start'
-            });
-          }
-        } else {
-          // En desktop: scroll normal
-          const mapSection = document.querySelector('#mapa');
-          if (mapSection) {
-            const header = document.querySelector('.header');
-            const headerHeight = header ? header.offsetHeight : 80;
-            const elementPosition = mapSection.offsetTop;
-            const offsetPosition = elementPosition - headerHeight;
-            
-            window.scrollTo({
-              top: offsetPosition,
-              behavior: 'smooth'
-            });
-          }
-        }
-        
-        // Fly to location after scroll
-        setTimeout(function() {
-          if (map && typeof map.flyTo === 'function') {
-            map.flyTo({
-              center: accommodation.coordinates,
-              zoom: 16,
-              duration: 2500,
-              essential: true
-            });
-          }
-        }, isMobile ? 600 : 800);
-      } else {
-        if (map && typeof map.flyTo === 'function') {
-          map.flyTo({
-            center: accommodation.coordinates,
-            zoom: 16,
-            duration: 2000
-          });
-        }
-      }
-      
-      // Show popup
-      setTimeout(function() {
-        for (let i = 0; i < markers.length; i++) {
-          const marker = markers[i];
-          if (marker && typeof marker.getLngLat === 'function') {
-            const lngLat = marker.getLngLat();
-            if (Math.abs(lngLat.lng - accommodation.coordinates[0]) < 0.001 && 
-                Math.abs(lngLat.lat - accommodation.coordinates[1]) < 0.001) {
-              const popup = marker.getPopup();
-              if (popup && typeof popup.addTo === 'function') {
-                popup.addTo(map);
-              }
-              break;
-            }
-          }
-        }
-      }, autoFocus ? (isMobile ? 2500 : 3000) : 2000);
-    }
-  }
-
-  // Map controls
-  function toggleMapStyle() {
-    if (!map) return;
-    
-    try {
-      const currentStyle = map.getStyle().name;
-      const newStyle = currentStyle === 'Mapbox Dark' ? 
-        'mapbox://styles/mapbox/streets-v12' : 
-        'mapbox://styles/mapbox/dark-v11';
-      map.setStyle(newStyle);
-    } catch (error) {
-      console.error('Error toggling map style:', error);
-    }
-  }
-
-  function centerMap() {
-    if (!map || !accommodationsData[currentCategory]) return;
-    
-    const accommodations = accommodationsData[currentCategory];
-    if (accommodations.length > 0) {
-      try {
-        const bounds = new mapboxgl.LngLatBounds();
-        for (let i = 0; i < accommodations.length; i++) {
-          bounds.extend(accommodations[i].coordinates);
-        }
-        map.fitBounds(bounds, { padding: 50 });
-      } catch (error) {
-        console.error('Error centering map:', error);
-      }
-    }
-  }
-
-  // Get directions function
-  function getDirections(lng, lat) {
-    const googleMapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}&travelmode=driving`;
-    window.open(googleMapsUrl, '_blank');
-  }
-
-  // Mini map overlay helpers
   function openMiniMap(lng, lat, name) {
     try {
-      if (window.innerWidth > 768) return; // Solo en móvil
       const overlay = document.getElementById('mini-map-overlay');
       const iframe = document.getElementById('mini-map-iframe');
       const directions = document.getElementById('mini-map-directions');
@@ -1231,8 +720,11 @@ import { accommodationsData, getAmenityIcon, MAPBOX_CONFIG } from '../data/accom
       directions.href = `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}&travelmode=driving`;
       overlay.hidden = false;
       document.body.classList.add('menu-open');
-    } catch {}
+    } catch(e) {
+      console.error('Error al abrir mapa:', e);
+    }
   }
+
   function closeMiniMap() {
     const overlay = document.getElementById('mini-map-overlay');
     const iframe = document.getElementById('mini-map-iframe');
@@ -1250,13 +742,11 @@ import { accommodationsData, getAmenityIcon, MAPBOX_CONFIG } from '../data/accom
       closeMiniMap();
     }
   });
-  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeMiniMap(); });
 
-  // Make functions global so they can be called from HTML
-  window.selectAccommodation = selectAccommodation;
-  window.toggleMapStyle = toggleMapStyle;
-  window.centerMap = centerMap;
-  window.getDirections = getDirections;
+  document.addEventListener('keydown', function(e){ 
+    if (e.key === 'Escape') closeMiniMap(); 
+  });
+
   window.openMiniMap = openMiniMap;
   window.closeMiniMap = closeMiniMap;
 
