@@ -46,6 +46,23 @@ export const accommodationsData = {
         { icon: "🏋️‍♂️" }
       ],
       coordinates: [-80.9548, -2.2095]
+    },
+    {
+      id: 4,
+      name: "Hotel Villa del Mar",
+      location: "Salinas",
+      rating: 9.5,
+      price: 95,
+      image: "/images/hoteles/Villa del Mar/IMG_2538.jpg",
+      amenities: [
+        { icon: "👥" },
+        { icon: "📶" },
+        { icon: "🌅" },
+        { icon: "🅿️" }
+      ],
+      coordinates: [-80.9560, -2.2105],
+      hasDetailPage: true,
+      detailPageUrl: "/villa-del-mar"
     }
   ],
   departamentos: [
