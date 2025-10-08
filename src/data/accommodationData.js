@@ -63,6 +63,24 @@ export const accommodationsData = {
       coordinates: [-80.9560, -2.2105],
       hasDetailPage: true,
       detailPageUrl: "/villa-del-mar"
+    },
+    {
+      id: 5,
+      name: "Hotel Chaqana",
+      location: "Salinas",
+      rating: 9.7,
+      price: 110,
+      image: "/images/hoteles/Chaqana/IMG_2559.jpg",
+      amenities: [
+        { icon: "👥" },
+        { icon: "📶" },
+        { icon: "🌅" },
+        { icon: "🅿️" },
+        { icon: "🏊‍♂️" }
+      ],
+      coordinates: [-80.9555, -2.2100],
+      hasDetailPage: true,
+      detailPageUrl: "/chaqana"
     }
   ],
   departamentos: [
