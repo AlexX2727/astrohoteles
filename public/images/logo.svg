@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 200" width="600" height="200">
+  <defs>
+    <style>
+      .hospedaje-text {
+        font-family: 'Georgia', 'Times New Roman', serif;
+        font-size: 52px;
+        font-weight: 400;
+        fill: #ffffff;
+        letter-spacing: 2px;
+      }
+      .salinas-text {
+        font-family: 'Georgia', 'Times New Roman', serif;
+        font-size: 52px;
+        font-weight: 400;
+        fill: #5A9FD4;
+        letter-spacing: 2px;
+      }
+      .subtitle-text {
+        font-family: 'Arial', sans-serif;
+        font-size: 22px;
+        font-weight: 400;
+        fill: #ffffff;
+        letter-spacing: 8px;
+        text-transform: uppercase;
+      }
+      .dot {
+        fill: #5A9FD4;
+      }
+    </style>
+  </defs>
+
+  <!-- Fondo transparente (se adapta al fondo del header) -->
+
+  <!-- Texto principal HOSPEDAJE (blanco) -->
+  <text x="25" y="90" class="hospedaje-text">HOSPEDAJE</text>
+
+  <!-- Punto decorativo sobre la j de HOSPEDAJE -->
+  <circle cx="184" cy="45" r="5" class="dot"/>
+
+  <!-- Texto principal SALINAS (azul) - más separado -->
+  <text x="370" y="90" class="salinas-text">SALINAS</text>
+
+  <!-- Punto decorativo sobre la i de SALINAS -->
+  <circle cx="492" cy="45" r="5" class="dot"/>
+
+  <!-- Subtítulo ALQUILERES TURÍSTICOS -->
+  <text x="28" y="150" class="subtitle-text">ALQUILERES TURÍSTICOS</text>
+</svg>

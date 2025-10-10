@@ -23,13 +23,12 @@ const { title } = Astro.props;
   <!-- Header -->
   <header class="header">
     <nav class="nav">
-      <div class="logo">
-        <span class="main-text">HOSPEDAJE</span>
-        <span class="sub-text">SALINAS</span>
-      </div>
+      <a href="/" class="logo-link">
+        <img src="/images/logo.svg" alt="Hospedaje Salinas - Alquileres Turísticos" class="logo-img" />
+      </a>
       <ul class="nav-links" id="nav-links">
-        <li><a href="#inicio">Inicio</a></li>
-        <li><a href="#mapa">Mapa</a></li>
+        <li><a href="/#inicio">Inicio</a></li>
+        <li><a href="/#mapa">Hospedajes</a></li>
         <li><a href="#contacto">Contacto</a></li>
       </ul>
       <div class="hamburger" id="hamburger">
@@ -186,33 +185,20 @@ const { title } = Astro.props;
     margin: 0 auto;
   }
 
-  .logo {
-    font-size: 1.8rem;
-    font-weight: bold;
-    color: #0EA5E9;
-    display: flex;
-    flex-direction: column;
-    line-height: 1;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
+  .logo-link {
+    display: block;
+    text-decoration: none;
+    transition: opacity 0.3s ease;
   }
 
-  .logo .main-text {
-    font-size: 1.8rem;
-    font-weight: 800;
-    background: linear-gradient(135deg, #0EA5E9, #06B6D4);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  .logo-link:hover {
+    opacity: 0.8;
   }
 
-  .logo .sub-text {
-    font-size: 1.1rem;
-    color: #fff;
-    font-weight: 600;
-    margin-top: -3px;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.4);
+  .logo-img {
+    height: 60px;
+    width: auto;
+    display: block;
   }
 
   .nav-links {
@@ -309,15 +295,11 @@ const { title } = Astro.props;
       font-size: 1.1rem;
       font-weight: 500;
     }
-    
-    .logo .main-text {
-      font-size: 1.3rem;
+
+    .logo-img {
+      height: 45px;
     }
-    
-    .logo .sub-text {
-      font-size: 0.9rem;
-    }
-    
+
     .nav {
       padding: 0 1rem;
     }
@@ -327,20 +309,16 @@ const { title } = Astro.props;
     .header {
       padding: 0.8rem 1rem;
     }
-    
-    .logo .main-text {
-      font-size: 1.1rem;
+
+    .logo-img {
+      height: 38px;
     }
-    
-    .logo .sub-text {
-      font-size: 0.8rem;
-    }
-    
+
     .nav-links {
       width: 80%;
       padding: 1.5rem;
     }
-    
+
     .hamburger span {
       width: 20px;
       height: 2px;
@@ -350,26 +328,41 @@ const { title } = Astro.props;
 
 <script>
   // Smooth scrolling con compensación + apertura de modal de contacto
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  document.querySelectorAll('a[href^="#"], a[href^="/#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
       const href = this.getAttribute('href');
 
-      // Abrir modal de contacto si corresponde
-      if (href === '#contacto') {
+      // Extraer el hash (con o sin /)
+      const hash = href.includes('#') ? href.substring(href.indexOf('#')) : null;
+      if (!hash) return;
+
+      // Abrir modal de contacto si corresponde (funciona en cualquier página)
+      if (hash === '#contacto') {
         e.preventDefault();
         openContactModal();
         return;
       }
 
+      // Si el enlace empieza con "/" (ej: /#inicio, /#mapa)
+      // Solo hacer scroll si ya estamos en la página principal
+      if (href.startsWith('/')) {
+        const isHomePage = window.location.pathname === '/' || window.location.pathname === '/index.html';
+        if (!isHomePage) {
+          // Estamos en otra página, dejar que navegue normalmente
+          return;
+        }
+      }
+
+      // Hacer scroll suave en la página actual
       e.preventDefault();
-      const target = document.querySelector(href);
+      const target = document.querySelector(hash);
       if (target) {
         const header = document.querySelector('.header');
         const headerHeight = header ? header.offsetHeight : 70;
         const elementY = target.getBoundingClientRect().top + window.pageYOffset;
-        const offsetY = Math.max(elementY - headerHeight, 0);
+        const offsetY = Math.max(elementY - headerHeight - 20, 0);
         window.scrollTo({ top: offsetY, behavior: 'smooth' });
-        
+
         // Cerrar menú móvil después del click
         const navLinks = document.getElementById('nav-links');
         const hamburger = document.getElementById('hamburger');
@@ -382,6 +375,23 @@ const { title } = Astro.props;
         document.body.classList.remove('menu-open');
       }
     });
+  });
+
+  // Scroll al cargar página con hash
+  window.addEventListener('load', () => {
+    const hash = window.location.hash;
+    if (hash && hash !== '#contacto') {
+      setTimeout(() => {
+        const target = document.querySelector(hash);
+        if (target) {
+          const header = document.querySelector('.header');
+          const headerHeight = header ? header.offsetHeight : 70;
+          const elementY = target.getBoundingClientRect().top + window.pageYOffset;
+          const offsetY = Math.max(elementY - headerHeight - 20, 0);
+          window.scrollTo({ top: offsetY, behavior: 'smooth' });
+        }
+      }, 100);
+    }
   });
 
   // Header background on scroll

@@ -9,15 +9,16 @@ import { accommodationsData, getAmenityIcon, MAPBOX_CONFIG } from '../data/accom
     <div class="sidebar">
       <!-- Filter Tabs -->
       <div class="filter-tabs">
-        <button class="filter-tab active" data-category="hoteles">
+        <button class="filter-tab active" data-category="hostales">
           <svg class="filter-tab-icon" viewBox="0 0 24 24" fill="none">
-            <path d="M7 13c1.66 0 3-1.34 3-3S8.66 7 7 7s-3 1.34-3 3 1.34 3 3 3zm12-6h-8v7H9.5v-7h-8L2 19h20L20.5 7z" fill="currentColor"/>
-            <rect x="6" y="9" width="2" height="2" fill="#000" opacity="0.3"/>
-            <rect x="15" y="9" width="2" height="2" fill="#000" opacity="0.3"/>
-            <rect x="6" y="12" width="2" height="2" fill="#000" opacity="0.3"/>
-            <rect x="15" y="12" width="2" height="2" fill="#000" opacity="0.3"/>
+            <path d="M12 3L2 12h3v8h6v-6h2v6h6v-8h3L12 3z" fill="currentColor"/>
+            <rect x="9" y="14" width="2" height="2" rx="0.5" fill="#000" opacity="0.3"/>
+            <rect x="13" y="14" width="2" height="2" rx="0.5" fill="#000" opacity="0.3"/>
+            <rect x="9" y="17" width="6" height="1" fill="#000" opacity="0.2"/>
+            <circle cx="7" cy="10" r="0.5" fill="#000" opacity="0.4"/>
+            <circle cx="17" cy="10" r="0.5" fill="#000" opacity="0.4"/>
           </svg>
-          Hoteles
+          Hostales
         </button>
         <button class="filter-tab" data-category="departamentos">
           <svg class="filter-tab-icon" viewBox="0 0 24 24" fill="none">
@@ -31,16 +32,15 @@ import { accommodationsData, getAmenityIcon, MAPBOX_CONFIG } from '../data/accom
           </svg>
           Apartamentos
         </button>
-        <button class="filter-tab" data-category="hostales">
+        <button class="filter-tab" data-category="hoteles">
           <svg class="filter-tab-icon" viewBox="0 0 24 24" fill="none">
-            <path d="M12 3L2 12h3v8h6v-6h2v6h6v-8h3L12 3z" fill="currentColor"/>
-            <rect x="9" y="14" width="2" height="2" rx="0.5" fill="#000" opacity="0.3"/>
-            <rect x="13" y="14" width="2" height="2" rx="0.5" fill="#000" opacity="0.3"/>
-            <rect x="9" y="17" width="6" height="1" fill="#000" opacity="0.2"/>
-            <circle cx="7" cy="10" r="0.5" fill="#000" opacity="0.4"/>
-            <circle cx="17" cy="10" r="0.5" fill="#000" opacity="0.4"/>
+            <path d="M7 13c1.66 0 3-1.34 3-3S8.66 7 7 7s-3 1.34-3 3 1.34 3 3 3zm12-6h-8v7H9.5v-7h-8L2 19h20L20.5 7z" fill="currentColor"/>
+            <rect x="6" y="9" width="2" height="2" fill="#000" opacity="0.3"/>
+            <rect x="15" y="9" width="2" height="2" fill="#000" opacity="0.3"/>
+            <rect x="6" y="12" width="2" height="2" fill="#000" opacity="0.3"/>
+            <rect x="15" y="12" width="2" height="2" fill="#000" opacity="0.3"/>
           </svg>
-          Hostales
+          Hoteles
         </button>
       </div>
 
@@ -565,7 +565,7 @@ import { accommodationsData, getAmenityIcon, MAPBOX_CONFIG } from '../data/accom
 <script is:inline define:vars={{ accommodationsData, MAPBOX_CONFIG }}>
 // @ts-nocheck
 (function() {
-  let currentCategory = 'hoteles';
+  let currentCategory = 'hostales';
 
   // getAmenityIcon function (client-side)
   function getAmenityIcon(iconType) {
@@ -798,7 +798,7 @@ import { accommodationsData, getAmenityIcon, MAPBOX_CONFIG } from '../data/accom
   }
 
   document.addEventListener('DOMContentLoaded', function() {
-    loadAccommodations('hoteles');
+    loadAccommodations('hostales');
     setupEventListeners();
   });
 

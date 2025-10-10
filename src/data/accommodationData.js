@@ -4,51 +4,6 @@ export const accommodationsData = {
   hoteles: [
     {
       id: 1,
-      name: "Hotel Salinas",
-      location: "Malecón de Salinas",
-      rating: 9.2,
-      price: 85,
-      image: "https://images.unsplash.com/photo-1571896349842-33c89424de2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=60",
-      amenities: [
-        { icon: "👥" },
-        { icon: "📶" },
-        { icon: "🏊‍♂️" },
-        { icon: "🅿️" }
-      ],
-      coordinates: [-80.9553, -2.2108]
-    },
-    {
-      id: 2,
-      name: "Hotel Miramar",
-      location: "Playa Chipipe",
-      rating: 8.8,
-      price: 65,
-      image: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=60",
-      amenities: [
-        { icon: "👥" },
-        { icon: "📶" },
-        { icon: "🌅" },
-        { icon: "🍳" }
-      ],
-      coordinates: [-80.9563, -2.2118]
-    },
-    {
-      id: 3,
-      name: "Hotel Costa Azul",
-      location: "Centro de Salinas",
-      rating: 8.5,
-      price: 120,
-      image: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=60",
-      amenities: [
-        { icon: "👥" },
-        { icon: "📶" },
-        { icon: "🛁" },
-        { icon: "🏋️‍♂️" }
-      ],
-      coordinates: [-80.9548, -2.2095]
-    },
-    {
-      id: 4,
       name: "Hotel Villa del Mar",
       location: "Salinas",
       rating: 9.5,
@@ -65,7 +20,7 @@ export const accommodationsData = {
       detailPageUrl: "/villa-del-mar"
     },
     {
-      id: 5,
+      id: 2,
       name: "Hotel Chaqana",
       location: "Salinas",
       rating: 9.7,
