@@ -58,7 +58,8 @@ export const accommodationsData = {
         { icon: "🛁" }
       ],
       coordinates: [-80.9560, -2.2105],
-      hasDetailPage: false
+      hasDetailPage: true,
+      detailPageUrl: "/departamento-1d"
     },
     {
       id: 5,
