@@ -41,38 +41,92 @@ export const accommodationsData = {
   departamentos: [
     {
       id: 4,
-      name: "Depto Vista Mar",
-      location: "Frente al mar",
-      rating: 8.5,
-      price: 45,
-      image: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=60",
+      name: "Departamento 1D",
+      location: "Hotel Villa del Mar",
+      rating: 9.5,
+      price: 85,
+      image: "/images/departamentos/Villa del mar/1D/Puerta.jpg",
+      images: [
+        "/images/departamentos/Villa del mar/1D/Puerta.jpg",
+        "/images/departamentos/Villa del mar/1D/IMG_2364.jpg",
+        "/images/departamentos/Villa del mar/1D/IMG_2365.jpg"
+      ],
       amenities: [
         { icon: "👥" },
         { icon: "📶" },
         { icon: "🍳" },
-        { icon: "🌅" }
+        { icon: "🛁" }
       ],
-      coordinates: [-80.9548, -2.2103]
+      coordinates: [-80.9560, -2.2105],
+      hasDetailPage: false
     },
     {
       id: 5,
-      name: "Apartamento Familiar",
-      location: "Zona residencial",
-      rating: 8.2,
-      price: 60,
-      image: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=60",
+      name: "Departamento 1I",
+      location: "Hotel Villa del Mar",
+      rating: 9.5,
+      price: 85,
+      image: "/images/departamentos/Villa del mar/1I/Puerta.jpg",
+      images: [
+        "/images/departamentos/Villa del mar/1I/Puerta.jpg",
+        "/images/departamentos/Villa del mar/1I/IMG_2284.jpg",
+        "/images/departamentos/Villa del mar/1I/IMG_2287.jpg"
+      ],
       amenities: [
         { icon: "👥" },
         { icon: "📶" },
         { icon: "🍳" },
-        { icon: "🅿️" }
+        { icon: "🛁" }
       ],
-      coordinates: [-80.9540, -2.2110]
+      coordinates: [-80.9560, -2.2105],
+      hasDetailPage: false
+    },
+    {
+      id: 6,
+      name: "Departamento 2D",
+      location: "Hotel Villa del Mar",
+      rating: 9.5,
+      price: 85,
+      image: "/images/departamentos/Villa del mar/2D/Puerta.jpg",
+      images: [
+        "/images/departamentos/Villa del mar/2D/Puerta.jpg",
+        "/images/departamentos/Villa del mar/2D/IMG_2423.jpg",
+        "/images/departamentos/Villa del mar/2D/IMG_2426.jpg"
+      ],
+      amenities: [
+        { icon: "👥" },
+        { icon: "📶" },
+        { icon: "🍳" },
+        { icon: "🛁" }
+      ],
+      coordinates: [-80.9560, -2.2105],
+      hasDetailPage: false
+    },
+    {
+      id: 7,
+      name: "Departamento 2I",
+      location: "Hotel Villa del Mar",
+      rating: 9.5,
+      price: 85,
+      image: "/images/departamentos/Villa del mar/2I/Puerta.jpg",
+      images: [
+        "/images/departamentos/Villa del mar/2I/Puerta.jpg",
+        "/images/departamentos/Villa del mar/2I/IMG_2479.jpg",
+        "/images/departamentos/Villa del mar/2I/IMG_2480.jpg"
+      ],
+      amenities: [
+        { icon: "👥" },
+        { icon: "📶" },
+        { icon: "🍳" },
+        { icon: "🛁" }
+      ],
+      coordinates: [-80.9560, -2.2105],
+      hasDetailPage: false
     }
   ],
   hostales: [
     {
-      id: 6,
+      id: 8,
       name: "Hostal Surfero",
       location: "Cerca de La Chocolatera",
       rating: 7.8,
@@ -87,7 +141,7 @@ export const accommodationsData = {
       coordinates: [-80.9058, -2.2267]
     },
     {
-      id: 7,
+      id: 9,
       name: "Hostal Backpackers",
       location: "Centro de Salinas",
       rating: 8.0,
@@ -320,22 +374,34 @@ export function getAmenityIcon(iconType) {
     </svg>`,
     '🛁': `<svg viewBox="0 0 32 32" fill="none" width="32" height="32">
       <defs>
-        <linearGradient id="bathtubGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <linearGradient id="toiletGrad" x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
-          <stop offset="100%" style="stop-color:#ddd;stop-opacity:1" />
+          <stop offset="50%" style="stop-color:#e8e8e8;stop-opacity:1" />
+          <stop offset="100%" style="stop-color:#d0d0d0;stop-opacity:1" />
         </linearGradient>
-        <linearGradient id="waterGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" style="stop-color:#74b9ff;stop-opacity:0.7" />
-          <stop offset="100%" style="stop-color:#0984e3;stop-opacity:0.7" />
+        <linearGradient id="waterBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:#5dade2;stop-opacity:1" />
+          <stop offset="100%" style="stop-color:#3498db;stop-opacity:1" />
         </linearGradient>
+        <filter id="toiletShadow">
+          <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#000" flood-opacity="0.3"/>
+        </filter>
       </defs>
-      <ellipse cx="16" cy="20" rx="12" ry="6" fill="url(#bathtubGrad)"/>
-      <ellipse cx="16" cy="18" rx="10" ry="4" fill="url(#waterGrad)"/>
-      <circle cx="12" cy="17" r="0.8" fill="#ffffff" opacity="0.8"/>
-      <circle cx="20" cy="19" r="0.6" fill="#ffffff" opacity="0.6"/>
-      <circle cx="16" cy="16" r="0.5" fill="#ffffff" opacity="0.7"/>
-      <rect x="4" y="22" width="3" height="6" rx="1" fill="#8d6e63"/>
-      <rect x="25" y="22" width="3" height="6" rx="1" fill="#8d6e63"/>
+      <!-- Base del inodoro -->
+      <ellipse cx="16" cy="26" rx="8" ry="3" fill="url(#toiletGrad)" filter="url(#toiletShadow)"/>
+      <!-- Cuerpo del inodoro -->
+      <path d="M10 16 Q10 26 16 26 Q22 26 22 16 Z" fill="url(#toiletGrad)" filter="url(#toiletShadow)"/>
+      <!-- Asiento -->
+      <ellipse cx="16" cy="15" rx="6" ry="4" fill="none" stroke="url(#toiletGrad)" stroke-width="2"/>
+      <ellipse cx="16" cy="15" rx="4" ry="2.5" fill="url(#waterBlue)" opacity="0.6"/>
+      <!-- Tanque -->
+      <rect x="12" y="6" width="8" height="10" rx="1" fill="url(#toiletGrad)" filter="url(#toiletShadow)"/>
+      <!-- Botón de descarga -->
+      <circle cx="16" cy="10" r="1.5" fill="#74b9ff"/>
+      <circle cx="16" cy="10" r="0.8" fill="#3498db"/>
+      <!-- Brillo -->
+      <ellipse cx="15" cy="12" rx="1.5" ry="1" fill="#ffffff" opacity="0.4"/>
+      <ellipse cx="18" cy="8" rx="1" ry="0.7" fill="#ffffff" opacity="0.3"/>
     </svg>`,
     '🏋️‍♂️': `<svg viewBox="0 0 32 32" fill="none" width="32" height="32">
       <defs>

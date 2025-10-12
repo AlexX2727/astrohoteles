@@ -30,7 +30,7 @@ import { accommodationsData, getAmenityIcon, MAPBOX_CONFIG } from '../data/accom
             <circle cx="12" cy="18" r="0.8" fill="#000" opacity="0.4"/>
             <rect x="11" y="16.5" width="2" height="1" fill="#000" opacity="0.4"/>
           </svg>
-          Apartamentos
+          Departamentos
         </button>
         <button class="filter-tab" data-category="hoteles">
           <svg class="filter-tab-icon" viewBox="0 0 24 24" fill="none">
@@ -206,25 +206,42 @@ import { accommodationsData, getAmenityIcon, MAPBOX_CONFIG } from '../data/accom
     opacity: 1;
   }
 
+  .card-image-container {
+    position: relative;
+    width: 100%;
+    height: 220px;
+    border-radius: 12px 12px 0 0;
+    overflow: hidden;
+    background-color: #333;
+  }
+
   .card-image {
     width: 100%;
-    height: 130px;
+    height: 100%;
     object-fit: cover;
+    object-position: top center;
     display: block;
-    border-radius: 12px 12px 0 0;
-    background-color: #333;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
     cursor: pointer;
+  }
+
+  .card-image.active {
+    opacity: 1;
   }
 
   /* ESTILOS CENTRADOS PARA CARDS */
   .accommodation-card .card-content-center {
-    padding: 1rem 0.8rem !important;
+    padding: 0.8rem 0.6rem !important;
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
     justify-content: space-between !important;
     text-align: center !important;
-    min-height: 210px !important;
+    min-height: 180px !important;
     width: 100% !important;
     position: relative !important;
     z-index: 2 !important;
@@ -241,10 +258,10 @@ import { accommodationsData, getAmenityIcon, MAPBOX_CONFIG } from '../data/accom
   }
 
   .accommodation-card .card-title-center {
-    font-size: 1rem !important;
-    font-weight: 800 !important;
+    font-size: 0.85rem !important;
+    font-weight: 700 !important;
     color: #fff !important;
-    margin: 0.25rem auto 0.5rem auto !important;
+    margin: 0.2rem auto 0.4rem auto !important;
     text-align: center !important;
     line-height: 1.2 !important;
     max-width: 100% !important;
@@ -255,7 +272,7 @@ import { accommodationsData, getAmenityIcon, MAPBOX_CONFIG } from '../data/accom
 
   @media (min-width: 768px) {
     .accommodation-card .card-title-center {
-      font-size: 1.15rem !important;
+      font-size: 0.95rem !important;
     }
   }
 
@@ -294,21 +311,21 @@ import { accommodationsData, getAmenityIcon, MAPBOX_CONFIG } from '../data/accom
     align-items: center !important;
     justify-content: center !important;
     width: 100% !important;
-    max-width: 200px !important;
+    max-width: 180px !important;
     background: linear-gradient(145deg, #FF6B35 0%, #FF8A50 25%, #E55A2B 50%, #FF6B35 75%, #FF8A50 100%) !important;
     background-size: 200% 200% !important;
     color: white !important;
     border: none !important;
-    padding: 14px 22px !important;
+    padding: 10px 18px !important;
     border-radius: 50px !important;
-    font-weight: 800 !important;
-    font-size: 0.95rem !important;
+    font-weight: 700 !important;
+    font-size: 0.85rem !important;
     cursor: pointer !important;
     text-transform: uppercase !important;
-    letter-spacing: 1.3px !important;
-    box-shadow: 
-      0 12px 32px rgba(255, 107, 53, 0.5),
-      0 6px 16px rgba(255, 107, 53, 0.32),
+    letter-spacing: 1.1px !important;
+    box-shadow:
+      0 10px 28px rgba(255, 107, 53, 0.5),
+      0 5px 14px rgba(255, 107, 53, 0.32),
       inset 0 2px 0 rgba(255,255,255,0.4),
       inset 0 -2px 0 rgba(0,0,0,0.1) !important;
     transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
@@ -511,8 +528,8 @@ import { accommodationsData, getAmenityIcon, MAPBOX_CONFIG } from '../data/accom
       gap: 1rem;
     }
 
-    .card-image {
-      height: 150px;
+    .card-image-container {
+      height: 240px;
     }
 
     .accommodation-card .card-amenities-icons-center {
@@ -526,7 +543,7 @@ import { accommodationsData, getAmenityIcon, MAPBOX_CONFIG } from '../data/accom
     }
 
     .accommodation-card .card-title-center {
-      font-size: 1.2rem !important;
+      font-size: 1rem !important;
     }
     
     .accommodation-card .card-footer-center .reserve-btn-orange, 
@@ -759,22 +776,28 @@ import { accommodationsData, getAmenityIcon, MAPBOX_CONFIG } from '../data/accom
       </svg>`,
       '🛁': `<svg viewBox="0 0 32 32" fill="none" width="32" height="32">
         <defs>
-          <linearGradient id="bathtubGradC" x1="0%" y1="0%" x2="100%" y2="100%">
+          <linearGradient id="toiletGradC" x1="0%" y1="0%" x2="100%" y2="100%">
             <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
-            <stop offset="100%" style="stop-color:#ddd;stop-opacity:1" />
+            <stop offset="50%" style="stop-color:#e8e8e8;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#d0d0d0;stop-opacity:1" />
           </linearGradient>
-          <linearGradient id="waterGradC" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style="stop-color:#74b9ff;stop-opacity:0.7" />
-            <stop offset="100%" style="stop-color:#0984e3;stop-opacity:0.7" />
+          <linearGradient id="waterBlueC" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#5dade2;stop-opacity:1" />
+            <stop offset="100%" style="stop-color:#3498db;stop-opacity:1" />
           </linearGradient>
+          <filter id="toiletShadowC">
+            <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#000" flood-opacity="0.3"/>
+          </filter>
         </defs>
-        <ellipse cx="16" cy="20" rx="12" ry="6" fill="url(#bathtubGradC)"/>
-        <ellipse cx="16" cy="18" rx="10" ry="4" fill="url(#waterGradC)"/>
-        <circle cx="12" cy="17" r="0.8" fill="#ffffff" opacity="0.8"/>
-        <circle cx="20" cy="19" r="0.6" fill="#ffffff" opacity="0.6"/>
-        <circle cx="16" cy="16" r="0.5" fill="#ffffff" opacity="0.7"/>
-        <rect x="4" y="22" width="3" height="6" rx="1" fill="#8d6e63"/>
-        <rect x="25" y="22" width="3" height="6" rx="1" fill="#8d6e63"/>
+        <ellipse cx="16" cy="26" rx="8" ry="3" fill="url(#toiletGradC)" filter="url(#toiletShadowC)"/>
+        <path d="M10 16 Q10 26 16 26 Q22 26 22 16 Z" fill="url(#toiletGradC)" filter="url(#toiletShadowC)"/>
+        <ellipse cx="16" cy="15" rx="6" ry="4" fill="none" stroke="url(#toiletGradC)" stroke-width="2"/>
+        <ellipse cx="16" cy="15" rx="4" ry="2.5" fill="url(#waterBlueC)" opacity="0.6"/>
+        <rect x="12" y="6" width="8" height="10" rx="1" fill="url(#toiletGradC)" filter="url(#toiletShadowC)"/>
+        <circle cx="16" cy="10" r="1.5" fill="#74b9ff"/>
+        <circle cx="16" cy="10" r="0.8" fill="#3498db"/>
+        <ellipse cx="15" cy="12" rx="1.5" ry="1" fill="#ffffff" opacity="0.4"/>
+        <ellipse cx="18" cy="8" rx="1" ry="0.7" fill="#ffffff" opacity="0.3"/>
       </svg>`,
       '🏋️‍♂️': `<svg viewBox="0 0 32 32" fill="none" width="32" height="32">
         <defs>
@@ -847,10 +870,11 @@ import { accommodationsData, getAmenityIcon, MAPBOX_CONFIG } from '../data/accom
       '🅿️': 'Parqueadero',
       '🌅': 'Vista al mar',
       '🍳': 'Cocina equipada',
-      '☕': 'Desayuno incluido'
+      '☕': 'Desayuno incluido',
+      '🛁': 'Baño incluido'
     };
 
-    const accommodationCards = accommodations.map(function(accommodation) {
+    const accommodationCards = accommodations.map(function(accommodation, index) {
       const amenityIcons = accommodation.amenities.map(function(amenity) {
         const description = iconDescriptions[amenity.icon] || 'Amenidad';
         return `<div class="amenity-icon" title="${description}">
@@ -864,15 +888,23 @@ import { accommodationsData, getAmenityIcon, MAPBOX_CONFIG } from '../data/accom
         ? `onclick="window.location.href='${accommodation.detailPageUrl}'"`
         : `onclick="window.open('https://wa.me/593996779325?text=Hola, estoy interesado en reservar ${accommodation.name}', '_blank')"`;
 
+      // Generar imágenes del carrusel
+      const images = accommodation.images || [accommodation.image];
+      const carouselImages = images.map(function(img, imgIndex) {
+        return `<img
+          src="${img}"
+          alt="${accommodation.name}"
+          class="card-image ${imgIndex === 0 ? 'active' : ''}"
+          loading="lazy"
+          onclick="openMiniMap(${accommodation.coordinates[0]}, ${accommodation.coordinates[1]}, '${accommodation.name.replace(/'/g, "\\'")}')"
+        >`;
+      }).join('');
+
       return `
-        <div class="accommodation-card">
-          <img
-            src="${accommodation.image}"
-            alt="${accommodation.name}"
-            class="card-image"
-            loading="lazy"
-            onclick="openMiniMap(${accommodation.coordinates[0]}, ${accommodation.coordinates[1]}, '${accommodation.name.replace(/'/g, "\\'")}')"
-          >
+        <div class="accommodation-card" data-card-id="${index}">
+          <div class="card-image-container">
+            ${carouselImages}
+          </div>
           <div class="card-content card-content-center">
             <div class="card-header-center">
               <h3 class="card-title-center">${accommodation.name}</h3>
@@ -892,6 +924,26 @@ import { accommodationsData, getAmenityIcon, MAPBOX_CONFIG } from '../data/accom
     }).join('');
 
     listContainer.innerHTML = accommodationCards;
+
+    // Iniciar carruseles de imágenes
+    startImageCarousels();
+  }
+
+  function startImageCarousels() {
+    const cards = document.querySelectorAll('.accommodation-card');
+
+    cards.forEach(function(card) {
+      const images = card.querySelectorAll('.card-image');
+      if (images.length <= 1) return; // Si solo hay una imagen, no hacer carrusel
+
+      let currentIndex = 0;
+
+      setInterval(function() {
+        images[currentIndex].classList.remove('active');
+        currentIndex = (currentIndex + 1) % images.length;
+        images[currentIndex].classList.add('active');
+      }, 3000); // Cambiar cada 3 segundos
+    });
   }
 
   function openMiniMap(lng, lat, name) {
