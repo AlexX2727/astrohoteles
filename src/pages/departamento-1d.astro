@@ -315,10 +315,12 @@ const policies = [
     opacity: 0;
     transition: opacity 0.8s ease;
     cursor: zoom-in;
+    pointer-events: none;
   }
 
   .main-image.active {
     opacity: 1;
+    pointer-events: auto;
   }
 
   /* Image fullscreen modal */
@@ -745,7 +747,7 @@ const policies = [
       width: 100%;
       max-width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
       object-position: center;
     }
 
