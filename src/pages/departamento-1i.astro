@@ -3,29 +3,41 @@ import Layout from '../layouts/Layout.astro';
 import { getAmenityIcon } from '../data/accommodationData.js';
 
 const images = [
-  "/images/departamentos/Villa del mar/1D/Puerta.jpg",
-  "/images/departamentos/Villa del mar/1D/IMG_2364.jpg",
-  "/images/departamentos/Villa del mar/1D/IMG_2365.jpg",
-  "/images/departamentos/Villa del mar/1D/IMG_2369.jpg",
-  "/images/departamentos/Villa del mar/1D/IMG_2370.jpg",
-  "/images/departamentos/Villa del mar/1D/IMG_2373.jpg",
-  "/images/departamentos/Villa del mar/1D/IMG_2374.jpg",
-  "/images/departamentos/Villa del mar/1D/IMG_2375.jpg",
-  "/images/departamentos/Villa del mar/1D/IMG_2378.jpg",
-  "/images/departamentos/Villa del mar/1D/IMG_2381.jpg",
-  "/images/departamentos/Villa del mar/1D/IMG_2384.jpg",
-  "/images/departamentos/Villa del mar/1D/IMG_2388.jpg",
-  "/images/departamentos/Villa del mar/1D/IMG_2390.jpg",
-  "/images/departamentos/Villa del mar/1D/IMG_2397.jpg",
-  "/images/departamentos/Villa del mar/1D/IMG_2402.jpg",
-  "/images/departamentos/Villa del mar/1D/IMG_2405.jpg",
-  "/images/departamentos/Villa del mar/1D/IMG_2407.jpg",
-  "/images/departamentos/Villa del mar/1D/IMG_2411.jpg",
-  "/images/departamentos/Villa del mar/1D/IMG_2414.jpg",
-  "/images/departamentos/Villa del mar/1D/IMG_2415.jpg",
-  "/images/departamentos/Villa del mar/1D/IMG_2416.jpg",
-  "/images/departamentos/Villa del mar/1D/IMG_2417.jpg",
-  "/images/departamentos/Villa del mar/1D/IMG_2419.jpg"
+  "/images/departamentos/Villa del mar/1I/Puerta.jpg",
+  "/images/departamentos/Villa del mar/1I/IMG_2284.jpg",
+  "/images/departamentos/Villa del mar/1I/IMG_2287.jpg",
+  "/images/departamentos/Villa del mar/1I/IMG_2290.jpg",
+  "/images/departamentos/Villa del mar/1I/IMG_2296.jpg",
+  "/images/departamentos/Villa del mar/1I/IMG_2304.jpg",
+  "/images/departamentos/Villa del mar/1I/IMG_2306.jpg",
+  "/images/departamentos/Villa del mar/1I/IMG_2308.jpg",
+  "/images/departamentos/Villa del mar/1I/IMG_2309.jpg",
+  "/images/departamentos/Villa del mar/1I/IMG_2311.jpg",
+  "/images/departamentos/Villa del mar/1I/IMG_2315.jpg",
+  "/images/departamentos/Villa del mar/1I/IMG_2319.jpg",
+  "/images/departamentos/Villa del mar/1I/IMG_2320.jpg",
+  "/images/departamentos/Villa del mar/1I/IMG_2322.jpg",
+  "/images/departamentos/Villa del mar/1I/IMG_2327.jpg",
+  "/images/departamentos/Villa del mar/1I/IMG_2328.jpg",
+  "/images/departamentos/Villa del mar/1I/IMG_2331.jpg",
+  "/images/departamentos/Villa del mar/1I/IMG_2333.jpg",
+  "/images/departamentos/Villa del mar/1I/IMG_2337.jpg",
+  "/images/departamentos/Villa del mar/1I/IMG_2342.jpg",
+  "/images/departamentos/Villa del mar/1I/IMG_2345.jpg",
+  "/images/departamentos/Villa del mar/1I/IMG_2346.jpg",
+  "/images/departamentos/Villa del mar/1I/IMG_2348.jpg",
+  "/images/departamentos/Villa del mar/1I/IMG_2350.jpg",
+  "/images/departamentos/Villa del mar/1I/IMG_2351.jpg",
+  "/images/departamentos/Villa del mar/1I/IMG_2356.jpg",
+  "/images/departamentos/Villa del mar/1I/IMG_2357.jpg",
+  "/images/departamentos/Villa del mar/1I/IMG_2361.jpg",
+  "/images/departamentos/Villa del mar/1I/IMG_2362.jpg",
+  "/images/departamentos/Villa del mar/1I/IMG_3036.jpg",
+  "/images/departamentos/Villa del mar/1I/IMG_3037.jpg",
+  "/images/departamentos/Villa del mar/1I/IMG_3038.jpg",
+  "/images/departamentos/Villa del mar/1I/IMG_3039.jpg",
+  "/images/departamentos/Villa del mar/1I/IMG_3040.jpg",
+  "/images/departamentos/Villa del mar/1I/IMG_3041.jpg"
 ];
 
 const amenities = [
@@ -55,11 +67,11 @@ const policies = [
 ];
 ---
 
-<Layout title="Departamento 1D - Hotel Villa del Mar">
+<Layout title="Departamento 1I - Hotel Villa del Mar">
   <div class="hotel-detail">
     <!-- Header con título -->
     <div class="hero-header">
-      <h1 class="hotel-title">Departamento 1D</h1>
+      <h1 class="hotel-title">Departamento 1I</h1>
       <p class="hotel-subtitle">Hotel Villa del Mar - Salinas, Ecuador</p>
     </div>
 
@@ -67,9 +79,9 @@ const policies = [
     <section class="hero-gallery">
       <div class="gallery-main-area">
         <div class="main-image-container">
-          <img src={images[0]} alt="Departamento 1D" class="main-image active" id="mainImage" />
+          <img src={images[0]} alt="Departamento 1I" class="main-image active" id="mainImage" />
           {images.slice(1).map((img) => (
-            <img src={img} alt="Departamento 1D" class="main-image" />
+            <img src={img} alt="Departamento 1I" class="main-image" />
           ))}
         </div>
 
@@ -163,7 +175,7 @@ const policies = [
         <div class="sidebar-booking">
           <div class="booking-card">
             <a
-              href="https://wa.me/593996779325?text=Hola, estoy interesado en reservar el Departamento 1D"
+              href="https://wa.me/593996779325?text=Hola, estoy interesado en reservar el Departamento 1I"
               target="_blank"
               rel="noopener"
               class="reserve-button"

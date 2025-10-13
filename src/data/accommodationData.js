@@ -80,7 +80,8 @@ export const accommodationsData = {
         { icon: "🛁" }
       ],
       coordinates: [-80.9560, -2.2105],
-      hasDetailPage: false
+      hasDetailPage: true,
+      detailPageUrl: "/departamento-1i"
     },
     {
       id: 6,
@@ -101,7 +102,8 @@ export const accommodationsData = {
         { icon: "🛁" }
       ],
       coordinates: [-80.9560, -2.2105],
-      hasDetailPage: false
+      hasDetailPage: true,
+      detailPageUrl: "/departamento-2d"
     },
     {
       id: 7,
@@ -122,7 +124,8 @@ export const accommodationsData = {
         { icon: "🛁" }
       ],
       coordinates: [-80.9560, -2.2105],
-      hasDetailPage: false
+      hasDetailPage: true,
+      detailPageUrl: "/departamento-2i"
     }
   ],
   hostales: [

@@ -3,29 +3,33 @@ import Layout from '../layouts/Layout.astro';
 import { getAmenityIcon } from '../data/accommodationData.js';
 
 const images = [
-  "/images/departamentos/Villa del mar/1D/Puerta.jpg",
-  "/images/departamentos/Villa del mar/1D/IMG_2364.jpg",
-  "/images/departamentos/Villa del mar/1D/IMG_2365.jpg",
-  "/images/departamentos/Villa del mar/1D/IMG_2369.jpg",
-  "/images/departamentos/Villa del mar/1D/IMG_2370.jpg",
-  "/images/departamentos/Villa del mar/1D/IMG_2373.jpg",
-  "/images/departamentos/Villa del mar/1D/IMG_2374.jpg",
-  "/images/departamentos/Villa del mar/1D/IMG_2375.jpg",
-  "/images/departamentos/Villa del mar/1D/IMG_2378.jpg",
-  "/images/departamentos/Villa del mar/1D/IMG_2381.jpg",
-  "/images/departamentos/Villa del mar/1D/IMG_2384.jpg",
-  "/images/departamentos/Villa del mar/1D/IMG_2388.jpg",
-  "/images/departamentos/Villa del mar/1D/IMG_2390.jpg",
-  "/images/departamentos/Villa del mar/1D/IMG_2397.jpg",
-  "/images/departamentos/Villa del mar/1D/IMG_2402.jpg",
-  "/images/departamentos/Villa del mar/1D/IMG_2405.jpg",
-  "/images/departamentos/Villa del mar/1D/IMG_2407.jpg",
-  "/images/departamentos/Villa del mar/1D/IMG_2411.jpg",
-  "/images/departamentos/Villa del mar/1D/IMG_2414.jpg",
-  "/images/departamentos/Villa del mar/1D/IMG_2415.jpg",
-  "/images/departamentos/Villa del mar/1D/IMG_2416.jpg",
-  "/images/departamentos/Villa del mar/1D/IMG_2417.jpg",
-  "/images/departamentos/Villa del mar/1D/IMG_2419.jpg"
+  "/images/departamentos/Villa del mar/2D/Puerta.jpg",
+  "/images/departamentos/Villa del mar/2D/IMG_2423.jpg",
+  "/images/departamentos/Villa del mar/2D/IMG_2426.jpg",
+  "/images/departamentos/Villa del mar/2D/IMG_2426 2.jpg",
+  "/images/departamentos/Villa del mar/2D/IMG_2428.jpg",
+  "/images/departamentos/Villa del mar/2D/IMG_2428 2.jpg",
+  "/images/departamentos/Villa del mar/2D/IMG_2430.jpg",
+  "/images/departamentos/Villa del mar/2D/IMG_2430 2.jpg",
+  "/images/departamentos/Villa del mar/2D/IMG_2432.jpg",
+  "/images/departamentos/Villa del mar/2D/IMG_2433.jpg",
+  "/images/departamentos/Villa del mar/2D/IMG_2434.jpg",
+  "/images/departamentos/Villa del mar/2D/IMG_2440.jpg",
+  "/images/departamentos/Villa del mar/2D/IMG_2441.jpg",
+  "/images/departamentos/Villa del mar/2D/IMG_2444.jpg",
+  "/images/departamentos/Villa del mar/2D/IMG_2445.jpg",
+  "/images/departamentos/Villa del mar/2D/IMG_2446.jpg",
+  "/images/departamentos/Villa del mar/2D/IMG_2450.jpg",
+  "/images/departamentos/Villa del mar/2D/IMG_2451.jpg",
+  "/images/departamentos/Villa del mar/2D/IMG_2452.jpg",
+  "/images/departamentos/Villa del mar/2D/IMG_2453.jpg",
+  "/images/departamentos/Villa del mar/2D/IMG_2460.jpg",
+  "/images/departamentos/Villa del mar/2D/IMG_2464.jpg",
+  "/images/departamentos/Villa del mar/2D/IMG_2466.jpg",
+  "/images/departamentos/Villa del mar/2D/IMG_2469.jpg",
+  "/images/departamentos/Villa del mar/2D/IMG_2471.jpg",
+  "/images/departamentos/Villa del mar/2D/IMG_2474.jpg",
+  "/images/departamentos/Villa del mar/2D/IMG_2476.jpg"
 ];
 
 const amenities = [
@@ -55,11 +59,11 @@ const policies = [
 ];
 ---
 
-<Layout title="Departamento 1D - Hotel Villa del Mar">
+<Layout title="Departamento 2D - Hotel Villa del Mar">
   <div class="hotel-detail">
     <!-- Header con título -->
     <div class="hero-header">
-      <h1 class="hotel-title">Departamento 1D</h1>
+      <h1 class="hotel-title">Departamento 2D</h1>
       <p class="hotel-subtitle">Hotel Villa del Mar - Salinas, Ecuador</p>
     </div>
 
@@ -67,9 +71,9 @@ const policies = [
     <section class="hero-gallery">
       <div class="gallery-main-area">
         <div class="main-image-container">
-          <img src={images[0]} alt="Departamento 1D" class="main-image active" id="mainImage" />
+          <img src={images[0]} alt="Departamento 2D" class="main-image active" id="mainImage" />
           {images.slice(1).map((img) => (
-            <img src={img} alt="Departamento 1D" class="main-image" />
+            <img src={img} alt="Departamento 2D" class="main-image" />
           ))}
         </div>
 
@@ -163,7 +167,7 @@ const policies = [
         <div class="sidebar-booking">
           <div class="booking-card">
             <a
-              href="https://wa.me/593996779325?text=Hola, estoy interesado en reservar el Departamento 1D"
+              href="https://wa.me/593996779325?text=Hola, estoy interesado en reservar el Departamento 2D"
               target="_blank"
               rel="noopener"
               class="reserve-button"
