@@ -15,7 +15,7 @@ export const accommodationsData = {
         { icon: "🌅" },
         { icon: "🅿️" }
       ],
-      coordinates: [-80.9560, -2.2105],
+      coordinates: [-80.9766758, -2.2066937],
       hasDetailPage: true,
       detailPageUrl: "/villa-del-mar"
     },
@@ -33,7 +33,7 @@ export const accommodationsData = {
         { icon: "🅿️" },
         { icon: "🏊‍♂️" }
       ],
-      coordinates: [-80.9555, -2.2100],
+      coordinates: [-80.9754187, -2.2058994],
       hasDetailPage: true,
       detailPageUrl: "/chaqana"
     }
@@ -57,7 +57,7 @@ export const accommodationsData = {
         { icon: "🍳" },
         { icon: "🛁" }
       ],
-      coordinates: [-80.9560, -2.2105],
+      coordinates: [-80.9766758, -2.2066937],
       hasDetailPage: true,
       detailPageUrl: "/departamento-1d"
     },
@@ -79,7 +79,7 @@ export const accommodationsData = {
         { icon: "🍳" },
         { icon: "🛁" }
       ],
-      coordinates: [-80.9560, -2.2105],
+      coordinates: [-80.9766758, -2.2066937],
       hasDetailPage: true,
       detailPageUrl: "/departamento-1i"
     },
@@ -101,7 +101,7 @@ export const accommodationsData = {
         { icon: "🍳" },
         { icon: "🛁" }
       ],
-      coordinates: [-80.9560, -2.2105],
+      coordinates: [-80.9766758, -2.2066937],
       hasDetailPage: true,
       detailPageUrl: "/departamento-2d"
     },
@@ -123,43 +123,12 @@ export const accommodationsData = {
         { icon: "🍳" },
         { icon: "🛁" }
       ],
-      coordinates: [-80.9560, -2.2105],
+      coordinates: [-80.9766758, -2.2066937],
       hasDetailPage: true,
       detailPageUrl: "/departamento-2i"
     }
   ],
-  hostales: [
-    {
-      id: 8,
-      name: "Hostal Surfero",
-      location: "Cerca de La Chocolatera",
-      rating: 7.8,
-      price: 18,
-      image: "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=60",
-      amenities: [
-        { icon: "👥" },
-        { icon: "📶" },
-        { icon: "🏄‍♂️" },
-        { icon: "🧺" }
-      ],
-      coordinates: [-80.9058, -2.2267]
-    },
-    {
-      id: 9,
-      name: "Hostal Backpackers",
-      location: "Centro de Salinas",
-      rating: 8.0,
-      price: 25,
-      image: "https://images.unsplash.com/photo-1566665797739-1674de7a421a?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=60",
-      amenities: [
-        { icon: "👥" },
-        { icon: "📶" },
-        { icon: "☕" },
-        { icon: "🧺" }
-      ],
-      coordinates: [-80.9560, -2.2115]
-    }
-  ]
+  hostales: []
 };
 
 // Mapbox configuration
