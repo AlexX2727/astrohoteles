@@ -16,10 +16,10 @@ const CONFIG = {
 
 // Directorios a procesar
 const imageDirectories = [
-  './public/images/departamentos/Villa del mar/1D',
-  './public/images/departamentos/Villa del mar/1I',
-  './public/images/departamentos/Villa del mar/2D',
-  './public/images/departamentos/Villa del mar/2I'
+
+  './public/images/departamentos/Chaqana/Chaqana 1',
+  './public/images/departamentos/Chaqana/Chaqana 2',
+  './public/images/departamentos/Chaqana/Chaqana 3'
 ];
 
 // Función para obtener el tamaño de archivo en MB

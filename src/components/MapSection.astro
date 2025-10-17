@@ -888,6 +888,11 @@ import { accommodationsData, getAmenityIcon, MAPBOX_CONFIG } from '../data/accom
         ? `onclick="window.location.href='${accommodation.detailPageUrl}'"`
         : `onclick="window.open('https://wa.me/593996779325?text=Hola, estoy interesado en reservar ${accommodation.name}', '_blank')"`;
 
+      // Generar acción para click en imagen
+      const imageClickAction = hasDetailPage
+        ? `window.location.href='${accommodation.detailPageUrl}'`
+        : `window.open('https://wa.me/593996779325?text=Hola, estoy interesado en reservar ${accommodation.name.replace(/'/g, "\\'")}', '_blank')`;
+
       // Generar imágenes del carrusel
       const images = accommodation.images || [accommodation.image];
       const carouselImages = images.map(function(img, imgIndex) {
@@ -896,7 +901,7 @@ import { accommodationsData, getAmenityIcon, MAPBOX_CONFIG } from '../data/accom
           alt="${accommodation.name}"
           class="card-image ${imgIndex === 0 ? 'active' : ''}"
           loading="lazy"
-          onclick="openMiniMap(${accommodation.coordinates[0]}, ${accommodation.coordinates[1]}, '${accommodation.name.replace(/'/g, "\\'")}')"
+          onclick="${imageClickAction}"
         >`;
       }).join('');
 

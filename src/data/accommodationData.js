@@ -25,7 +25,15 @@ export const accommodationsData = {
       location: "Salinas",
       rating: 9.7,
       price: 110,
-      image: "/images/hoteles/Chaqana/IMG_2559.jpg",
+      image: "/images/hoteles/Chaqana/IMG_2898.jpg",
+      images: [
+        "/images/hoteles/Chaqana/IMG_2898.jpg",
+        "/images/hoteles/Chaqana/IMG_2943.jpg",
+        "/images/hoteles/Chaqana/IMG_2944.jpg",
+        "/images/hoteles/Chaqana/IMG_2946.jpg",
+        "/images/hoteles/Chaqana/IMG_2950.jpg",
+        "/images/hoteles/Chaqana/IMG_2952.jpg"
+      ],
       amenities: [
         { icon: "👥" },
         { icon: "📶" },
@@ -45,9 +53,8 @@ export const accommodationsData = {
       location: "Hotel Villa del Mar",
       rating: 9.5,
       price: 85,
-      image: "/images/departamentos/Villa del mar/1D/Puerta.jpg",
+      image: "/images/departamentos/Villa del mar/1D/IMG_2364.jpg",
       images: [
-        "/images/departamentos/Villa del mar/1D/Puerta.jpg",
         "/images/departamentos/Villa del mar/1D/IMG_2364.jpg",
         "/images/departamentos/Villa del mar/1D/IMG_2365.jpg"
       ],
@@ -67,9 +74,8 @@ export const accommodationsData = {
       location: "Hotel Villa del Mar",
       rating: 9.5,
       price: 85,
-      image: "/images/departamentos/Villa del mar/1I/Puerta.jpg",
+      image: "/images/departamentos/Villa del mar/1I/IMG_2284.jpg",
       images: [
-        "/images/departamentos/Villa del mar/1I/Puerta.jpg",
         "/images/departamentos/Villa del mar/1I/IMG_2284.jpg",
         "/images/departamentos/Villa del mar/1I/IMG_2287.jpg"
       ],
@@ -89,9 +95,8 @@ export const accommodationsData = {
       location: "Hotel Villa del Mar",
       rating: 9.5,
       price: 85,
-      image: "/images/departamentos/Villa del mar/2D/Puerta.jpg",
+      image: "/images/departamentos/Villa del mar/2D/IMG_2423.jpg",
       images: [
-        "/images/departamentos/Villa del mar/2D/Puerta.jpg",
         "/images/departamentos/Villa del mar/2D/IMG_2423.jpg",
         "/images/departamentos/Villa del mar/2D/IMG_2426.jpg"
       ],
@@ -111,9 +116,8 @@ export const accommodationsData = {
       location: "Hotel Villa del Mar",
       rating: 9.5,
       price: 85,
-      image: "/images/departamentos/Villa del mar/2I/Puerta.jpg",
+      image: "/images/departamentos/Villa del mar/2I/IMG_2479.jpg",
       images: [
-        "/images/departamentos/Villa del mar/2I/Puerta.jpg",
         "/images/departamentos/Villa del mar/2I/IMG_2479.jpg",
         "/images/departamentos/Villa del mar/2I/IMG_2480.jpg"
       ],
@@ -126,6 +130,72 @@ export const accommodationsData = {
       coordinates: [-80.9766758, -2.2066937],
       hasDetailPage: true,
       detailPageUrl: "/departamento-2i"
+    },
+    {
+      id: 8,
+      name: "Chaqana 1",
+      location: "Hotel Chaqana",
+      rating: 9.7,
+      price: 95,
+      image: "/images/departamentos/Chaqana/Chaqana 1/IMG_2902.jpg",
+      images: [
+        "/images/departamentos/Chaqana/Chaqana 1/IMG_2902.jpg",
+        "/images/departamentos/Chaqana/Chaqana 1/IMG_2904.jpg"
+      ],
+      amenities: [
+        { icon: "👥" },
+        { icon: "📶" },
+        { icon: "🍳" },
+        { icon: "🛁" },
+        { icon: "🌅" }
+      ],
+      coordinates: [-80.9754187, -2.2058994],
+      hasDetailPage: true,
+      detailPageUrl: "/chaqana-1"
+    },
+    {
+      id: 9,
+      name: "Chaqana 2",
+      location: "Hotel Chaqana",
+      rating: 9.7,
+      price: 95,
+      image: "/images/departamentos/Chaqana/Chaqana 2/IMG_2846.jpg",
+      images: [
+        "/images/departamentos/Chaqana/Chaqana 2/IMG_2846.jpg",
+        "/images/departamentos/Chaqana/Chaqana 2/IMG_2848.jpg"
+      ],
+      amenities: [
+        { icon: "👥" },
+        { icon: "📶" },
+        { icon: "🍳" },
+        { icon: "🛁" },
+        { icon: "🌅" }
+      ],
+      coordinates: [-80.9754187, -2.2058994],
+      hasDetailPage: true,
+      detailPageUrl: "/chaqana-2"
+    },
+    {
+      id: 10,
+      name: "Chaqana 3",
+      location: "Hotel Chaqana",
+      rating: 9.7,
+      price: 95,
+      image: "/images/departamentos/Chaqana/Chaqana 3/IMG_2922.jpg",
+      images: [
+        "/images/departamentos/Chaqana/Chaqana 3/IMG_2922.jpg",
+        "/images/departamentos/Chaqana/Chaqana 3/IMG_2923.jpg"
+      ],
+      amenities: [
+        { icon: "👥" },
+        { icon: "📶" },
+        { icon: "🍳" },
+        { icon: "🛁" },
+        { icon: "🌅" }
+      ],
+      coordinates: [-80.9754187, -2.2058994],
+      hasDetailPage: true,
+      detailPageUrl: "/chaqana-3"
     }
   ],
   hostales: []
