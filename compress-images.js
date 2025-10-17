@@ -16,10 +16,7 @@ const CONFIG = {
 
 // Directorios a procesar
 const imageDirectories = [
-
-  './public/images/departamentos/Chaqana/Chaqana 1',
-  './public/images/departamentos/Chaqana/Chaqana 2',
-  './public/images/departamentos/Chaqana/Chaqana 3'
+  './public/images/departamentos/Departamento Ciudadela'
 ];
 
 // Función para obtener el tamaño de archivo en MB

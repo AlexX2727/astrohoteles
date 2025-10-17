@@ -196,6 +196,27 @@ export const accommodationsData = {
       coordinates: [-80.9754187, -2.2058994],
       hasDetailPage: true,
       detailPageUrl: "/chaqana-3"
+    },
+    {
+      id: 11,
+      name: "Departamento Ciudadela",
+      location: "Salinas",
+      rating: 9.4,
+      price: 80,
+      image: "/images/departamentos/Departamento Ciudadela/IMG_2538.jpg",
+      images: [
+        "/images/departamentos/Departamento Ciudadela/IMG_2538.jpg",
+        "/images/departamentos/Departamento Ciudadela/IMG_2541.jpg"
+      ],
+      amenities: [
+        { icon: "👥" },
+        { icon: "📶" },
+        { icon: "🍳" },
+        { icon: "🛁" }
+      ],
+      coordinates: [-80.9766758, -2.2066937],
+      hasDetailPage: true,
+      detailPageUrl: "/departamento-ciudadela"
     }
   ],
   hostales: []
