@@ -942,12 +942,25 @@ import { accommodationsData, getAmenityIcon, MAPBOX_CONFIG } from '../data/accom
       '🌅': 'Vista al mar',
       '🍳': 'Cocina equipada',
       '☕': 'Desayuno incluido',
-      '🛁': 'Baño incluido'
+      '🛁': 'Baño incluido',
+      '/images/iconos-svg/wifi.svg': 'WiFi gratuito',
+      '/images/iconos-svg/parking.svg': 'Parqueadero',
+      '/images/iconos-svg/cocina.svg': 'Cocina equipada',
+      '/images/iconos-svg/aire-acondicionado.svg': 'Aire acondicionado'
     };
 
     const accommodationCards = accommodations.map(function(accommodation, index) {
       const amenityIcons = accommodation.amenities.map(function(amenity) {
         const description = iconDescriptions[amenity.icon] || 'Amenidad';
+
+        // Si es una ruta SVG, cargar como imagen
+        if (amenity.icon && amenity.icon.indexOf('/images/iconos-svg/') === 0) {
+          return `<div class="amenity-icon" title="${description}">
+            <img src="${amenity.icon}" alt="${description}" style="width: 32px; height: 32px; display: block;" />
+          </div>`;
+        }
+
+        // Si es emoji, usar getAmenityIcon
         return `<div class="amenity-icon" title="${description}">
           ${getAmenityIcon(amenity.icon)}
         </div>`;

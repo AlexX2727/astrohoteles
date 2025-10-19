@@ -10,10 +10,10 @@ export const accommodationsData = {
       price: 95,
       image: "/images/hoteles/Villa del Mar/IMG_2538.jpg",
       amenities: [
-        { icon: "👥" },
-        { icon: "📶" },
-        { icon: "🌅" },
-        { icon: "🅿️" }
+        { icon: "/images/iconos-svg/wifi.svg" },
+        { icon: "/images/iconos-svg/parking.svg" },
+        { icon: "/images/iconos-svg/cocina.svg" },
+        { icon: "/images/iconos-svg/aire-acondicionado.svg" }
       ],
       coordinates: [-80.9766758, -2.2066937],
       hasDetailPage: true,
@@ -35,11 +35,10 @@ export const accommodationsData = {
         "/images/hoteles/Chaqana/IMG_2952.jpg"
       ],
       amenities: [
-        { icon: "👥" },
-        { icon: "📶" },
-        { icon: "🌅" },
-        { icon: "🅿️" },
-        { icon: "🏊‍♂️" }
+        { icon: "/images/iconos-svg/wifi.svg" },
+        { icon: "/images/iconos-svg/parking.svg" },
+        { icon: "/images/iconos-svg/cocina.svg" },
+        { icon: "/images/iconos-svg/aire-acondicionado.svg" }
       ],
       coordinates: [-80.9754187, -2.2058994],
       hasDetailPage: true,
@@ -59,10 +58,10 @@ export const accommodationsData = {
         "/images/departamentos/Villa del mar/1D/IMG_2365.jpg"
       ],
       amenities: [
-        { icon: "👥" },
-        { icon: "📶" },
-        { icon: "🍳" },
-        { icon: "🛁" }
+        { icon: "/images/iconos-svg/wifi.svg" },
+        { icon: "/images/iconos-svg/parking.svg" },
+        { icon: "/images/iconos-svg/cocina.svg" },
+        { icon: "/images/iconos-svg/aire-acondicionado.svg" }
       ],
       coordinates: [-80.9766758, -2.2066937],
       hasDetailPage: true,
@@ -80,10 +79,10 @@ export const accommodationsData = {
         "/images/departamentos/Villa del mar/1I/IMG_2287.jpg"
       ],
       amenities: [
-        { icon: "👥" },
-        { icon: "📶" },
-        { icon: "🍳" },
-        { icon: "🛁" }
+        { icon: "/images/iconos-svg/wifi.svg" },
+        { icon: "/images/iconos-svg/parking.svg" },
+        { icon: "/images/iconos-svg/cocina.svg" },
+        { icon: "/images/iconos-svg/aire-acondicionado.svg" }
       ],
       coordinates: [-80.9766758, -2.2066937],
       hasDetailPage: true,
@@ -101,10 +100,10 @@ export const accommodationsData = {
         "/images/departamentos/Villa del mar/2D/IMG_2426.jpg"
       ],
       amenities: [
-        { icon: "👥" },
-        { icon: "📶" },
-        { icon: "🍳" },
-        { icon: "🛁" }
+        { icon: "/images/iconos-svg/wifi.svg" },
+        { icon: "/images/iconos-svg/parking.svg" },
+        { icon: "/images/iconos-svg/cocina.svg" },
+        { icon: "/images/iconos-svg/aire-acondicionado.svg" }
       ],
       coordinates: [-80.9766758, -2.2066937],
       hasDetailPage: true,
@@ -122,10 +121,10 @@ export const accommodationsData = {
         "/images/departamentos/Villa del mar/2I/IMG_2480.jpg"
       ],
       amenities: [
-        { icon: "👥" },
-        { icon: "📶" },
-        { icon: "🍳" },
-        { icon: "🛁" }
+        { icon: "/images/iconos-svg/wifi.svg" },
+        { icon: "/images/iconos-svg/parking.svg" },
+        { icon: "/images/iconos-svg/cocina.svg" },
+        { icon: "/images/iconos-svg/aire-acondicionado.svg" }
       ],
       coordinates: [-80.9766758, -2.2066937],
       hasDetailPage: true,
@@ -143,11 +142,10 @@ export const accommodationsData = {
         "/images/departamentos/Chaqana/Chaqana 1/IMG_2904.jpg"
       ],
       amenities: [
-        { icon: "👥" },
-        { icon: "📶" },
-        { icon: "🍳" },
-        { icon: "🛁" },
-        { icon: "🌅" }
+        { icon: "/images/iconos-svg/wifi.svg" },
+        { icon: "/images/iconos-svg/parking.svg" },
+        { icon: "/images/iconos-svg/cocina.svg" },
+        { icon: "/images/iconos-svg/aire-acondicionado.svg" }
       ],
       coordinates: [-80.9754187, -2.2058994],
       hasDetailPage: true,
@@ -165,11 +163,10 @@ export const accommodationsData = {
         "/images/departamentos/Chaqana/Chaqana 2/IMG_2848.jpg"
       ],
       amenities: [
-        { icon: "👥" },
-        { icon: "📶" },
-        { icon: "🍳" },
-        { icon: "🛁" },
-        { icon: "🌅" }
+        { icon: "/images/iconos-svg/wifi.svg" },
+        { icon: "/images/iconos-svg/parking.svg" },
+        { icon: "/images/iconos-svg/cocina.svg" },
+        { icon: "/images/iconos-svg/aire-acondicionado.svg" }
       ],
       coordinates: [-80.9754187, -2.2058994],
       hasDetailPage: true,
@@ -187,11 +184,10 @@ export const accommodationsData = {
         "/images/departamentos/Chaqana/Chaqana 3/IMG_2923.jpg"
       ],
       amenities: [
-        { icon: "👥" },
-        { icon: "📶" },
-        { icon: "🍳" },
-        { icon: "🛁" },
-        { icon: "🌅" }
+        { icon: "/images/iconos-svg/wifi.svg" },
+        { icon: "/images/iconos-svg/parking.svg" },
+        { icon: "/images/iconos-svg/cocina.svg" },
+        { icon: "/images/iconos-svg/aire-acondicionado.svg" }
       ],
       coordinates: [-80.9754187, -2.2058994],
       hasDetailPage: true,
@@ -209,10 +205,10 @@ export const accommodationsData = {
         "/images/departamentos/Departamento Ciudadela/IMG_2541.jpg"
       ],
       amenities: [
-        { icon: "👥" },
-        { icon: "📶" },
-        { icon: "🍳" },
-        { icon: "🛁" }
+        { icon: "/images/iconos-svg/wifi.svg" },
+        { icon: "/images/iconos-svg/parking.svg" },
+        { icon: "/images/iconos-svg/cocina.svg" },
+        { icon: "/images/iconos-svg/aire-acondicionado.svg" }
       ],
       coordinates: [-80.9766758, -2.2066937],
       hasDetailPage: true,
