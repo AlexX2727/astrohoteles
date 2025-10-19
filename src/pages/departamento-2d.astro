@@ -489,7 +489,10 @@ const policies = [
 
   .amenity-item {
     display: flex;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
+    text-align: center;
     gap: 1rem;
     padding: 1.5rem;
     background: linear-gradient(135deg, rgba(14, 165, 233, 0.1), rgba(255, 107, 53, 0.05));
@@ -1033,18 +1036,49 @@ const policies = [
       padding: 0 1rem;
     }
 
-    .amenities-section,
-    .features-section,
-    .spaces-section,
+    .info-section,
+    .description-section,
     .policies-section {
       margin-bottom: 2rem;
     }
 
-    .amenities-section h2,
-    .features-section h2,
-    .spaces-section h2,
+    .info-section h2,
+    .description-section h2,
     .policies-section h2 {
       font-size: 1.5rem;
+    }
+
+    .amenities-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+
+    .amenity-item {
+      padding: 1.2rem 1rem;
+      gap: 0.8rem;
+    }
+
+    .amenity-icon-large {
+      width: 48px;
+      height: 48px;
+    }
+
+    .amenity-name {
+      font-size: 0.9rem;
+    }
+
+    .description-text {
+      font-size: 1rem;
+      padding: 1.2rem;
+    }
+
+    .policy-item {
+      padding: 1rem;
+      gap: 0.8rem;
+    }
+
+    .policy-icon {
+      font-size: 1.3rem;
     }
   }
 
@@ -1093,6 +1127,34 @@ const policies = [
 
     .contact-link {
       font-size: 0.85rem;
+    }
+
+    .amenities-grid {
+      grid-template-columns: 1fr;
+      gap: 0.8rem;
+    }
+
+    .amenity-item {
+      padding: 1rem 0.8rem;
+    }
+
+    .amenity-icon-large {
+      width: 40px;
+      height: 40px;
+    }
+
+    .amenity-name {
+      font-size: 0.85rem;
+    }
+
+    .info-section h2,
+    .description-section h2,
+    .policies-section h2 {
+      font-size: 1.3rem;
+    }
+
+    .main-content {
+      padding: 0 0.8rem;
     }
   }
 </style>
