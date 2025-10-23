@@ -239,9 +239,9 @@ import { accommodationsData, getAmenityIcon, MAPBOX_CONFIG } from '../data/accom
 
   @media (max-width: 768px) {
     .accommodation-list {
-      grid-template-columns: repeat(2, minmax(180px, 1fr));
-      gap: 1rem;
-      padding: 0.75rem;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      padding: 1.5rem;
     }
   }
 
@@ -629,33 +629,7 @@ import { accommodationsData, getAmenityIcon, MAPBOX_CONFIG } from '../data/accom
     }
   }
 
-  @media (max-width: 480px) {
-    .accommodation-list {
-      grid-template-columns: repeat(2, minmax(180px, 1fr)) !important;
-      gap: 1rem !important;
-    }
 
-    .accommodation-card .card-amenities-icons-center {
-      padding: 6px 8px !important;
-      gap: 0.3rem !important;
-      justify-content: center !important;
-      overflow: hidden !important;
-    }
-
-    .accommodation-card .card-amenities-icons-center .amenity-icon {
-      padding: 4px !important;
-    }
-
-    .accommodation-card .card-amenities-icons-center .amenity-icon svg {
-      width: 20px !important;
-      height: 20px !important;
-    }
-
-    .accommodation-card .card-amenities-icons-center .amenity-icon img {
-      width: 20px !important;
-      height: 20px !important;
-    }
-  }
 </style>
 
 <script is:inline define:vars={{ accommodationsData, MAPBOX_CONFIG }}>
