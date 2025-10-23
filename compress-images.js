@@ -16,7 +16,7 @@ const CONFIG = {
 
 // Directorios a procesar
 const imageDirectories = [
-  './public/images/departamentos/Departamento Ciudadela'
+  path.join(__dirname, 'public/images/hoteles/Chaqana'),
 ];
 
 // Función para obtener el tamaño de archivo en MB
