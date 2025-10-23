@@ -11,7 +11,8 @@
   "dependencies": {
     "astro": "^5.13.7",
     "date-fns": "^4.1.0",
-    "lucide-react": "^0.544.0"
+    "lucide-react": "^0.544.0",
+    "potrace": "^2.1.8"
   },
   "devDependencies": {
     "@types/mapbox-gl": "^3.4.1",
