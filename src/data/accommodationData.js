@@ -213,6 +213,27 @@ export const accommodationsData = {
       coordinates: [-80.9766758, -2.2066937],
       hasDetailPage: true,
       detailPageUrl: "/departamento-ciudadela"
+    },
+    {
+      id: 12,
+      name: "Mi Casa en Salinas",
+      location: "Salinas",
+      rating: 9.8,
+      price: 120,
+      image: "/images/departamentos/Mi casa salinas/1.jpeg",
+      images: [
+        "/images/departamentos/Mi casa salinas/1.jpeg",
+        "/images/departamentos/Mi casa salinas/2.jpeg"
+      ],
+      amenities: [
+        { icon: "/images/iconos-svg/wifi.svg" },
+        { icon: "/images/iconos-svg/parking.svg" },
+        { icon: "/images/iconos-svg/cocina.svg" },
+        { icon: "/images/iconos-svg/aire-acondicionado.svg" }
+      ],
+      coordinates: [-80.9766758, -2.2066937],
+      hasDetailPage: true,
+      detailPageUrl: "/mi-casa-en-salinas"
     }
   ],
   hostales: []
