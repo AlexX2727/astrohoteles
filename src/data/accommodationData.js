@@ -241,10 +241,13 @@ export const accommodationsData = {
       location: "Salinas",
       rating: 9.8,
       price: 120,
-      image: "/images/departamentos/Mi casa salinas/1.jpeg",
+      image: "/images/departamentos/Sol de salinas/1.jpeg",
       images: [
-        "/images/departamentos/Mi casa salinas/1.jpeg",
-        "/images/departamentos/Mi casa salinas/2.jpeg"
+        "/images/departamentos/Sol de salinas/1.jpeg",
+        "/images/departamentos/Sol de salinas/2.jpeg",
+        "/images/departamentos/Sol de salinas/3.jpeg",
+        "/images/departamentos/Sol de salinas/4.jpeg",
+        "/images/departamentos/Sol de salinas/5.jpeg"
       ],
       amenities: [
         { icon: "/images/iconos-svg/wifi.svg" },
