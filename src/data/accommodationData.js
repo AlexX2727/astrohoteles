@@ -132,7 +132,7 @@ export const accommodationsData = {
     },
     {
       id: 8,
-      name: "Chaqana 1",
+      name: "Habitación Estandar",
       location: "Hotel Chaqana",
       rating: 9.7,
       price: 95,
@@ -174,7 +174,7 @@ export const accommodationsData = {
     },
     {
       id: 10,
-      name: "Chaqana 3",
+      name: "Habitación Familiar",
       location: "Hotel Chaqana",
       rating: 9.7,
       price: 95,
@@ -192,6 +192,27 @@ export const accommodationsData = {
       coordinates: [-80.9754187, -2.2058994],
       hasDetailPage: true,
       detailPageUrl: "/chaqana-3"
+    },
+    {
+      id: 14,
+      name: "Habitación Económica",
+      location: "Hotel Chaqana",
+      rating: 9.6,
+      price: 85,
+      image: "/images/departamentos/Chaqana/Chaqana 4/1.jpeg",
+      images: [
+        "/images/departamentos/Chaqana/Chaqana 4/1.jpeg",
+        "/images/departamentos/Chaqana/Chaqana 4/2.jpeg"
+      ],
+      amenities: [
+        { icon: "/images/iconos-svg/wifi.svg" },
+        { icon: "/images/iconos-svg/parking.svg" },
+        { icon: "/images/iconos-svg/cocina.svg" },
+        { icon: "/images/iconos-svg/aire-acondicionado.svg" }
+      ],
+      coordinates: [-80.9754187, -2.2058994],
+      hasDetailPage: true,
+      detailPageUrl: "/chaqana-4"
     },
     {
       id: 11,

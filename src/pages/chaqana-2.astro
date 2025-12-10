@@ -1,6 +1,6 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import { getAmenityIcon } from '../data/accommodationData.js';
+import Layout from "../layouts/Layout.astro";
+import { getAmenityIcon } from "../data/accommodationData.js";
 
 const images = [
   "/images/departamentos/Chaqana/Chaqana 2/Puerta.jpg",
@@ -17,14 +17,17 @@ const images = [
   "/images/departamentos/Chaqana/Chaqana 2/IMG_2862.jpg",
   "/images/departamentos/Chaqana/Chaqana 2/IMG_2864.jpg",
   "/images/departamentos/Chaqana/Chaqana 2/IMG_2867.jpg",
-  "/images/departamentos/Chaqana/Chaqana 2/IMG_2874.jpg"
+  "/images/departamentos/Chaqana/Chaqana 2/IMG_2874.jpg",
 ];
 
 const amenities = [
   { icon: "/images/iconos-svg/wifi.svg", name: "WiFi gratuito" },
   { icon: "/images/iconos-svg/parking.svg", name: "Parqueadero" },
-  { icon: "/images/iconos-svg/aire-acondicionado.svg", name: "Aire acondicionado" },
-  { icon: "/images/iconos-svg/cocina.svg", name: "Cocina equipada" }
+  {
+    icon: "/images/iconos-svg/aire-acondicionado.svg",
+    name: "Aire acondicionado",
+  },
+  { icon: "/images/iconos-svg/cocina.svg", name: "Cocina equipada" },
 ];
 
 const features = [
@@ -35,13 +38,13 @@ const features = [
   "WiFi de alta velocidad",
   "Vista al mar",
   "Utensilios de cocina",
-  "Ropa de cama y toallas incluidas"
+  "Ropa de cama y toallas incluidas",
 ];
 
 const policies = [
   { icon: "🕐", text: "Check in 2 pm - Check out 12 am" },
   { icon: "🎉", text: "No se permiten fiestas o reuniones" },
-  { icon: "🐾", text: "No se permiten mascotas" }
+  { icon: "🐾", text: "No se permiten mascotas" },
 ];
 ---
 
@@ -57,24 +60,41 @@ const policies = [
     <section class="hero-gallery">
       <div class="gallery-main-area">
         <div class="main-image-container">
-          <img src={images[0]} alt="Chaqana 2" class="main-image active" id="mainImage" loading="eager" />
-          {images.slice(1).map((img) => (
-            <img data-src={img} alt="Chaqana 2" class="main-image lazy" loading="lazy" />
-          ))}
+          <img
+            src={images[0]}
+            alt="Chaqana 2"
+            class="main-image active"
+            id="mainImage"
+            loading="eager"
+          />
+          {
+            images
+              .slice(1)
+              .map((img) => (
+                <img
+                  data-src={img}
+                  alt="Chaqana 2"
+                  class="main-image lazy"
+                  loading="lazy"
+                />
+              ))
+          }
         </div>
 
         <div class="thumbnails-container">
           <button class="thumbnail-nav prev" id="prevBtn">‹</button>
           <div class="thumbnails-scroll" id="thumbnailsScroll">
-            {images.map((img, index) => (
-              <img
-                src={img}
-                alt={`Vista ${index + 1}`}
-                class={`thumbnail ${index === 0 ? 'active' : ''}`}
-                data-index={index}
-                loading="lazy"
-              />
-            ))}
+            {
+              images.map((img, index) => (
+                <img
+                  src={img}
+                  alt={`Vista ${index + 1}`}
+                  class={`thumbnail ${index === 0 ? "active" : ""}`}
+                  data-index={index}
+                  loading="lazy"
+                />
+              ))
+            }
           </div>
           <button class="thumbnail-nav next" id="nextBtn">›</button>
         </div>
@@ -93,52 +113,70 @@ const policies = [
     <section class="hotel-info">
       <div class="info-container">
         <div class="main-content">
-
-        <!-- Información del Departamento -->
-        <div class="info-section">
-          <h2>Información del Departamento</h2>
-          <div class="amenities-grid">
-            {amenities.map((amenity) => (
-              <div class="amenity-item">
-                <img src={amenity.icon} alt={amenity.name} class="amenity-icon-large" />
-                <span class="amenity-name">{amenity.name}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <!-- Descripción -->
-        <div class="description-section">
-          <h2>Descripción</h2>
-          <p class="description-text">
-            Chaqana 2 ubicado en el Hotel Chaqana, ideal para parejas o viajeros que buscan comodidad con vista al mar.
-            Cuenta con una cama matrimonial, cocina completamente equipada, baño privado y todas las comodidades necesarias
-            para una estadía agradable. Disfruta de un espacio acogedor con acceso a WiFi de alta velocidad y televisión.
-          </p>
-        </div>
-
-        <!-- Políticas Básicas -->
-        <div class="policies-section">
-          <h2>Políticas Básicas</h2>
-          <div class="policies-list">
-            {policies.map((policy) => (
-              <div class="policy-item">
-                <span class="policy-icon">{policy.icon}</span>
-                <span>{policy.text}</span>
-              </div>
-            ))}
-          </div>
-          <div class="policy-warning">
-            <svg class="warning-icon" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
-            </svg>
-            <div>
-              <p><strong>NOTA IMPORTANTE:</strong></p>
-              <p>Ante cualquier acto irregular que afecte las normas del condominio, al personal, a otros huéspedes o propietarios, nos reservamos el derecho de dar por terminado el alquiler de manera inmediata. De ser necesario, solicitaremos el desalojo con el apoyo de la Policía Nacional, autorizando su ingreso a la habitación.</p>
+          <!-- Información del Departamento -->
+          <div class="info-section">
+            <h2>Información del Departamento</h2>
+            <div class="amenities-grid">
+              {
+                amenities.map((amenity) => (
+                  <div class="amenity-item">
+                    <img
+                      src={amenity.icon}
+                      alt={amenity.name}
+                      class="amenity-icon-large"
+                    />
+                    <span class="amenity-name">{amenity.name}</span>
+                  </div>
+                ))
+              }
             </div>
           </div>
-        </div>
 
+          <!-- Descripción -->
+          <div class="description-section">
+            <h2>Descripción</h2>
+            <p class="description-text">
+              Chaqana 2 ubicado en el Hotel Chaqana, ideal para parejas o
+              viajeros que buscan comodidad con vista al mar. Cuenta con una
+              cama matrimonial, cocina completamente equipada, baño privado y
+              todas las comodidades necesarias para una estadía agradable.
+              Disfruta de un espacio acogedor con acceso a WiFi de alta
+              velocidad y televisión.
+            </p>
+          </div>
+
+          <!-- Políticas Básicas -->
+          <div class="policies-section">
+            <h2>Políticas Básicas</h2>
+            <div class="policies-list">
+              {
+                policies.map((policy) => (
+                  <div class="policy-item">
+                    <span class="policy-icon">{policy.icon}</span>
+                    <span>{policy.text}</span>
+                  </div>
+                ))
+              }
+            </div>
+            <div class="policy-warning">
+              <svg class="warning-icon" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"
+                ></path>
+              </svg>
+              <div>
+                <p><strong>NOTA IMPORTANTE:</strong></p>
+                <p>
+                  Ante cualquier acto irregular que afecte las normas del
+                  condominio, al personal, a otros huéspedes o propietarios, nos
+                  reservamos el derecho de dar por terminado el alquiler de
+                  manera inmediata. De ser necesario, solicitaremos el desalojo
+                  con el apoyo de la Policía Nacional, autorizando su ingreso a
+                  la habitación.
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
 
         <!-- Sidebar de reserva -->
@@ -150,24 +188,55 @@ const policies = [
               rel="noopener"
               class="reserve-button"
             >
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"
+                ></path>
               </svg>
               Reservar
             </a>
 
             <div class="contact-info">
               <p class="info-title">¿Tienes preguntas?</p>
-              <a href="mailto:reservas@hospedajesalinas.com" class="contact-link">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <a
+                href="mailto:reservas@hospedajesalinas.com"
+                class="contact-link"
+              >
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                  ></path>
                   <polyline points="22,6 12,13 2,6"></polyline>
                 </svg>
                 reservas@hospedajesalinas.com
               </a>
-              <a href="https://wa.me/593996779325" target="_blank" rel="noopener" class="contact-link">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+              <a
+                href="https://wa.me/593996779325"
+                target="_blank"
+                rel="noopener"
+                class="contact-link"
+              >
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"
+                  ></path>
                 </svg>
                 +593 99 677 9325
               </a>
@@ -178,6 +247,47 @@ const policies = [
     </section>
   </div>
 </Layout>
+
+<!-- Mobile Bottom Bar -->
+<div class="mobile-bottom-bar">
+  <div class="mobile-contact-info">
+    <a href="mailto:reservas@hospedajesalinas.com" class="mobile-contact-link">
+      <svg
+        width="16"
+        height="16"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <path
+          d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c-1.1 0-2 .9-2 2-2z"
+        ></path>
+        <polyline points="22,6 12,13 2,6"></polyline>
+      </svg>
+    </a>
+    <a
+      href="https://wa.me/593996779325"
+      target="_blank"
+      rel="noopener"
+      class="mobile-contact-link"
+    >
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+        <path
+          d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"
+        ></path>
+      </svg>
+    </a>
+  </div>
+  <a
+    href="https://wubook.net/nneb/bk?f=today&n=1&ep=7fabf176&rtag=V53&o=1.0.0.0"
+    target="_blank"
+    rel="noopener"
+    class="mobile-reserve-btn"
+  >
+    Reservar
+  </a>
+</div>
 
 <style>
   .hotel-detail {
@@ -197,7 +307,7 @@ const policies = [
 
   .hotel-title {
     font-size: clamp(2.5rem, 5vw, 4rem);
-    background: linear-gradient(135deg, #0EA5E9, #22D3EE, #FFFFFF);
+    background: linear-gradient(135deg, #0ea5e9, #22d3ee, #ffffff);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -234,14 +344,17 @@ const policies = [
     height: 600px;
     border-radius: 20px;
     overflow: hidden;
-    background:
-      radial-gradient(ellipse at center, rgba(14, 165, 233, 0.08) 0%, rgba(0,0,0,0.95) 70%),
+    background: radial-gradient(
+        ellipse at center,
+        rgba(14, 165, 233, 0.08) 0%,
+        rgba(0, 0, 0, 0.95) 70%
+      ),
       linear-gradient(135deg, #0a0a0a 0%, #050505 50%, #0a0a0a 100%);
     margin-bottom: 1rem;
     box-shadow:
-      0 25px 70px rgba(0,0,0,0.7),
+      0 25px 70px rgba(0, 0, 0, 0.7),
       0 0 0 1px rgba(14, 165, 233, 0.2),
-      inset 0 0 60px rgba(0,0,0,0.4);
+      inset 0 0 60px rgba(0, 0, 0, 0.4);
   }
 
   .main-image {
@@ -285,7 +398,7 @@ const policies = [
     max-height: 95%;
     object-fit: contain;
     border-radius: 8px;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
   }
 
   .image-modal-close {
@@ -308,7 +421,7 @@ const policies = [
   }
 
   .image-modal-close:hover {
-    background: #FF6B35;
+    background: #ff6b35;
     transform: rotate(90deg);
   }
 
@@ -334,7 +447,7 @@ const policies = [
 
   .modal-nav-btn:hover {
     background: rgba(14, 165, 233, 0.8);
-    border-color: #0EA5E9;
+    border-color: #0ea5e9;
     transform: translateY(-50%) scale(1.1);
   }
 
@@ -400,17 +513,17 @@ const policies = [
     border: 2px solid rgba(255, 255, 255, 0.1);
     transition: all 0.3s ease;
     flex-shrink: 0;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
   }
 
   .thumbnail:hover {
     transform: translateY(-2px);
-    border-color: #0EA5E9;
+    border-color: #0ea5e9;
     box-shadow: 0 8px 20px rgba(14, 165, 233, 0.4);
   }
 
   .thumbnail.active {
-    border-color: #FF6B35;
+    border-color: #ff6b35;
     transform: translateY(-2px);
     box-shadow: 0 8px 20px rgba(255, 107, 53, 0.5);
   }
@@ -459,7 +572,7 @@ const policies = [
     padding: 1.5rem;
     background: rgba(255, 255, 255, 0.05);
     border-radius: 12px;
-    border-left: 4px solid #0EA5E9;
+    border-left: 4px solid #0ea5e9;
   }
 
   /* Amenity Icon Large */
@@ -484,18 +597,26 @@ const policies = [
     text-align: center;
     gap: 1rem;
     padding: 1.5rem;
-    background: linear-gradient(135deg, rgba(14, 165, 233, 0.1), rgba(255, 107, 53, 0.05));
+    background: linear-gradient(
+      135deg,
+      rgba(14, 165, 233, 0.1),
+      rgba(255, 107, 53, 0.05)
+    );
     border-radius: 16px;
     border: 1px solid rgba(255, 255, 255, 0.1);
     transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
   }
 
   .amenity-item:hover {
-    border-color: #0EA5E9;
+    border-color: #0ea5e9;
     transform: translateY(-5px);
     box-shadow: 0 12px 35px rgba(14, 165, 233, 0.3);
-    background: linear-gradient(135deg, rgba(14, 165, 233, 0.15), rgba(255, 107, 53, 0.08));
+    background: linear-gradient(
+      135deg,
+      rgba(14, 165, 233, 0.15),
+      rgba(255, 107, 53, 0.08)
+    );
   }
 
   .amenity-name {
@@ -519,20 +640,20 @@ const policies = [
     border: 1px solid rgba(255, 255, 255, 0.08);
     color: #b0b0b0;
     transition: all 0.3s ease;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   }
 
   .feature-item:hover {
     background: rgba(255, 255, 255, 0.08);
     border-color: rgba(14, 165, 233, 0.3);
     transform: translateX(5px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   }
 
   .check-icon {
     width: 20px;
     height: 20px;
-    color: #10B981;
+    color: #10b981;
     flex-shrink: 0;
   }
 
@@ -543,20 +664,28 @@ const policies = [
   }
 
   .space-card {
-    background: linear-gradient(135deg, rgba(14, 165, 233, 0.1), rgba(255, 107, 53, 0.05));
+    background: linear-gradient(
+      135deg,
+      rgba(14, 165, 233, 0.1),
+      rgba(255, 107, 53, 0.05)
+    );
     padding: 2.5rem 2rem;
     border-radius: 16px;
     text-align: center;
     border: 1px solid rgba(255, 255, 255, 0.1);
     transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
   }
 
   .space-card:hover {
-    border-color: #0EA5E9;
+    border-color: #0ea5e9;
     transform: translateY(-8px);
     box-shadow: 0 15px 40px rgba(14, 165, 233, 0.3);
-    background: linear-gradient(135deg, rgba(14, 165, 233, 0.15), rgba(255, 107, 53, 0.08));
+    background: linear-gradient(
+      135deg,
+      rgba(14, 165, 233, 0.15),
+      rgba(255, 107, 53, 0.08)
+    );
   }
 
   .space-icon {
@@ -590,14 +719,14 @@ const policies = [
     border: 1px solid rgba(255, 255, 255, 0.08);
     color: #b0b0b0;
     transition: all 0.3s ease;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   }
 
   .policy-item:hover {
     background: rgba(255, 255, 255, 0.08);
     border-color: rgba(14, 165, 233, 0.3);
     transform: translateX(5px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   }
 
   .policy-icon {
@@ -610,9 +739,13 @@ const policies = [
     align-items: flex-start;
     gap: 1rem;
     padding: 1.5rem;
-    background: linear-gradient(135deg, rgba(220, 38, 38, 0.2), rgba(185, 28, 28, 0.15));
+    background: linear-gradient(
+      135deg,
+      rgba(220, 38, 38, 0.2),
+      rgba(185, 28, 28, 0.15)
+    );
     border-radius: 12px;
-    border-left: 4px solid #DC2626;
+    border-left: 4px solid #dc2626;
     margin-top: 2rem;
     border: 2px solid rgba(220, 38, 38, 0.3);
   }
@@ -620,20 +753,20 @@ const policies = [
   .warning-icon {
     width: 28px;
     height: 28px;
-    color: #DC2626;
+    color: #dc2626;
     flex-shrink: 0;
     margin-top: 0.2rem;
   }
 
   .policy-warning p {
-    color: #FCA5A5;
+    color: #fca5a5;
     font-size: 1rem;
     line-height: 1.6;
     margin: 0;
   }
 
   .policy-warning strong {
-    color: #FEE2E2;
+    color: #fee2e2;
     font-weight: 800;
     text-shadow: 0 0 10px rgba(220, 38, 38, 0.5);
   }
@@ -656,33 +789,37 @@ const policies = [
   }
 
   .policies-compact {
-    background: linear-gradient(145deg, rgba(14, 165, 233, 0.15), rgba(255, 107, 53, 0.08));
+    background: linear-gradient(
+      145deg,
+      rgba(14, 165, 233, 0.15),
+      rgba(255, 107, 53, 0.08)
+    );
     border: 1px solid rgba(14, 165, 233, 0.25);
     border-radius: 24px;
     padding: 2rem 1.8rem;
     box-shadow:
       0 15px 50px rgba(14, 165, 233, 0.2),
-      0 8px 30px rgba(0,0,0,0.5),
+      0 8px 30px rgba(0, 0, 0, 0.5),
       inset 0 1px 0 rgba(255, 255, 255, 0.1);
     position: relative;
     overflow: hidden;
   }
 
   .policies-compact::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     height: 3px;
-    background: linear-gradient(90deg, #0EA5E9, #22D3EE, #FF6B35);
+    background: linear-gradient(90deg, #0ea5e9, #22d3ee, #ff6b35);
     opacity: 0.7;
   }
 
   .policies-compact-title {
     font-size: 1.3rem;
     font-weight: 700;
-    background: linear-gradient(135deg, #0EA5E9, #22D3EE);
+    background: linear-gradient(135deg, #0ea5e9, #22d3ee);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -705,7 +842,7 @@ const policies = [
     border-radius: 14px;
     border: 1px solid rgba(14, 165, 233, 0.15);
     transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
     backdrop-filter: blur(10px);
   }
 
@@ -719,7 +856,7 @@ const policies = [
   .policy-emoji-icon {
     font-size: 1.5rem;
     flex-shrink: 0;
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
   }
 
   .policy-compact-text {
@@ -740,26 +877,30 @@ const policies = [
   }
 
   .booking-card {
-    background: linear-gradient(145deg, rgba(14, 165, 233, 0.15), rgba(255, 107, 53, 0.08));
+    background: linear-gradient(
+      145deg,
+      rgba(14, 165, 233, 0.15),
+      rgba(255, 107, 53, 0.08)
+    );
     border: 1px solid rgba(14, 165, 233, 0.25);
     border-radius: 24px;
     padding: 2.5rem 2rem;
     box-shadow:
       0 15px 50px rgba(14, 165, 233, 0.2),
-      0 8px 30px rgba(0,0,0,0.5),
+      0 8px 30px rgba(0, 0, 0, 0.5),
       inset 0 1px 0 rgba(255, 255, 255, 0.1);
     position: relative;
     overflow: hidden;
   }
 
   .booking-card::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     height: 3px;
-    background: linear-gradient(90deg, #FF6B35, #0EA5E9, #22D3EE);
+    background: linear-gradient(90deg, #ff6b35, #0ea5e9, #22d3ee);
     opacity: 0.7;
   }
 
@@ -769,7 +910,7 @@ const policies = [
     justify-content: center;
     gap: 0.8rem;
     width: 100%;
-    background: linear-gradient(145deg, #FF6B35, #FF8A50, #FFB469);
+    background: linear-gradient(145deg, #ff6b35, #ff8a50, #ffb469);
     color: white;
     border: none;
     padding: 1.3rem;
@@ -787,13 +928,18 @@ const policies = [
   }
 
   .reserve-button::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.2),
+      transparent
+    );
     transition: left 0.5s;
   }
 
@@ -828,7 +974,7 @@ const policies = [
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    color: #0EA5E9;
+    color: #0ea5e9;
     text-decoration: none;
     margin-bottom: 0.8rem;
     font-size: 0.95rem;
@@ -920,8 +1066,11 @@ const policies = [
       border-radius: 16px;
       margin-bottom: 0.6rem;
       box-sizing: border-box;
-      background:
-        radial-gradient(ellipse at center, rgba(14, 165, 233, 0.05) 0%, rgba(0,0,0,0.98) 60%),
+      background: radial-gradient(
+          ellipse at center,
+          rgba(14, 165, 233, 0.05) 0%,
+          rgba(0, 0, 0, 0.98) 60%
+        ),
         #000;
     }
 
@@ -945,7 +1094,7 @@ const policies = [
     .thumbnails-scroll {
       gap: 0.4rem;
       scrollbar-width: thin;
-      scrollbar-color: #0EA5E9 transparent;
+      scrollbar-color: #0ea5e9 transparent;
       padding: 0.3rem 0;
       max-width: 100%;
       width: 100%;
@@ -964,7 +1113,7 @@ const policies = [
     }
 
     .thumbnails-scroll::-webkit-scrollbar-thumb {
-      background: #0EA5E9;
+      background: #0ea5e9;
       border-radius: 2px;
     }
 
@@ -1074,6 +1223,95 @@ const policies = [
     }
   }
 
+  @media (max-width: 768px) {
+    .modal-nav-btn {
+      display: none;
+    }
+
+    .sidebar-booking {
+      display: none;
+    }
+
+    /* Mobile Bottom Bar Styles */
+    .mobile-bottom-bar {
+      display: flex;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(10, 10, 10, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 1rem 1.5rem;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.5);
+      box-sizing: border-box;
+      animation: slideUp 0.5s ease-out;
+    }
+
+    .mobile-contact-info {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .mobile-contact-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .mobile-contact-link:hover {
+      background: rgba(57, 185, 252, 0.2);
+      border-color: #39b9fc;
+      color: #39b9fc;
+    }
+
+    .mobile-reserve-btn {
+      background: linear-gradient(145deg, #ff6b35, #ff8a50);
+      color: white;
+      text-decoration: none;
+      padding: 0.8rem 2rem;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
+      transition: transform 0.2s;
+    }
+
+    .mobile-reserve-btn:active {
+      transform: scale(0.95);
+    }
+
+    /* Adjust padding for content to not be hidden by bar */
+    .hotel-detail {
+      padding-bottom: 80px;
+    }
+
+    @keyframes slideUp {
+      from {
+        transform: translateY(100%);
+      }
+      to {
+        transform: translateY(0);
+      }
+    }
+  }
+
+  @media (min-width: 769px) {
+    .mobile-bottom-bar {
+      display: none;
+    }
+  }
+
   @media (max-width: 480px) {
     .hero-title {
       font-size: 1.8rem;
@@ -1122,7 +1360,7 @@ const policies = [
     }
 
     .amenities-grid {
-      grid-template-columns: 1fr;
+      grid-template-columns: repeat(2, 1fr);
       gap: 0.8rem;
     }
 
@@ -1152,12 +1390,12 @@ const policies = [
 </style>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const mainImages = document.querySelectorAll('.main-image');
-    const thumbnails = document.querySelectorAll('.thumbnail');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-    const thumbnailsScroll = document.getElementById('thumbnailsScroll');
+  document.addEventListener("DOMContentLoaded", () => {
+    const mainImages = document.querySelectorAll(".main-image");
+    const thumbnails = document.querySelectorAll(".thumbnail");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+    const thumbnailsScroll = document.getElementById("thumbnailsScroll");
     let currentIndex = 0;
     let autoplayInterval: ReturnType<typeof setInterval> | null = null;
     const loadedImages = new Set<number>([0]); // Primera imagen ya cargada
@@ -1167,7 +1405,7 @@ const policies = [
       if (loadedImages.has(index)) return;
 
       const imgElement = mainImages[index] as HTMLImageElement;
-      const dataSrc = imgElement.getAttribute('data-src');
+      const dataSrc = imgElement.getAttribute("data-src");
 
       if (dataSrc && !imgElement.src) {
         imgElement.src = dataSrc;
@@ -1189,11 +1427,11 @@ const policies = [
       loadImage(index);
       preloadNearbyImages(index);
 
-      mainImages.forEach(img => img.classList.remove('active'));
-      thumbnails.forEach(thumb => thumb.classList.remove('active'));
+      mainImages.forEach((img) => img.classList.remove("active"));
+      thumbnails.forEach((thumb) => thumb.classList.remove("active"));
 
-      mainImages[index].classList.add('active');
-      thumbnails[index].classList.add('active');
+      mainImages[index].classList.add("active");
+      thumbnails[index].classList.add("active");
 
       // Scroll thumbnail into view without scrolling the page
       if (scroll) {
@@ -1202,8 +1440,12 @@ const policies = [
         if (container && thumbnail) {
           const containerRect = container.getBoundingClientRect();
           const thumbnailRect = thumbnail.getBoundingClientRect();
-          const scrollLeft = thumbnail.offsetLeft - container.offsetLeft - (containerRect.width / 2) + (thumbnailRect.width / 2);
-          container.scrollTo({ left: scrollLeft, behavior: 'smooth' });
+          const scrollLeft =
+            thumbnail.offsetLeft -
+            container.offsetLeft -
+            containerRect.width / 2 +
+            thumbnailRect.width / 2;
+          container.scrollTo({ left: scrollLeft, behavior: "smooth" });
         }
       }
     }
@@ -1230,7 +1472,7 @@ const policies = [
     }
 
     thumbnails.forEach((thumb, index) => {
-      thumb.addEventListener('click', () => {
+      thumb.addEventListener("click", () => {
         currentIndex = index;
         showImage(currentIndex, true);
         stopAutoplay();
@@ -1239,28 +1481,30 @@ const policies = [
     });
 
     // Click en imagen principal para ver fullscreen
-    const imageModal = document.getElementById('imageModal');
-    const modalImage = document.getElementById('modalImage') as HTMLImageElement;
-    const closeModal = document.getElementById('closeModal');
-    const modalPrevBtn = document.getElementById('modalPrevBtn');
-    const modalNextBtn = document.getElementById('modalNextBtn');
+    const imageModal = document.getElementById("imageModal");
+    const modalImage = document.getElementById(
+      "modalImage",
+    ) as HTMLImageElement;
+    const closeModal = document.getElementById("closeModal");
+    const modalPrevBtn = document.getElementById("modalPrevBtn");
+    const modalNextBtn = document.getElementById("modalNextBtn");
     let modalCurrentIndex = 0;
 
     function showModalImage(index: number) {
       modalCurrentIndex = index;
       const imgElement = mainImages[index] as HTMLImageElement;
-      const imgSrc = imgElement.src || imgElement.getAttribute('data-src');
+      const imgSrc = imgElement.src || imgElement.getAttribute("data-src");
       if (imgSrc && modalImage) {
         modalImage.src = imgSrc;
       }
     }
 
     mainImages.forEach((img, index) => {
-      img.addEventListener('click', () => {
+      img.addEventListener("click", () => {
         if (modalImage && imageModal) {
           showModalImage(index);
-          imageModal.classList.add('active');
-          document.body.style.overflow = 'hidden';
+          imageModal.classList.add("active");
+          document.body.style.overflow = "hidden";
           stopAutoplay();
         }
       });
@@ -1268,15 +1512,16 @@ const policies = [
 
     // Navegación en modal
     if (modalPrevBtn) {
-      modalPrevBtn.addEventListener('click', (e) => {
+      modalPrevBtn.addEventListener("click", (e) => {
         e.stopPropagation();
-        modalCurrentIndex = (modalCurrentIndex - 1 + mainImages.length) % mainImages.length;
+        modalCurrentIndex =
+          (modalCurrentIndex - 1 + mainImages.length) % mainImages.length;
         showModalImage(modalCurrentIndex);
       });
     }
 
     if (modalNextBtn) {
-      modalNextBtn.addEventListener('click', (e) => {
+      modalNextBtn.addEventListener("click", (e) => {
         e.stopPropagation();
         modalCurrentIndex = (modalCurrentIndex + 1) % mainImages.length;
         showModalImage(modalCurrentIndex);
@@ -1284,45 +1529,46 @@ const policies = [
     }
 
     if (closeModal && imageModal) {
-      closeModal.addEventListener('click', (e) => {
+      closeModal.addEventListener("click", (e) => {
         e.stopPropagation();
-        imageModal.classList.remove('active');
-        document.body.style.overflow = 'auto';
+        imageModal.classList.remove("active");
+        document.body.style.overflow = "auto";
         startAutoplay();
       });
 
-      imageModal.addEventListener('click', () => {
-        imageModal.classList.remove('active');
-        document.body.style.overflow = 'auto';
+      imageModal.addEventListener("click", () => {
+        imageModal.classList.remove("active");
+        document.body.style.overflow = "auto";
         startAutoplay();
       });
     }
 
     // Cerrar con tecla ESC y navegar con flechas
-    document.addEventListener('keydown', (e) => {
-      if (imageModal?.classList.contains('active')) {
-        if (e.key === 'Escape') {
-          imageModal.classList.remove('active');
-          document.body.style.overflow = 'auto';
+    document.addEventListener("keydown", (e) => {
+      if (imageModal?.classList.contains("active")) {
+        if (e.key === "Escape") {
+          imageModal.classList.remove("active");
+          document.body.style.overflow = "auto";
           startAutoplay();
-        } else if (e.key === 'ArrowLeft') {
-          modalCurrentIndex = (modalCurrentIndex - 1 + mainImages.length) % mainImages.length;
+        } else if (e.key === "ArrowLeft") {
+          modalCurrentIndex =
+            (modalCurrentIndex - 1 + mainImages.length) % mainImages.length;
           showModalImage(modalCurrentIndex);
-        } else if (e.key === 'ArrowRight') {
+        } else if (e.key === "ArrowRight") {
           modalCurrentIndex = (modalCurrentIndex + 1) % mainImages.length;
           showModalImage(modalCurrentIndex);
         }
       }
     });
 
-    prevBtn?.addEventListener('click', () => {
+    prevBtn?.addEventListener("click", () => {
       currentIndex = (currentIndex - 1 + mainImages.length) % mainImages.length;
       showImage(currentIndex, true);
       stopAutoplay();
       startAutoplay();
     });
 
-    nextBtn?.addEventListener('click', () => {
+    nextBtn?.addEventListener("click", () => {
       currentIndex = (currentIndex + 1) % mainImages.length;
       showImage(currentIndex, true);
       stopAutoplay();
@@ -1336,38 +1582,37 @@ const policies = [
     startAutoplay();
 
     // Pause autoplay on hover
-    const mainImageContainer = document.querySelector('.main-image-container');
+    const mainImageContainer = document.querySelector(".main-image-container");
     if (mainImageContainer) {
-      mainImageContainer.addEventListener('mouseenter', stopAutoplay);
-      mainImageContainer.addEventListener('mouseleave', startAutoplay);
+      mainImageContainer.addEventListener("mouseenter", stopAutoplay);
+      mainImageContainer.addEventListener("mouseleave", startAutoplay);
     }
 
     // Limpiar intervalo cuando se cierra/recarga la página
-    window.addEventListener('beforeunload', () => {
+    window.addEventListener("beforeunload", () => {
       stopAutoplay();
     });
 
     // Ajustar object-fit según orientación de imagen
     mainImages.forEach((img) => {
       const imgElement = img as HTMLImageElement;
-      imgElement.addEventListener('load', function() {
+      imgElement.addEventListener("load", function () {
         if (this.naturalWidth > this.naturalHeight) {
           // Imagen horizontal - usar cover
-          this.style.objectFit = 'cover';
+          this.style.objectFit = "cover";
         } else {
           // Imagen vertical - usar contain
-          this.style.objectFit = 'contain';
+          this.style.objectFit = "contain";
         }
       });
       // Verificar si ya está cargada
       if (imgElement.complete) {
         if (imgElement.naturalWidth > imgElement.naturalHeight) {
-          imgElement.style.objectFit = 'cover';
+          imgElement.style.objectFit = "cover";
         } else {
-          imgElement.style.objectFit = 'contain';
+          imgElement.style.objectFit = "contain";
         }
       }
     });
   });
 </script>
-</Layout>
