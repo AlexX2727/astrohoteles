@@ -1,39 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
-  <defs>
-    <linearGradient id="wifiGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
-    </linearGradient>
-    <filter id="shadow">
-      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000" flood-opacity="0.3"/>
-    </filter>
-  </defs>
-
-  <!-- Circle background -->
-  <circle cx="32" cy="32" r="28" fill="url(#wifiGrad)" filter="url(#shadow)"/>
-
-  <!-- WiFi arcs in white -->
-  <path d="M 14 40 A 18 18 0 0 1 50 40"
-        stroke="#ffffff"
-        stroke-width="4"
-        stroke-linecap="round"
-        fill="none"
-        opacity="0.4"/>
-
-  <path d="M 19 42 A 13 13 0 0 1 45 42"
-        stroke="#ffffff"
-        stroke-width="4"
-        stroke-linecap="round"
-        fill="none"
-        opacity="0.6"/>
-
-  <path d="M 24 44 A 8 8 0 0 1 40 44"
-        stroke="#ffffff"
-        stroke-width="4"
-        stroke-linecap="round"
-        fill="none"
-        opacity="0.9"/>
-
-  <!-- Center dot -->
-  <circle cx="32" cy="48" r="3.5" fill="#ffffff"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#4a9abb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M5 12.55a11 11 0 0 1 14.08 0"/>
+  <path d="M1.42 9a16 16 0 0 1 21.16 0"/>
+  <path d="M8.53 16.11a6 6 0 0 1 6.95 0"/>
+  <circle cx="12" cy="20" r="1" fill="#4a9abb"/>
 </svg>

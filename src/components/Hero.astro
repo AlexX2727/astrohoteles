@@ -55,7 +55,7 @@
     justify-content: center;
     text-align: center;
     overflow: hidden;
-    background-color: #000;
+    background-color: #080a0f;
   }
 
   /* Fondo */
@@ -66,7 +66,7 @@
     right: 0;
     bottom: 0;
     z-index: 0;
-    background-color: #000;
+    background-color: #080a0f;
   }
 
   /* Carrusel de imágenes automático */
@@ -87,14 +87,14 @@
     bottom: 0;
     opacity: 0;
     transition:
-      opacity 1.5s ease-in-out,
-      transform 6s ease-out;
+      opacity 1.8s cubic-bezier(0.4, 0, 0.2, 1),
+      transform 7s ease-out;
     transform: scale(1);
   }
 
   .carousel-item.active {
     opacity: 1;
-    transform: scale(1.1); /* Ken Burns effect */
+    transform: scale(1.08); /* Ken Burns effect - slightly subtler */
   }
 
   .carousel-item img {
@@ -112,13 +112,13 @@
     left: 0;
     right: 0;
     bottom: 0;
-    /* Improved gradient for better text readability and aesthetic */
+    /* Refined gradient with warm, muted tones */
     background: linear-gradient(
       to bottom,
-      rgba(0, 0, 0, 0.3) 0%,
-      rgba(14, 165, 233, 0.1) 40%,
-      rgba(255, 107, 53, 0.1) 60%,
-      rgba(0, 0, 0, 0.7) 100%
+      rgba(8, 10, 15, 0.35) 0%,
+      rgba(74, 154, 187, 0.06) 35%,
+      rgba(224, 112, 64, 0.04) 55%,
+      rgba(8, 10, 15, 0.75) 100%
     );
     z-index: 2;
   }
@@ -146,15 +146,15 @@
   }
 
   .word-alquileres {
-    color: #ffffff;
+    color: #e8ecf1;
     text-shadow: 0 5px 10px rgba(0, 0, 0, 0.9);
     filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.8));
   }
 
   .word-turisticos {
-    color: #5a9fd4;
+    color: #4a9abb;
     text-shadow: 0 5px 10px rgba(0, 0, 0, 0.9);
-    filter: drop-shadow(0 4px 12px rgba(90, 159, 212, 0.8));
+    filter: drop-shadow(0 4px 12px rgba(74, 154, 187, 0.5));
   }
 
   /* Flecha scroll */
@@ -163,30 +163,32 @@
     bottom: 2rem;
     left: 50%;
     transform: translateX(-50%);
-    color: #0ea5e9;
-    animation: bounce 2s infinite;
+    color: #4a9abb;
+    animation: bounce 2.5s ease-in-out infinite;
     cursor: pointer;
     z-index: 3;
-    transition: all 0.3s ease;
-    background: rgba(255, 255, 255, 0.1);
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    background: rgba(255, 255, 255, 0.06);
     padding: 1rem;
     border-radius: 50%;
-    backdrop-filter: blur(8px);
-    border: 1px solid rgba(14, 165, 233, 0.3);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(74, 154, 187, 0.2);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
   }
 
   .scroll-indicator:hover {
-    color: #fff;
-    background: rgba(14, 165, 233, 0.8);
-    transform: translateX(-50%) scale(1.1);
-    box-shadow: 0 6px 20px rgba(14, 165, 233, 0.4);
+    color: #e8ecf1;
+    background: rgba(74, 154, 187, 0.25);
+    transform: translateX(-50%) scale(1.08);
+    box-shadow: 0 8px 30px rgba(74, 154, 187, 0.2);
+    border-color: rgba(74, 154, 187, 0.4);
   }
 
   .scroll-indicator svg {
     width: 3.5rem;
     height: 3.5rem;
-    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
   }
 
   @keyframes bounce {
@@ -239,10 +241,10 @@
     .hero-overlay {
       background: linear-gradient(
         to bottom,
-        rgba(0, 0, 0, 0.2) 0%,
-        rgba(14, 165, 233, 0.1) 30%,
-        rgba(255, 107, 53, 0.1) 60%,
-        rgba(0, 0, 0, 0.6) 100%
+        rgba(8, 10, 15, 0.25) 0%,
+        rgba(74, 154, 187, 0.05) 30%,
+        rgba(224, 112, 64, 0.04) 60%,
+        rgba(8, 10, 15, 0.65) 100%
       );
     }
   }

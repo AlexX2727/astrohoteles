@@ -16,6 +16,9 @@ const { title } = Astro.props;
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <title>{title}</title>
 
 </head>
@@ -88,11 +91,33 @@ const { title } = Astro.props;
     box-sizing: border-box;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
-    background-color: #000;
-    color: #fff;
-    font-family: 'Arial', sans-serif;
+    background-color: #080a0f;
+    color: #e8ecf1;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 1.6;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0c0e14;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #1e2738;
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #2a3548;
   }
 
   /* Evitar scroll cuando el menú está abierto */
@@ -104,10 +129,11 @@ const { title } = Astro.props;
   .nav-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,0.6);
+    background: rgba(6, 8, 12, 0.7);
+    backdrop-filter: blur(4px);
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.4s ease;
     z-index: 900;
   }
   .nav-overlay.active {
@@ -133,47 +159,59 @@ const { title } = Astro.props;
   .contact-modal-dialog {
     position: relative;
     width: min(92vw, 420px);
-    background: #0b0b0c;
-    border: 1px solid #2a2a2a;
-    border-radius: 14px;
+    background: #0e1118;
+    border: 1px solid #1e2738;
+    border-radius: 18px;
     overflow: hidden;
-    box-shadow: 0 12px 40px rgba(0,0,0,0.55);
+    box-shadow: 0 16px 48px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.03);
     pointer-events: auto;
-    animation: slideUp .25s ease-out;
+    animation: contactSlideUp .3s cubic-bezier(0.16, 1, 0.3, 1);
   }
-  @keyframes slideUp { from { transform: translateY(12px); opacity: .8; } to { transform: translateY(0); opacity: 1; } }
-.contact-header {
-    background: radial-gradient(120% 120% at 0% 0%, rgba(14,165,233,0.25), transparent),
-                linear-gradient(135deg, rgba(14,165,233,0.25), rgba(255,107,53,0.15));
-    padding: 14px 16px;
-    border-bottom: 1px solid #2a2a2a;
-  }
-  .contact-header h3 { margin: 0 0 4px 0; color: #fff; }
-  .contact-header p { margin: 0; color: #b3c0ca; font-size: 0.9rem; }
+  @keyframes contactSlideUp { from { transform: translateY(16px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
 
-.contact-body { padding: 10px 10px; display: grid; gap: 8px; }
+  .contact-header {
+    background: linear-gradient(135deg, rgba(74,154,187,0.12), rgba(224,112,64,0.06));
+    padding: 18px 20px;
+    border-bottom: 1px solid #1e2738;
+  }
+  .contact-header h3 { margin: 0 0 4px 0; color: #e8ecf1; font-weight: 700; font-size: 1.1rem; }
+  .contact-header p { margin: 0; color: #94a3b8; font-size: 0.88rem; }
+
+  .contact-body { padding: 12px; display: grid; gap: 8px; }
   .contact-item {
     display: flex; gap: 12px; align-items: center; text-decoration: none;
-    background: #121212; border: 1px solid #2a2a2a; border-radius: 10px;
-    padding: 12px 14px; color: #e5e7eb; transition: border-color .2s, transform .2s;
+    background: rgba(255,255,255,0.02); border: 1px solid #1e2738; border-radius: 12px;
+    padding: 14px 16px; color: #c8d1dc; transition: all .3s cubic-bezier(0.4, 0, 0.2, 1);
   }
-  .contact-item:hover { border-color: #0EA5E9; transform: translateY(-2px); }
-  .contact-icon { font-size: 1.3rem; filter: drop-shadow(0 2px 4px rgba(0,0,0,.4)); }
+  .contact-item:hover { border-color: #4a9abb; transform: translateY(-2px); background: rgba(74,154,187,0.06); }
+  .contact-icon { font-size: 1.3rem; filter: drop-shadow(0 2px 4px rgba(0,0,0,.3)); }
 
-.contact-close {
-    position: absolute; top: 10px; right: 10px;
+  .contact-close {
+    position: absolute; top: 12px; right: 12px;
     width: 32px; height: 32px; border-radius: 50%;
-    border: 1px solid #2a2a2a; background: rgba(0,0,0,0.6); color: #fff;
-    cursor: pointer;
+    border: 1px solid #1e2738; background: rgba(8,10,15,0.8); color: #94a3b8;
+    cursor: pointer; transition: all 0.2s ease;
+    display: flex; align-items: center; justify-content: center; font-size: 1.1rem;
   }
+  .contact-close:hover { background: #1e2738; color: #e8ecf1; }
 
   /* Header */
   .header {
     position: fixed;
     top: 0;
-            width: 100%;
-                background: #000000;    z-index: 1000;
-    padding: 0.1rem 1rem;
+    width: 100%;
+    background: rgba(8, 10, 15, 0.85);
+    backdrop-filter: blur(20px) saturate(1.2);
+    -webkit-backdrop-filter: blur(20px) saturate(1.2);
+    z-index: 1000;
+    padding: 0.4rem 1rem;
+    border-bottom: 1px solid rgba(30, 39, 56, 0.5);
+    transition: background 0.4s ease, box-shadow 0.4s ease;
+  }
+
+  .header.scrolled {
+    background: rgba(8, 10, 15, 0.95);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
   }
 
   .nav {
@@ -187,15 +225,16 @@ const { title } = Astro.props;
   .logo-link {
     display: block;
     text-decoration: none;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.3s ease, transform 0.3s ease;
   }
 
   .logo-link:hover {
-    opacity: 0.8;
+    opacity: 0.85;
+    transform: scale(1.02);
   }
 
   .logo-img {
-    height: 100px;
+    height: 70px;
     width: auto;
     display: block;
   }
@@ -203,17 +242,41 @@ const { title } = Astro.props;
   .nav-links {
     display: flex;
     list-style: none;
-    gap: 2rem;
+    gap: 2.5rem;
   }
 
   .nav-links a {
-    color: #fff;
+    color: #94a3b8;
     text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    letter-spacing: 0.4px;
+    position: relative;
+    padding: 0.3rem 0;
     transition: color 0.3s ease;
   }
 
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: #4a9abb;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 1px;
+  }
+
   .nav-links a:hover {
-    color: #0EA5E9;
+    color: #e8ecf1;
+  }
+
+  .nav-links a:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
   }
 
   .hamburger {
@@ -221,27 +284,35 @@ const { title } = Astro.props;
     flex-direction: column;
     cursor: pointer;
     padding: 0.5rem;
+    gap: 1px;
   }
 
   .hamburger span {
-    width: 25px;
-    height: 3px;
-    background: #fff;
+    width: 24px;
+    height: 2px;
+    background: #94a3b8;
     margin: 3px 0;
-    transition: 0.3s;
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
     border-radius: 2px;
+  }
+
+  .hamburger:hover span {
+    background: #e8ecf1;
   }
 
   .hamburger.active span:nth-child(1) {
     transform: rotate(-45deg) translate(-5px, 6px);
+    background: #e8ecf1;
   }
 
   .hamburger.active span:nth-child(2) {
     opacity: 0;
+    transform: translateX(10px);
   }
 
   .hamburger.active span:nth-child(3) {
     transform: rotate(45deg) translate(-5px, -6px);
+    background: #e8ecf1;
   }
 
   @media (max-width: 768px) {
@@ -251,7 +322,9 @@ const { title } = Astro.props;
       top: 0;
       left: 0;
       right: 0;
-      background: #000000;
+      background: rgba(8, 10, 15, 0.92);
+      backdrop-filter: blur(20px) saturate(1.2);
+      -webkit-backdrop-filter: blur(20px) saturate(1.2);
       z-index: 1100;
     }
 
@@ -269,12 +342,14 @@ const { title } = Astro.props;
       right: -80%;
       width: 80%;
       height: 100vh;
-      background: #000000;
+      background: rgba(10, 12, 18, 0.98);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
       flex-direction: column;
       padding: 2rem 1.5rem;
       gap: 1.5rem;
-      transition: right 0.3s ease;
-      border-left: 1px solid #333;
+      transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      border-left: 1px solid #1e2738;
       z-index: 1200;
       overflow-y: auto;
     }
@@ -284,17 +359,22 @@ const { title } = Astro.props;
     }
     
     .nav-links li {
-      border-bottom: 1px solid #333;
+      border-bottom: 1px solid rgba(30, 39, 56, 0.5);
       padding-bottom: 1rem;
     }
     
     .nav-links a {
       font-size: 1.1rem;
       font-weight: 500;
+      color: #c8d1dc;
+    }
+
+    .nav-links a::after {
+      display: none;
     }
 
     .logo-img {
-      height: 60px;
+      height: 50px;
     }
 
     .nav {
@@ -308,7 +388,7 @@ const { title } = Astro.props;
     }
 
     .logo-img {
-      height: 50px;
+      height: 42px;
     }
 
     .nav-links {

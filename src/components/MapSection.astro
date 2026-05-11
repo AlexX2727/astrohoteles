@@ -178,7 +178,7 @@ import {
 <style is:global>
   .map-section {
     min-height: 100vh;
-    background: #050505; /* Slightly lighter black for depth */
+    background: #080a0f;
   }
 
   .main-container {
@@ -189,34 +189,35 @@ import {
   /* Sidebar ahora ocupa todo el ancho */
   .sidebar {
     width: 100%;
-    background: #0a0a0a;
+    background: #0a0d14;
     overflow-y: auto;
     scrollbar-width: thin;
-    scrollbar-color: #333 #0a0a0a;
+    scrollbar-color: #1e2738 #0a0d14;
   }
 
   @media (min-width: 1200px) {
     .main-container {
-      max-width: 1600px; /* Wider container for better grid */
+      max-width: 1600px;
       margin: 0 auto;
       padding: 0 2rem;
     }
 
     .sidebar {
       border-radius: 24px;
-      border: 1px solid #222;
+      border: 1px solid #1e2738;
       margin-top: 2rem;
       margin-bottom: 2rem;
-      box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4);
     }
   }
 
   /* Filter Tabs */
   .filter-tabs {
     display: flex;
-    background: rgba(26, 26, 26, 0.95);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid #222;
+    background: rgba(12, 15, 22, 0.95);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid #1e2738;
     position: sticky;
     top: 0;
     z-index: 100;
@@ -224,39 +225,41 @@ import {
 
   .filter-tab {
     flex: 1;
-    padding: 1.2rem;
+    padding: 1.3rem 1.2rem;
     text-align: center;
     background: none;
     border: none;
-    color: #888;
+    color: #6b7a8d;
     cursor: pointer;
-    transition: all 0.3s ease;
-    font-size: 0.95rem;
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    font-size: 0.92rem;
     font-weight: 500;
+    font-family: 'Inter', sans-serif;
     position: relative;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.3px;
   }
 
   .filter-tab:hover {
-    color: #ccc;
+    color: #c8d1dc;
     background: rgba(255, 255, 255, 0.02);
   }
 
   .filter-tab.active {
-    color: #fff;
-    background: rgba(14, 165, 233, 0.05);
+    color: #e8ecf1;
+    background: rgba(74, 154, 187, 0.04);
   }
 
   .filter-tab::after {
     content: "";
     position: absolute;
     bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 3px;
-    background: #0ea5e9;
+    left: 10%;
+    width: 80%;
+    height: 2px;
+    background: linear-gradient(90deg, #4a9abb, #5db8d4);
     transform: scaleX(0);
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 1px;
   }
 
   .filter-tab.active::after {
@@ -270,7 +273,7 @@ import {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    transition: transform 0.3s ease;
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .filter-tab:hover .filter-tab-icon {
@@ -289,23 +292,23 @@ import {
     padding: 2.5rem 2.5rem 1.5rem 2.5rem;
     background: linear-gradient(
       180deg,
-      rgba(14, 165, 233, 0.08) 0%,
-      rgba(0, 0, 0, 0) 100%
+      rgba(74, 154, 187, 0.05) 0%,
+      rgba(8, 10, 15, 0) 100%
     );
-    border-bottom: 1px solid rgba(14, 165, 233, 0.2);
+    border-bottom: 1px solid rgba(30, 39, 56, 0.6);
   }
 
   .category-icon {
     width: 2.8rem;
     height: 2.8rem;
-    color: #0ea5e9;
+    color: #4a9abb;
     flex-shrink: 0;
   }
 
   .category-title {
     font-size: 2rem;
     font-weight: 800;
-    color: #fff;
+    color: #e8ecf1;
     margin: 0;
     letter-spacing: -0.5px;
   }
@@ -328,36 +331,36 @@ import {
   /* Accommodation Cards - Grid responsivo */
   .accommodation-list {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 2.5rem;
+    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+    gap: 2rem;
     padding: 2.5rem;
   }
 
   @media (max-width: 768px) {
     .accommodation-list {
       grid-template-columns: 1fr;
-      gap: 2rem;
+      gap: 1.8rem;
       padding: 1.5rem;
     }
   }
 
   .accommodation-card {
-    background: #141414;
-    border-radius: 20px;
+    background: #111520;
+    border-radius: 18px;
     overflow: hidden;
-    border: 1px solid #2a2a2a;
+    border: 1px solid #1e2738;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
     position: relative;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
   }
 
   .accommodation-card:hover {
-    border-color: #0ea5e9;
-    transform: translateY(-8px);
+    border-color: rgba(74, 154, 187, 0.5);
+    transform: translateY(-6px);
     box-shadow:
-      0 20px 40px rgba(0, 0, 0, 0.6),
-      0 0 0 1px rgba(14, 165, 233, 0.3);
+      0 20px 50px rgba(0, 0, 0, 0.5),
+      0 0 0 1px rgba(74, 154, 187, 0.15);
   }
 
   .card-image-container {
@@ -365,7 +368,7 @@ import {
     width: 100%;
     height: 240px;
     overflow: hidden;
-    background-color: #222;
+    background-color: #151a25;
   }
 
   .card-image {
@@ -380,7 +383,7 @@ import {
     z-index: 1;
     transition:
       opacity 1s ease,
-      transform 0.6s ease;
+      transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .card-image.active {
@@ -389,7 +392,7 @@ import {
   }
 
   .accommodation-card:hover .card-image {
-    transform: scale(1.05);
+    transform: scale(1.04);
   }
 
   /* ESTILOS CENTRADOS PARA CARDS */
@@ -406,24 +409,24 @@ import {
     z-index: 2 !important;
     background: linear-gradient(
       180deg,
-      rgba(20, 20, 20, 0) 0%,
-      rgba(20, 20, 20, 1) 100%
+      rgba(17, 21, 32, 0) 0%,
+      rgba(17, 21, 32, 1) 100%
     );
   }
 
   .accommodation-card .card-title-center {
     font-size: 1.1rem !important;
     font-weight: 700 !important;
-    color: #fff !important;
+    color: #e8ecf1 !important;
     margin: 0 0 1rem 0 !important;
     text-align: center !important;
     line-height: 1.4 !important;
-    letter-spacing: 0.3px !important;
+    letter-spacing: 0.2px !important;
   }
 
   .accommodation-card .card-amenities-icons-center {
     display: flex !important;
-    gap: 0.8rem !important;
+    gap: 0.7rem !important;
     justify-content: center !important;
     align-items: center !important;
     margin: 0.5rem 0 1.5rem 0 !important;
@@ -440,49 +443,89 @@ import {
     justify-content: center !important;
     width: 100% !important;
     max-width: 200px !important;
-    background: #ff6b35 !important;
+    background: #e07040 !important;
     color: white !important;
     border: none !important;
     padding: 12px 24px !important;
     border-radius: 12px !important;
     font-weight: 600 !important;
-    font-size: 0.9rem !important;
+    font-size: 0.88rem !important;
+    font-family: 'Inter', sans-serif !important;
     cursor: pointer !important;
     text-transform: uppercase !important;
-    letter-spacing: 1px !important;
-    transition: all 0.3s ease !important;
-    box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3) !important;
+    letter-spacing: 1.2px !important;
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    box-shadow: 0 4px 16px rgba(224, 112, 64, 0.2) !important;
   }
 
   .accommodation-card .reserve-btn-orange:hover,
   button.reserve-btn-orange:hover {
-    background: #ff5514 !important;
+    background: #c85e35 !important;
     transform: translateY(-2px) !important;
-    box-shadow: 0 8px 25px rgba(255, 107, 53, 0.5) !important;
+    box-shadow: 0 8px 28px rgba(224, 112, 64, 0.3) !important;
   }
 
-  /* ICONOS */
+  /* ICONOS — Clean, large, with hover tooltips */
   .accommodation-card .card-amenities-icons-center .amenity-icon {
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
-    padding: 8px !important;
-    border-radius: 10px !important;
+    padding: 10px !important;
+    border-radius: 12px !important;
     background: rgba(255, 255, 255, 0.05) !important;
-    transition: all 0.3s ease !important;
-    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    border: 1px solid rgba(255, 255, 255, 0.06) !important;
+    position: relative !important;
+    cursor: default !important;
   }
 
   .accommodation-card .card-amenities-icons-center .amenity-icon:hover {
-    background: rgba(255, 255, 255, 0.1) !important;
-    transform: translateY(-2px) !important;
-    border-color: rgba(255, 255, 255, 0.2) !important;
+    background: rgba(74, 154, 187, 0.12) !important;
+    transform: translateY(-3px) !important;
+    border-color: rgba(74, 154, 187, 0.3) !important;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2) !important;
+  }
+
+  /* Tooltip on hover — uses title attribute via CSS */
+  .accommodation-card .card-amenities-icons-center .amenity-icon::after {
+    content: attr(title);
+    position: absolute;
+    bottom: calc(100% + 10px);
+    left: 50%;
+    transform: translateX(-50%) translateY(4px);
+    background: rgba(14, 18, 28, 0.95);
+    color: #c8d1dc;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 0.72rem;
+    font-weight: 500;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 0.3px;
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(74, 154, 187, 0.2);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    z-index: 20;
+  }
+
+  .accommodation-card .card-amenities-icons-center .amenity-icon:hover::after {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
   }
 
   .accommodation-card .card-amenities-icons-center .amenity-icon svg {
-    width: 20px !important;
-    height: 20px !important;
-    opacity: 0.9 !important;
+    width: 28px !important;
+    height: 28px !important;
+    opacity: 0.85 !important;
+  }
+
+  .accommodation-card .card-amenities-icons-center .amenity-icon img {
+    width: 28px !important;
+    height: 28px !important;
+    opacity: 0.85 !important;
+    display: block !important;
   }
 
   /* Loading Animation */
@@ -498,8 +541,8 @@ import {
   .spinner {
     width: 40px;
     height: 40px;
-    border: 3px solid rgba(14, 165, 233, 0.1);
-    border-top: 3px solid #0ea5e9;
+    border: 3px solid rgba(74, 154, 187, 0.12);
+    border-top: 3px solid #4a9abb;
     border-radius: 50%;
     animation: spin 1s linear infinite;
   }
@@ -517,8 +560,8 @@ import {
   .mini-map-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.85);
-    backdrop-filter: blur(5px);
+    background: rgba(6, 8, 12, 0.88);
+    backdrop-filter: blur(8px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -531,18 +574,18 @@ import {
   .mini-map-dialog {
     position: relative;
     width: min(90vw, 800px);
-    background: #111;
-    border: 1px solid #333;
-    border-radius: 24px;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    background: #0e1118;
+    border: 1px solid #1e2738;
+    border-radius: 20px;
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
     overflow: hidden;
-    animation: dialogFadeIn 0.3s ease-out;
+    animation: dialogFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   @keyframes dialogFadeIn {
     from {
       opacity: 0;
-      transform: scale(0.95);
+      transform: scale(0.96);
     }
     to {
       opacity: 1;
@@ -558,21 +601,22 @@ import {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    background: rgba(0, 0, 0, 0.8);
-    color: #fff;
+    border: 1px solid #1e2738;
+    background: rgba(8, 10, 15, 0.85);
+    color: #94a3b8;
     cursor: pointer;
     z-index: 10;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 1.5rem;
-    transition: all 0.2s ease;
+    transition: all 0.25s ease;
   }
 
   .mini-map-close:hover {
-    background: #fff;
-    color: #000;
+    background: #e8ecf1;
+    color: #080a0f;
+    border-color: #e8ecf1;
   }
 
   .mini-map-iframe {
@@ -586,8 +630,8 @@ import {
     display: flex;
     justify-content: center;
     padding: 20px;
-    background: #111;
-    border-top: 1px solid #222;
+    background: #0e1118;
+    border-top: 1px solid #1e2738;
   }
 
   /* Responsive */
@@ -951,7 +995,7 @@ import {
                 amenity.icon.indexOf("/images/iconos-svg/") === 0
               ) {
                 return `<div class="amenity-icon" title="${description}">
-            <img src="${amenity.icon}" alt="${description}" style="width: 32px; height: 32px; display: block;" />
+            <img src="${amenity.icon}" alt="${description}" />
           </div>`;
               }
 

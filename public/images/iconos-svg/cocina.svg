@@ -1,72 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
-  <defs>
-    <linearGradient id="potGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" style="stop-color:#e74c3c;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#c0392b;stop-opacity:1" />
-    </linearGradient>
-    <linearGradient id="stoveGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" style="stop-color:#34495e;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#2c3e50;stop-opacity:1" />
-    </linearGradient>
-    <radialGradient id="flameGrad">
-      <stop offset="0%" style="stop-color:#f39c12;stop-opacity:1" />
-      <stop offset="50%" style="stop-color:#e67e22;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#d35400;stop-opacity:1" />
-    </radialGradient>
-    <filter id="shadow">
-      <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#000" flood-opacity="0.3"/>
-    </filter>
-  </defs>
-
-  <!-- Stove/Burner base -->
-  <rect x="8" y="38" width="48" height="20" rx="3" fill="url(#stoveGrad)" filter="url(#shadow)"/>
-
-  <!-- Burner grates -->
-  <circle cx="32" cy="48" r="10" fill="none" stroke="#1a1a1a" stroke-width="2"/>
-  <circle cx="32" cy="48" r="7" fill="none" stroke="#1a1a1a" stroke-width="1.5"/>
-
-  <!-- Flame under pot -->
-  <ellipse cx="32" cy="42" rx="8" ry="5" fill="url(#flameGrad)" opacity="0.8"/>
-  <ellipse cx="32" cy="40" rx="6" ry="4" fill="#f1c40f" opacity="0.6"/>
-
-  <!-- Pot/Pan body -->
-  <ellipse cx="32" cy="30" rx="14" ry="4" fill="#c0392b"/>
-  <path d="M 18 30 L 18 34 Q 18 38, 22 38 L 42 38 Q 46 38, 46 34 L 46 30 Z"
-        fill="url(#potGrad)"
-        filter="url(#shadow)"/>
-
-  <!-- Pot rim highlight -->
-  <ellipse cx="32" cy="30" rx="14" ry="4" fill="#e74c3c" opacity="0.6"/>
-
-  <!-- Handle left -->
-  <path d="M 18 32 L 14 32 Q 12 32, 12 34 Q 12 36, 14 36 L 18 36"
-        fill="#2c3e50"
-        stroke="#1a1a1a"
-        stroke-width="1"/>
-
-  <!-- Handle right -->
-  <path d="M 46 32 L 50 32 Q 52 32, 52 34 Q 52 36, 50 36 L 46 36"
-        fill="#2c3e50"
-        stroke="#1a1a1a"
-        stroke-width="1"/>
-
-  <!-- Steam waves -->
-  <path d="M 24 22 Q 26 18, 24 14"
-        stroke="#95a5a6"
-        stroke-width="2.5"
-        fill="none"
-        stroke-linecap="round"
-        opacity="0.7"/>
-  <path d="M 32 20 Q 34 16, 32 12"
-        stroke="#95a5a6"
-        stroke-width="2.5"
-        fill="none"
-        stroke-linecap="round"
-        opacity="0.8"/>
-  <path d="M 40 22 Q 42 18, 40 14"
-        stroke="#95a5a6"
-        stroke-width="2.5"
-        fill="none"
-        stroke-linecap="round"
-        opacity="0.7"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#e07040" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M3 14h18v7a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-7Z"/>
+  <path d="M3 14l1-4h16l1 4"/>
+  <path d="M8 10V6"/>
+  <path d="M12 10V4"/>
+  <path d="M16 10V6"/>
 </svg>
