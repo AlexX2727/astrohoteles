@@ -1,8 +1,27 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="#74b0d4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-  <rect x="2" y="4" width="20" height="12" rx="2"/>
-  <path d="M6 12h12"/>
-  <path d="M6 9h12"/>
-  <path d="M7 16v2c0 1.5-2 3-2 3"/>
-  <path d="M12 16v4"/>
-  <path d="M17 16v2c0 1.5 2 3 2 3"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <defs>
+    <linearGradient id="acGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#38bdf8;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0ea5e9;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <!-- Main AC Unit -->
+  <rect x="2" y="4" width="20" height="8" rx="2" stroke="url(#acGrad)" stroke-width="1.8" fill="rgba(56, 189, 248, 0.05)"/>
+  <!-- Front panel line -->
+  <path d="M2 9h20" stroke="url(#acGrad)" stroke-width="1.2" opacity="0.5"/>
+  <!-- Louver / Flap -->
+  <path d="M4 12h16" stroke="url(#acGrad)" stroke-width="1.8"/>
+  <!-- Grill / Vents -->
+  <path d="M6 6h4 M6 7.5h4" stroke="url(#acGrad)" stroke-width="1" opacity="0.6"/>
+  <!-- LED indicator -->
+  <circle cx="19" cy="6.5" r="0.8" fill="url(#acGrad)"/>
+  
+  <!-- Cool Air blowing down -->
+  <path d="M7 16c-1 1 -2 2 -2 4" stroke="url(#acGrad)" stroke-width="1.5" opacity="0.7"/>
+  <path d="M12 15v6" stroke="url(#acGrad)" stroke-width="1.5"/>
+  <path d="M17 16c1 1 2 2 2 4" stroke="url(#acGrad)" stroke-width="1.5" opacity="0.7"/>
+  
+  <!-- Extra air lines for more effect -->
+  <path d="M9 19c-0.5 0.5 -1 1 -1 2" stroke="url(#acGrad)" stroke-width="1" opacity="0.4"/>
+  <path d="M15 19c0.5 0.5 1 1 1 2" stroke="url(#acGrad)" stroke-width="1" opacity="0.4"/>
 </svg>

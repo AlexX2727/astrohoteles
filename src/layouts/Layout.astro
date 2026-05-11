@@ -401,13 +401,53 @@ const { title } = Astro.props;
       height: 2px;
     }
   }
+
+  /* Global amenity icon styles for detail pages */
+  .amenity-item {
+    background: rgba(255, 255, 255, 0.03) !important;
+    border: 1px solid rgba(255, 255, 255, 0.06) !important;
+    border-radius: 14px !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    box-shadow: none !important;
+  }
+
+  .amenity-item:hover {
+    background: rgba(74, 154, 187, 0.06) !important;
+    border-color: rgba(74, 154, 187, 0.15) !important;
+    transform: translateY(-4px) !important;
+    box-shadow: 0 8px 24px rgba(74, 154, 187, 0.08) !important;
+  }
+
+  .amenity-icon-large {
+    width: 48px !important;
+    height: 48px !important;
+    display: block !important;
+    margin: 0 auto !important;
+    opacity: 0.95 !important;
+  }
+
+  /* Colores para los iconos de Lucide */
+  [data-icon="/images/iconos-svg/wifi.svg"], [data-lucide="wifi"] { color: #0ea5e9 !important; }
+  [data-icon="/images/iconos-svg/parking.svg"], [data-lucide="circle-parking"] { color: #94a3b8 !important; }
+  [data-icon="/images/iconos-svg/cocina.svg"], [data-lucide="coffee"] { color: #ea580c !important; }
+  [data-icon="/images/iconos-svg/aire-acondicionado.svg"], [data-lucide="snowflake"] { color: #38bdf8 !important; }
 </style>
 
 <script>
+  // Declarar propiedades custom en window para TypeScript
+  declare global {
+    interface Window {
+      openContactModal: () => void;
+      closeContactModal: () => void;
+    }
+  }
+
   // Smooth scrolling con compensación + apertura de modal de contacto
-  document.querySelectorAll('a[href^="#"], a[href^="/#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-      const href = this.getAttribute('href');
+  document.querySelectorAll('a[href^="#"], a[href^="/#"]').forEach((anchor) => {
+    anchor.addEventListener('click', function (e: Event) {
+      const el = anchor as HTMLAnchorElement;
+      const href = el.getAttribute('href');
+      if (!href) return;
 
       // Extraer el hash (con o sin /)
       const hash = href.includes('#') ? href.substring(href.indexOf('#')) : null;
@@ -416,7 +456,7 @@ const { title } = Astro.props;
       // Abrir modal de contacto si corresponde (funciona en cualquier página)
       if (hash === '#contacto') {
         e.preventDefault();
-        openContactModal();
+        window.openContactModal();
         return;
       }
 
@@ -434,7 +474,7 @@ const { title } = Astro.props;
       e.preventDefault();
       const target = document.querySelector(hash);
       if (target) {
-        const header = document.querySelector('.header');
+        const header = document.querySelector('.header') as HTMLElement | null;
         const headerHeight = header ? header.offsetHeight : 70;
         const elementY = target.getBoundingClientRect().top + window.pageYOffset;
         const offsetY = Math.max(elementY - headerHeight - 20, 0);
@@ -461,7 +501,7 @@ const { title } = Astro.props;
       setTimeout(() => {
         const target = document.querySelector(hash);
         if (target) {
-          const header = document.querySelector('.header');
+          const header = document.querySelector('.header') as HTMLElement | null;
           const headerHeight = header ? header.offsetHeight : 70;
           const elementY = target.getBoundingClientRect().top + window.pageYOffset;
           const offsetY = Math.max(elementY - headerHeight - 20, 0);
@@ -480,6 +520,7 @@ const { title } = Astro.props;
     const overlay = document.getElementById('nav-overlay');
 
     function openMenu() {
+      if (!navLinks || !hamburger) return;
       navLinks.classList.add('active');
       hamburger.classList.add('active');
       if (overlay) overlay.classList.add('active');
@@ -487,6 +528,7 @@ const { title } = Astro.props;
     }
 
     function closeMenu() {
+      if (!navLinks || !hamburger) return;
       navLinks.classList.remove('active');
       hamburger.classList.remove('active');
       if (overlay) overlay.classList.remove('active');
@@ -517,11 +559,11 @@ const { title } = Astro.props;
       if (!contactModal) return;
       contactModal.hidden = false;
       // No bloqueamos scroll global; el panel vive en la esquina
-    }
+    };
     window.closeContactModal = function() {
       if (!contactModal) return;
       contactModal.hidden = true;
-    }
+    };
 
     if (contactClose) {
       contactClose.addEventListener('click', window.closeContactModal);

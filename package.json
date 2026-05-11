@@ -9,7 +9,9 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@iconify-json/lucide": "^1.2.106",
     "astro": "^5.13.7",
+    "astro-icon": "^1.1.5",
     "date-fns": "^4.1.0",
     "lucide-react": "^0.544.0",
     "potrace": "^2.1.8"
