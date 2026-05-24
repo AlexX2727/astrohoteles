@@ -28,7 +28,7 @@ const { title } = Astro.props;
   <header class="header">
     <nav class="nav">
       <a href="/" class="logo-link">
-        <img src="/images/logo.svg" alt="Hospedaje Salinas" class="logo-img" />
+        <img src="/images/logo.svg?v=3" alt="Hospedaje Salinas" class="logo-img" />
       </a>
       <ul class="nav-links" id="nav-links">
         <li><a href="/#inicio">Inicio</a></li>
@@ -404,11 +404,17 @@ const { title } = Astro.props;
 
   /* Global amenity icon styles for detail pages */
   .amenity-item {
-    background: rgba(255, 255, 255, 0.03) !important;
-    border: 1px solid rgba(255, 255, 255, 0.06) !important;
-    border-radius: 14px !important;
+    background: linear-gradient(135deg, rgba(74, 154, 187, 0.05), rgba(255, 255, 255, 0.02)) !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+    border-radius: 50px !important;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
     box-shadow: none !important;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 1rem !important;
+    padding: 1rem 1.5rem !important;
   }
 
   .amenity-item:hover {
@@ -419,11 +425,10 @@ const { title } = Astro.props;
   }
 
   .amenity-icon-large {
-    width: 48px !important;
-    height: 48px !important;
+    width: 24px !important;
+    height: 24px !important;
     display: block !important;
-    margin: 0 auto !important;
-    opacity: 0.95 !important;
+    opacity: 0.8 !important;
   }
 
   /* Colores para los iconos de Lucide */

@@ -1,9 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 95" width="1000" height="190">
   <!-- NO background — fully transparent -->
-  <!-- HOSPEDAJE - bold white serif, matching original design -->
-  <text x="4" y="44" font-family="Georgia, 'Times New Roman', serif" font-size="34" font-weight="700" fill="#ffffff" letter-spacing="1.5">HOSPEDAJE</text>
-  <!-- SALINAS - lighter blue serif, positioned right after HOSPEDAJE -->
-  <text x="260" y="44" font-family="Georgia, 'Times New Roman', serif" font-size="28" font-weight="400" fill="#5db8d4" letter-spacing="1.2">SALINAS</text>
-  <!-- ALQUILERES TURÍSTICOS - subtitle below, wider spaced -->
-  <text x="4" y="74" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="300" fill="#c0c0c0" letter-spacing="3">ALQUILERES TURÍSTICOS</text>
+  <text x="250" y="44" text-anchor="middle" font-family="'Inter', Arial, sans-serif" font-size="34" letter-spacing="1.5">
+    <tspan font-weight="300" fill="#ffffff">HOSPEDAJE </tspan>
+    <tspan font-weight="700" fill="#0b2345">SALINAS</tspan>
+  </text>
+  <text x="250" y="74" text-anchor="middle" font-family="'Inter', Arial, sans-serif" font-size="18" font-weight="300" fill="#c0c0c0" letter-spacing="3">ALQUILERES TURÍSTICOS</text>
 </svg>
