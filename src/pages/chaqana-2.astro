@@ -117,19 +117,50 @@ const policies = [
           <!-- Información del Departamento -->
           <div class="info-section">
             <h2>Información del Departamento</h2>
-            <div class="amenities-grid">
-              {
-                amenities.map((amenity) => (
-                  <div class="amenity-item">
-                    <img src={amenity.icon} alt={amenity.name} class="amenity-icon-large" />
-                    <span class="amenity-name">{amenity.name}</span>
-                  </div>
-                ))
-              }
-            </div>
-          </div>
+            <div class="amenities-grid-modern">
+                            <div class="amenity-chip" style="--icon-color:#2563eb" tabindex="0">
+                                <svg class="amenity-chip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <path d="M12 20h.01"></path>
+                                    <path d="M2 8.82a15 15 0 0 1 20 0"></path>
+                                    <path d="M5 12.859a10 10 0 0 1 14 0"></path>
+                                    <path d="M8.5 16.429a5 5 0 0 1 7 0"></path>
+                                </svg>
+                                <span class="amenity-chip-tooltip">WiFi gratuito</span>
+                            </div>
+                            <div class="amenity-chip" style="--icon-color:#16a34a" tabindex="0">
+                                <svg class="amenity-chip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <rect width="18" height="18" x="3" y="3" rx="2"></rect>
+                                    <path d="M9 17V7h4a3 3 0 0 1 0 6H9"></path>
+                                </svg>
+                                <span class="amenity-chip-tooltip">Parqueadero</span>
+                            </div>
+                            <div class="amenity-chip" style="--icon-color:#0ea5e9" tabindex="0">
+                                <svg class="amenity-chip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <path d="M12 2v20"></path>
+                                    <path d="m4.93 4.93 14.14 14.14"></path>
+                                    <path d="m19.07 4.93-14.14 14.14"></path>
+                                    <path d="M2 12h20"></path>
+                                    <path d="m9 5 3 3 3-3"></path>
+                                    <path d="m9 19 3-3 3 3"></path>
+                                    <path d="m5 9 3 3-3 3"></path>
+                                    <path d="m19 9-3 3 3 3"></path>
+                                </svg>
+                                <span class="amenity-chip-tooltip">Aire acondicionado</span>
+                            </div>
+                            <div class="amenity-chip" style="--icon-color:#ea580c" tabindex="0">
+                                <svg class="amenity-chip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <path d="M15 11h.01"></path>
+                                    <path d="M11 15h.01"></path>
+                                    <path d="M16 16h.01"></path>
+                                    <path d="m2 16 20 6-6-20A20 20 0 0 0 2 16"></path>
+                                    <path d="M5.71 17.11a17.04 17.04 0 0 1 11.4-11.4"></path>
+                                </svg>
+                                <span class="amenity-chip-tooltip">Cocina equipada</span>
+                            </div>
+                        </div>
+                    </div>
 
-          <!-- Descripción -->
+                    <!-- Descripción -->
           <div class="description-section">
             <h2>Descripción</h2>
             <p class="description-text">
@@ -531,50 +562,64 @@ const policies = [
     border-left: 4px solid #4a9abb;
   }
 
-  /* Amenity Icon Large */
-  .amenity-icon-large {
-    width: 24px;
-    height: 24px;
+  
+  /* Amenity Chips (modern icon-only) */
+  .amenity-chip-icon {
+    width: 28px;
+    height: 28px;
     display: block;
-    opacity: 0.8;
+    flex-shrink: 0;
+    color: var(--icon-color, #cbd5e1);
+    transition: color 0.3s ease, transform 0.3s ease;
   }
 
-  .amenities-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1.5rem;
-  }
-
-  .amenity-item {
+  .amenities-grid-modern {
     display: flex;
     flex-direction: row;
+    gap: 0.75rem;
+    width: 100%;
+  }
+
+  .amenity-chip {
+    position: relative;
+    display: flex;
     align-items: center;
-    justify-content: flex-start;
-    gap: 1rem;
-    padding: 1rem 1.5rem;
-    background: linear-gradient(135deg, rgba(74, 154, 187, 0.05), rgba(255, 255, 255, 0.02));
-    border-radius: 50px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    transition: all 0.3s ease;
+    justify-content: center;
+    flex: 1 1 0;
+    min-width: 0;
+    height: 80px;
+    padding: 0;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  .amenity-item:hover {
-    border-color: #4a9abb;
-    transform: translateY(-5px);
-    box-shadow: 0 12px 35px rgba(74, 154, 187, 0.3);
-    background: linear-gradient(
-      135deg,
-      rgba(74, 154, 187, 0.15),
-      rgba(224, 112, 64, 0.08)
-    );
+  .amenity-chip-label {
+    display: none;
   }
 
-  .amenity-name {
-    color: #fff;
-    font-size: 1rem;
+  .amenity-chip:hover,
+  .amenity-chip:focus-visible {
+    border-color: var(--icon-color, #2563eb);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+    background: rgba(255, 255, 255, 0.06);
+    outline: none;
   }
 
-  .features-grid {
+  .amenity-chip:hover .amenity-chip-icon,
+  .amenity-chip:focus-visible .amenity-chip-icon {
+    transform: scale(1.12);
+  }
+
+  .amenity-chip-tooltip {
+    display: none;
+  }
+
+
+                    .features-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 1rem;
@@ -1130,36 +1175,22 @@ const policies = [
       font-size: 1.5rem;
     }
 
-    .amenities-grid {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1rem;
+    
+    .amenities-grid-modern {
+      gap: 0.75rem;
     }
 
-    .amenity-item {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 1rem;
-    padding: 1rem 1.5rem;
-    background: linear-gradient(135deg, rgba(74, 154, 187, 0.05), rgba(255, 255, 255, 0.02));
-    border-radius: 50px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    transition: all 0.3s ease;
-  }
-
-    .amenity-icon-large {
-    width: 24px;
-    height: 24px;
-    display: block;
-    opacity: 0.8;
-  }
-
-    .amenity-name {
-      font-size: 0.9rem;
+    .amenity-chip {
+      height: 70px;
     }
 
-    .description-text {
+    .amenity-chip-icon {
+      width: 26px;
+      height: 26px;
+    }
+
+
+                        .description-text {
       font-size: 1rem;
       padding: 1.2rem;
     }

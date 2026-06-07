@@ -136,6 +136,39 @@ export const accommodationsData = {
       "detailPageUrl": "/sol-de-salinas"
     },
     {
+      "id": 15,
+      "name": "Villa 40",
+      "location": "Salinas",
+      "rating": 9.8,
+      "price": 150,
+      "image": "/images/departamentos/Villa 40/villa 40 (1).webp",
+      "images": [
+        "/images/departamentos/Villa 40/villa 40 (1).webp",
+        "/images/departamentos/Villa 40/villa 40 (2).webp",
+        "/images/departamentos/Villa 40/villa 40 (3).webp"
+      ],
+      "amenities": [
+        {
+          "icon": "/images/iconos-svg/wifi.svg"
+        },
+        {
+          "icon": "/images/iconos-svg/parking.svg"
+        },
+        {
+          "icon": "/images/iconos-svg/aire-acondicionado.svg"
+        },
+        {
+          "icon": "/images/iconos-svg/cocina.svg"
+        }
+      ],
+      "coordinates": [
+        -80.9766758,
+        -2.2066937
+      ],
+      "hasDetailPage": true,
+      "detailPageUrl": "/villa-40"
+    },
+    {
       "id": 4,
       "name": "Departamento 1D",
       "location": "Hotel Villa del Mar",
